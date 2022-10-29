@@ -33,12 +33,12 @@ public class SimpleMovementController : MonoBehaviour
         }
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
-        
+        */
         if (Input.GetButtonDown("Jump") && Time.time > canJump)
         {
             rb.AddForce(0, jumpForce, 0);
             canJump = Time.time + timeBeforeNextJump;
-        }*/
+        }
 
         if (Input.GetKey(KeyCode.A))
         {
