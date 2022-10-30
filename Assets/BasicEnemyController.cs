@@ -31,7 +31,7 @@ public class BasicEnemyController : MonoBehaviour
         if (!playerInRange) FreeMove();
         else
         {
-            Debug.Log("In Range");
+            //Debug.Log("In Range");
             AttackPlayer();
         }
     }
