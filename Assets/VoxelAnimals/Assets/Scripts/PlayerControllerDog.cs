@@ -25,7 +25,7 @@ public class PlayerControllerDog : MonoBehaviour
 
     void ControllPlayer()
     {
-
+        /*
         if (Input.GetKey(KeyCode.A))
         {
             GetComponent<Rigidbody>().AddForce(new Vector3(-movementSpeed,0,0));
@@ -44,7 +44,7 @@ public class PlayerControllerDog : MonoBehaviour
         {
             GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -movementSpeed));
         }
-        /*
+        */
         float moveHorizontal = Input.GetAxisRaw("Horizontal");
         float moveVertical = Input.GetAxisRaw("Vertical");
 
@@ -60,8 +60,8 @@ public class PlayerControllerDog : MonoBehaviour
         }
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
-        */
-        if (Input.GetButtonDown("Jump") && Time.time > canJump)
+        
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("LB") && Time.time > canJump)
         {
                 rb.AddForce(0, jumpForce, 0);
                 canJump = Time.time + timeBeforeNextJump;
