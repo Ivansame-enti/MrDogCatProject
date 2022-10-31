@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - Rope
+  - Hitbox
+  - Hitbox2
+  - Hitbox3
+  - Hitbox4
   layers:
   - Default
   - TransparentFX

@@ -6,7 +6,7 @@ public class BasicEnemyColliders : MonoBehaviour
 {
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("Hola");
+        //Debug.Log("Hola");
         //if (collision.gameObject.tag=="Rope")
         
     }

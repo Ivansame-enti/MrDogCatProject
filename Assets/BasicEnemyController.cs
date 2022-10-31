@@ -5,6 +5,8 @@ using UnityEngine.AI;
 
 public class BasicEnemyController : MonoBehaviour
 {
+    public Material mat;
+    public bool hitbox1, hitbox2, hitbox3, hitbox4;
     private NavMeshAgent agent;
     private Transform player1, player2;
     public LayerMask groundMask, playerMask;
@@ -18,6 +20,10 @@ public class BasicEnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        hitbox1 = false;
+        hitbox2 = false;
+        hitbox3 = false;
+        hitbox4 = false;
         player1 = GameObject.Find("Dog").transform;
         player2 = GameObject.Find("Cat").transform;
         agent = this.GetComponent<NavMeshAgent>();
@@ -34,10 +40,16 @@ public class BasicEnemyController : MonoBehaviour
             //Debug.Log("In Range");
             AttackPlayer();
         }
+        if (hitbox1) this.gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox2) this.gameObject.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox3) this.gameObject.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox4) this.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox1 && hitbox2 && hitbox3 && hitbox4) Destroy(this.gameObject);
     }
 
     private void FreeMove()
     {
+        agent.speed = 1.0f;
         if (!hasRoute) calculateRandomPoint();
         else
         {
@@ -60,6 +72,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
+        agent.speed = 3.0f;
         Vector3 distanceToPlayerOne = this.transform.position - player1.position;
         Vector3 distanceToPlayerTwo = this.transform.position - player2.position;
 
