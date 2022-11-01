@@ -24,8 +24,8 @@ public class PlayerControllerCat : MonoBehaviour
 
     void ControllPlayer()
     {
-        float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
+        float moveHorizontal = Input.GetAxisRaw("Horizontal2");
+        float moveVertical = Input.GetAxisRaw("Vertical2");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
 
@@ -40,7 +40,7 @@ public class PlayerControllerCat : MonoBehaviour
 
         transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
 
-        if (Input.GetButtonDown("Jump") && Time.time > canJump)
+        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("RB") && Time.time > canJump)
         {
                 rb.AddForce(0, jumpForce, 0);
                 canJump = Time.time + timeBeforeNextJump;
