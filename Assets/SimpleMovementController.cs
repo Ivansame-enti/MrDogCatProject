@@ -4,58 +4,30 @@ using UnityEngine;
 
 public class SimpleMovementController : MonoBehaviour
 {
-    public float movementSpeed = 7;
-    public float jumpForce = 1000000;
-    public float timeBeforeNextJump = 1.2f;
-    private float canJump = 0f;
-    Rigidbody rb;
+    public float speed;
+    public float maxSpeed;
+    public Rigidbody rb;
+    Vector3 move;
 
-    void Start()
+    private void Update()
     {
-        rb = GetComponent<Rigidbody>();
+        move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity += rb.velocity * 1.5f;
+        }
     }
 
-    void Update()
+    private void FixedUpdate()
     {
-        ControllPlayer();
-    }
-
-    void ControllPlayer()
-    {
-        /*float moveHorizontal = Input.GetAxisRaw("Horizontal");
-        float moveVertical = Input.GetAxisRaw("Vertical");
-
-        Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
-
-        if (movement != Vector3.zero)
+        if (Mathf.Abs(rb.velocity.x) < maxSpeed)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), 0.15f);
+            rb.velocity += new Vector3(move.x * speed, 0, 0);
         }
-
-        transform.Translate(movement * movementSpeed * Time.deltaTime, Space.World);
-        */
-        if (Input.GetButtonDown("Jump") && Time.time > canJump)
+        if (Mathf.Abs(rb.velocity.z) < maxSpeed)
         {
-            rb.AddForce(0, jumpForce, 0);
-            canJump = Time.time + timeBeforeNextJump;
-        }
-
-        if (Input.GetKey(KeyCode.A))
-        {
-            GetComponent<Rigidbody>().AddForce(new Vector3(-movementSpeed, 0, 0));
-
-        }
-        if (Input.GetKey(KeyCode.D))
-        {
-            GetComponent<Rigidbody>().AddForce(new Vector3(movementSpeed, 0, 0));
-        }
-        if (Input.GetKey(KeyCode.W))
-        {
-            GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, movementSpeed));
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            GetComponent<Rigidbody>().AddForce(new Vector3(0, 0, -movementSpeed));
+            rb.velocity += new Vector3(0, 0, move.z * speed);
         }
     }
 }

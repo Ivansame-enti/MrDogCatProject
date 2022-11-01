@@ -10,18 +10,52 @@ public class PlayerControllerCat : MonoBehaviour
     private float canJump = 0f;
     Animator anim;
     Rigidbody rb;
-    
+
+
+    public Vector3 moveDirection;
+
+    public float speed;
+    public float maxSpeed;
+    Vector3 move;
+
     void Start()
     {
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
-
-    void Update()
+    private void Update()
     {
-        ControllPlayer();
+        move = new Vector3(Input.GetAxisRaw("Horizontal2"), 0, Input.GetAxisRaw("Vertical2"));
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            rb.velocity += rb.velocity * 1.5f;
+        }
+
+
+        if (move != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+            anim.SetInteger("Walk", 1);
+        }
+        else
+        {
+            anim.SetInteger("Walk", 0);
+        }
     }
 
+    private void FixedUpdate()
+    {
+        if (Mathf.Abs(rb.velocity.x) < maxSpeed)
+        {
+            rb.velocity += new Vector3(move.x * speed, 0, 0);
+        }
+        if (Mathf.Abs(rb.velocity.z) < maxSpeed)
+        {
+            rb.velocity += new Vector3(0, 0, move.z * speed);
+        }
+
+    }
     void ControllPlayer()
     {
         float moveHorizontal = Input.GetAxisRaw("Horizontal2");
