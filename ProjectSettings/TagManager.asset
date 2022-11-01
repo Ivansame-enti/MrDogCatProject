@@ -9,6 +9,7 @@ TagManager:
   - Hitbox2
   - Hitbox3
   - Hitbox4
+  - Coin
   layers:
   - Default
   - TransparentFX
