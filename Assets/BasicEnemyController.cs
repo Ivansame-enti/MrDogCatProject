@@ -78,13 +78,27 @@ public class BasicEnemyController : MonoBehaviour
 
         if (distanceToPlayerOne.magnitude <= distanceToPlayerTwo.magnitude)
         {
-            transform.LookAt(player1);
+            //transform.LookAt(player1);
             agent.SetDestination(player1.position);
         }
         else
         {
-            transform.LookAt(player2);
+            //transform.LookAt(player2);
             agent.SetDestination(player2.position);
+        }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Player")
+        {
+            Vector3 direction = (collision.transform.position - transform.position).normalized;
+            //Debug.Log(direction.x);
+            //collision.transform.position = direction;
+            
+            direction.y = 0;
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(direction * 15, ForceMode.Impulse);
+            //collision.transform.position += direction * 3;
         }
     }
 }
