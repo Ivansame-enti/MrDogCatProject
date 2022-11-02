@@ -4,21 +4,21 @@ using UnityEngine;
 
 public class PlayerControllerCat : MonoBehaviour
 {
-    public float movementSpeed = 3;
-    public float jumpForce = 300;
-    public float timeBeforeNextJump = 1.2f;
-    private float canJump = 0f;
+
+
     Animator anim;
-    Rigidbody rb;
-
-
-    public Vector3 moveDirection;
 
     public float speed;
     public float maxSpeed;
-    Vector3 move; 
-    bool ground;
+    public Rigidbody rb;
+    Vector3 move;
+
     public float forceJump;
+    public float lessJump;
+    public bool ground;
+    private bool jumpFlag;
+
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -27,8 +27,8 @@ public class PlayerControllerCat : MonoBehaviour
     private void Update()
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal2"), 0, Input.GetAxisRaw("Vertical2"));
-
-        /*if (Input.GetKeyDown(KeyCode.Space))
+        /*
+        if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity += rb.velocity * 1.5f;
         }*/
@@ -43,6 +43,18 @@ public class PlayerControllerCat : MonoBehaviour
         {
             anim.SetInteger("Walk", 0);
         }
+
+        if ((ground == true) && (Input.GetButtonDown("Jump2")))
+        {
+            jumpFlag = true;
+        }
+        else if (Input.GetButtonUp("Jump2"))
+        {
+            if (rb.velocity.y > 0.0f)
+            {
+                rb.velocity = (new Vector3(rb.velocity.x, rb.velocity.y - lessJump , rb.velocity.z));
+            }
+        }
     }
 
     private void FixedUpdate()
@@ -55,30 +67,30 @@ public class PlayerControllerCat : MonoBehaviour
         {
             rb.velocity += new Vector3(0, 0, move.z * speed);
         }
-        if ((ground == true) && (Input.GetButtonDown("Jump2") == true))
+
+        if (jumpFlag)
         {
             rb.velocity = (new Vector3(rb.velocity.x, forceJump, rb.velocity.z));
+            jumpFlag = false;
         }
 
-    }
-   
-    
 
-    /*private void OnCollisionEnter(Collision collision)
+    }
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Rope"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             ground = true;
-            Debug.Log("ola");
-        }
-        else
-        {
-            ground = false;
+            //Debug.Log("ola");
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
-        ground = false;
-        Debug.Log("adios");
-    }*/
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            ground = false;
+            //Debug.Log("adios");
+        }
+    }
 }

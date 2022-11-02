@@ -4,18 +4,14 @@ using UnityEngine;
 
 public class PlayerControllerDog : MonoBehaviour
 {
-    public float jumpForce = 300;
-    public float timeBeforeNextJump = 1.2f;
-    private float canJump = 0f,gravityScale;
     Animator anim;
-    public Vector3 moveDirection;
-
     public float speed;
     public float maxSpeed;
     public Rigidbody rb;
     Vector3 move;
 
     public float forceJump;
+    public float lessJump;
     public bool ground;
     float jump;
     private bool jumpFlag;
@@ -48,6 +44,13 @@ public class PlayerControllerDog : MonoBehaviour
         if ((ground == true) && (Input.GetButtonDown("Jump")))
         {
             jumpFlag = true;
+        }
+        else if (Input.GetButtonUp("Jump"))
+        {
+            if (rb.velocity.y > 0.0f)
+            {
+                rb.velocity = (new Vector3(rb.velocity.x, rb.velocity.y - lessJump, rb.velocity.z));
+            }
         }
     }
 
