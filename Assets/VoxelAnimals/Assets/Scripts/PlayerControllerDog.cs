@@ -16,8 +16,9 @@ public class PlayerControllerDog : MonoBehaviour
     Vector3 move;
 
     public float forceJump;
-    bool ground;
+    public bool ground;
     float jump;
+    private bool jumpFlag;
 
     void Start()
     {
@@ -27,11 +28,11 @@ public class PlayerControllerDog : MonoBehaviour
     private void Update()
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
+        /*
         if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity += rb.velocity * 1.5f;
-        }
+        }*/
 
 
         if (move != Vector3.zero)
@@ -42,6 +43,11 @@ public class PlayerControllerDog : MonoBehaviour
         else
         {
             anim.SetInteger("Walk", 0);
+        }
+
+        if ((ground == true) && (Input.GetButtonDown("Jump")))
+        {
+            jumpFlag = true;
         }
     }
 
@@ -55,31 +61,30 @@ public class PlayerControllerDog : MonoBehaviour
         {
             rb.velocity += new Vector3(0, 0, move.z * speed);
         }
-        if ((ground == true) && (Input.GetButtonDown("Jump") == true))
+
+        if (jumpFlag)
         {
-            rb.velocity = (new Vector3(rb.velocity.x, forceJump,rb.velocity.z));
+            rb.velocity = (new Vector3(rb.velocity.x, forceJump, rb.velocity.z));
+            jumpFlag = false;
         }
 
 
     }
-    private void OnCollisionEnter(Collision collision)
+    private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Rope"))
+        if (collision.gameObject.CompareTag("Ground"))
         {
             ground = true;
-            Debug.Log("ola");
-        }
-        else
-        {
-            ground = false;
+            //Debug.Log("ola");
         }
     }
+
     private void OnCollisionExit(Collision collision)
     {
-        ground = false;
-        Debug.Log("adios");
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            ground = false;
+            //Debug.Log("adios");
+        }
     }
-
-
-
 }   

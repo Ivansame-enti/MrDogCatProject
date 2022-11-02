@@ -28,10 +28,10 @@ public class PlayerControllerCat : MonoBehaviour
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal2"), 0, Input.GetAxisRaw("Vertical2"));
 
-        if (Input.GetKeyDown(KeyCode.Space))
+        /*if (Input.GetKeyDown(KeyCode.Space))
         {
             rb.velocity += rb.velocity * 1.5f;
-        }
+        }*/
 
 
         if (move != Vector3.zero)
@@ -64,7 +64,7 @@ public class PlayerControllerCat : MonoBehaviour
    
     
 
-    private void OnCollisionEnter(Collision collision)
+    /*private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Rope"))
         {
@@ -80,5 +80,5 @@ public class PlayerControllerCat : MonoBehaviour
     {
         ground = false;
         Debug.Log("adios");
-    }
+    }*/
 }
