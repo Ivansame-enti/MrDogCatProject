@@ -9,13 +9,13 @@ public class CameraController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        offset = target.position - transform.position;
+        //offset = target.position - transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position = target.position - offset;
-        transform.LookAt(target);
+        //transform.LookAt(target);
     }
 }
