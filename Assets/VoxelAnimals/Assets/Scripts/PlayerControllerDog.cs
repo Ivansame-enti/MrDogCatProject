@@ -15,6 +15,10 @@ public class PlayerControllerDog : MonoBehaviour
     public Rigidbody rb;
     Vector3 move;
 
+    public float forceJump;
+    bool ground;
+    float jump;
+
     void Start()
     {
         anim = GetComponent<Animator>();
@@ -51,14 +55,31 @@ public class PlayerControllerDog : MonoBehaviour
         {
             rb.velocity += new Vector3(0, 0, move.z * speed);
         }
-
-        if (Input.GetButtonDown("Jump") || Input.GetButtonDown("LB") && Time.time > canJump)
+        if ((ground == true) && (Input.GetButtonDown("Jump") == true))
         {
-            rb.AddForce(0, jumpForce, 0);
-            canJump = Time.time + timeBeforeNextJump;
-            anim.SetTrigger("jump");
+            rb.velocity = (new Vector3(rb.velocity.x, forceJump,rb.velocity.z));
         }
 
+
     }
-    
-}
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground") || collision.gameObject.CompareTag("Rope"))
+        {
+            ground = true;
+            Debug.Log("ola");
+        }
+        else
+        {
+            ground = false;
+        }
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        ground = false;
+        Debug.Log("adios");
+    }
+
+
+
+}   
