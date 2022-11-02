@@ -52,6 +52,7 @@ public class PlayerControllerDog : MonoBehaviour
         {
             rb.velocity += new Vector3(0, 0, move.z * speed);
         }
+
         if (Input.GetButtonDown("Jump") || Input.GetButtonDown("LB") && Time.time > canJump)
         {
             rb.AddForce(0, jumpForce, 0);
