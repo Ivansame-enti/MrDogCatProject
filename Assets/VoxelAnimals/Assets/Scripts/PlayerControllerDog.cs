@@ -7,29 +7,34 @@ public class PlayerControllerDog : MonoBehaviour
     Animator anim;
     public float speed;
     public float maxSpeed;
-    public Rigidbody rb;
+    private Rigidbody rb;
     Vector3 move;
 
-    public float forceJump;
-    public float lessJump;
-    public bool ground;
-    float jump;
-    private bool jumpFlag;
+    public float runTime;
+    private float runTimerCounter;
+    private bool isRunning;
+
+    public float jumpForce;
+    public float jumpTime;
+    private float jumpTimeCounter;
+    private bool ground;
+    private bool stoppedJumping;
+    public LayerMask isGround;
+
+    //public float gravityScale = 5;
+
 
     void Start()
     {
+        runTimerCounter = runTime;
+        stoppedJumping = true;
+        jumpTimeCounter = jumpTime;
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
     }
     private void Update()
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.velocity += rb.velocity * 1.5f;
-        }*/
-
 
         if (move != Vector3.zero)
         {
@@ -41,16 +46,35 @@ public class PlayerControllerDog : MonoBehaviour
             anim.SetInteger("Walk", 0);
         }
 
-        if ((ground == true) && (Input.GetButtonDown("Jump")))
+
+        if (ground)
         {
-            jumpFlag = true;
-        }
-        else if (Input.GetButtonUp("Jump"))
-        {
-            if (rb.velocity.y > 0.0f)
+            jumpTimeCounter = jumpTime;
+
+            if ((Input.GetButtonDown("Jump")))
             {
-                rb.velocity = (new Vector3(rb.velocity.x, rb.velocity.y - lessJump, rb.velocity.z));
+                stoppedJumping = false;
             }
+
+            if (Input.GetKeyDown(KeyCode.LeftControl))
+            {
+                isRunning = true;
+                
+            }
+        }
+
+        if (((Input.GetButton("Jump")) && !stoppedJumping))
+        {
+            if (jumpTimeCounter > 0)
+            {
+                jumpTimeCounter -= Time.deltaTime;
+            } else stoppedJumping = true;
+        }
+
+        if ((Input.GetButtonUp("Jump")))
+        {
+            jumpTimeCounter = 0;
+            stoppedJumping = true;
         }
     }
 
@@ -65,29 +89,26 @@ public class PlayerControllerDog : MonoBehaviour
             rb.velocity += new Vector3(0, 0, move.z * speed);
         }
 
-        if (jumpFlag)
+        if (!stoppedJumping)
         {
-            rb.velocity = (new Vector3(rb.velocity.x, forceJump, rb.velocity.z));
-            jumpFlag = false;
+            rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
         }
 
 
     }
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if ((isGround.value & (1 << collision.gameObject.layer)) > 0)
         {
             ground = true;
-            //Debug.Log("ola");
         }
     }
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if ((isGround.value & (1 << collision.gameObject.layer)) > 0)
         {
             ground = false;
-            //Debug.Log("adios");
         }
     }
 }   

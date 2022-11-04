@@ -4,35 +4,30 @@ using UnityEngine;
 
 public class PlayerControllerCat : MonoBehaviour
 {
-
-
     Animator anim;
 
     public float speed;
     public float maxSpeed;
-    public Rigidbody rb;
+    private Rigidbody rb;
     Vector3 move;
 
-    public float forceJump;
-    public float lessJump;
-    public bool ground;
-    private bool jumpFlag;
-
+    public float jumpForce;
+    public float jumpTime;
+    private float jumpTimeCounter;
+    private bool ground;
+    private bool stoppedJumping;
+    public LayerMask isGround;
 
     void Start()
     {
+        stoppedJumping = true;
+        jumpTimeCounter = jumpTime;
         anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
     }
     private void Update()
     {
         move = new Vector3(Input.GetAxisRaw("Horizontal2"), 0, Input.GetAxisRaw("Vertical2"));
-        /*
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.velocity += rb.velocity * 1.5f;
-        }*/
-
 
         if (move != Vector3.zero)
         {
@@ -44,16 +39,29 @@ public class PlayerControllerCat : MonoBehaviour
             anim.SetInteger("Walk", 0);
         }
 
-        if ((ground == true) && (Input.GetButtonDown("Jump2")))
+        if (ground)
         {
-            jumpFlag = true;
-        }
-        else if (Input.GetButtonUp("Jump2"))
-        {
-            if (rb.velocity.y > 0.0f)
+            jumpTimeCounter = jumpTime;
+
+            if ((Input.GetButtonDown("Jump2")))
             {
-                rb.velocity = (new Vector3(rb.velocity.x, rb.velocity.y - lessJump , rb.velocity.z));
+                stoppedJumping = false;
             }
+        }
+
+        if (((Input.GetButton("Jump2")) && !stoppedJumping))
+        {
+            if (jumpTimeCounter > 0)
+            {
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else stoppedJumping = true;
+        }
+
+        if ((Input.GetButtonUp("Jump2")))
+        {
+            jumpTimeCounter = 0;
+            stoppedJumping = true;
         }
     }
 
@@ -68,17 +76,15 @@ public class PlayerControllerCat : MonoBehaviour
             rb.velocity += new Vector3(0, 0, move.z * speed);
         }
 
-        if (jumpFlag)
+        if (!stoppedJumping)
         {
-            rb.velocity = (new Vector3(rb.velocity.x, forceJump, rb.velocity.z));
-            jumpFlag = false;
+            rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
         }
-
-
     }
+
     private void OnCollisionStay(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if ((isGround.value & (1 << collision.gameObject.layer)) > 0)
         {
             ground = true;
             //Debug.Log("ola");
@@ -87,7 +93,7 @@ public class PlayerControllerCat : MonoBehaviour
 
     private void OnCollisionExit(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
+        if ((isGround.value & (1 << collision.gameObject.layer)) > 0)
         {
             ground = false;
             //Debug.Log("adios");
