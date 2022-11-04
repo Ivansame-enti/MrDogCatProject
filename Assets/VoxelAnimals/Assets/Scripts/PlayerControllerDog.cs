@@ -10,9 +10,14 @@ public class PlayerControllerDog : MonoBehaviour
     private Rigidbody rb;
     Vector3 move;
 
+    public float runMin;
+    private float runMinAux;
+    public float runMax;
     public float runTime;
     private float runTimerCounter;
     private bool isRunning;
+
+    public GameObject runningPS;
 
     public float jumpForce;
     public float jumpTime;
@@ -26,6 +31,7 @@ public class PlayerControllerDog : MonoBehaviour
 
     void Start()
     {
+        runMinAux = runMin;
         runTimerCounter = runTime;
         stoppedJumping = true;
         jumpTimeCounter = jumpTime;
@@ -56,11 +62,19 @@ public class PlayerControllerDog : MonoBehaviour
                 stoppedJumping = false;
             }
 
-            if (Input.GetKeyDown(KeyCode.LeftControl))
+            if (Input.GetKey(KeyCode.LeftShift))
             {
-                isRunning = true;
                 
+                isRunning = true;
+                runTimerCounter -= Time.deltaTime;
+                if (runTimerCounter <= 0) {
+                    runningPS.SetActive(true);
+                    runMin = runMax;
+                }
             }
+        } else if(isRunning)
+        {
+            //Hacer que cuando salte vuelva asu velocidad normal???
         }
 
         if (((Input.GetButton("Jump")) && !stoppedJumping))
@@ -76,18 +90,40 @@ public class PlayerControllerDog : MonoBehaviour
             jumpTimeCounter = 0;
             stoppedJumping = true;
         }
+
+        if (Input.GetKeyUp(KeyCode.LeftShift))
+        {
+            isRunning = false;
+            runningPS.SetActive(false);
+            runTimerCounter = runTime;
+            runMin = runMinAux;
+        }
     }
 
     private void FixedUpdate()
     {
-        if (Mathf.Abs(rb.velocity.x) < maxSpeed)
+        if (!isRunning)
         {
-            rb.velocity += new Vector3(move.x * speed, 0, 0);
-        }
-        if (Mathf.Abs(rb.velocity.z) < maxSpeed)
+            if (Mathf.Abs(rb.velocity.x) < maxSpeed)
+            {
+                rb.velocity += new Vector3(move.x * speed, 0, 0);
+            }
+            if (Mathf.Abs(rb.velocity.z) < maxSpeed)
+            {
+                rb.velocity += new Vector3(0, 0, move.z * speed);
+            }
+        } else
         {
-            rb.velocity += new Vector3(0, 0, move.z * speed);
+            if (Mathf.Abs(rb.velocity.x) < runMin)
+            {
+                rb.velocity += new Vector3(move.x * runMin, 0, 0);
+            }
+            if (Mathf.Abs(rb.velocity.z) < runMin)
+            {
+                rb.velocity += new Vector3(0, 0, move.z * runMin);
+            }
         }
+
 
         if (!stoppedJumping)
         {
