@@ -66,10 +66,14 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 
                 isRunning = true;
-                runTimerCounter -= Time.deltaTime;
+                
                 if (runTimerCounter <= 0) {
                     runningPS.SetActive(true);
                     runMin = runMax;
+                } else
+                {
+                    runTimerCounter -= Time.deltaTime;
+                    runMin += Time.deltaTime;
                 }
             }
         } else if(isRunning)
