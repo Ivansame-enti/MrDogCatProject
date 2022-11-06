@@ -581,7 +581,7 @@ PlayerSettings:
   webGLThreadsSupport: 0
   webGLDecompressionFallback: 0
   scriptingDefineSymbols:
-    1: OBI_ONI_SUPPORTED
+    1: OBI_ONI_SUPPORTED;POSEIDON;POSEIDON_URP
     4: OBI_ONI_SUPPORTED
     7: OBI_ONI_SUPPORTED
   additionalCompilerArguments: {}
