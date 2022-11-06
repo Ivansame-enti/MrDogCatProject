@@ -26,6 +26,8 @@ public class PlayerControllerDog : MonoBehaviour
     private bool stoppedJumping;
     public LayerMask isGround;
 
+    public bool xboxController;
+
     //public float gravityScale = 5;
 
 
@@ -40,67 +42,142 @@ public class PlayerControllerDog : MonoBehaviour
     }
     private void Update()
     {
-        move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
-
-        if (move != Vector3.zero)
+        if (xboxController)
         {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
-            anim.SetInteger("Walk", 1);
-        }
-        else
-        {
-            anim.SetInteger("Walk", 0);
-        }
+            move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
 
-
-        if (ground)
-        {
-            jumpTimeCounter = jumpTime;
-
-            if ((Input.GetButtonDown("Jump")))
+            if (move != Vector3.zero)
             {
-                stoppedJumping = false;
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+                anim.SetInteger("Walk", 1);
+            }
+            else
+            {
+                anim.SetInteger("Walk", 0);
             }
 
-            if (Input.GetKey(KeyCode.LeftShift))
+
+            if (ground)
             {
-                
-                isRunning = true;
-                
-                if (runTimerCounter <= 0) {
-                    runningPS.SetActive(true);
-                    runMin = runMax;
-                } else
+                jumpTimeCounter = jumpTime;
+
+                if ((Input.GetButtonDown("LB")))
                 {
-                    runTimerCounter -= Time.deltaTime;
-                    runMin += Time.deltaTime;
+                    stoppedJumping = false;
+                }
+
+                if (Input.GetButton("LT"))
+                {
+
+                    isRunning = true;
+
+                    if (runTimerCounter <= 0)
+                    {
+                        runningPS.SetActive(true);
+                        runMin = runMax;
+                    }
+                    else
+                    {
+                        runTimerCounter -= Time.deltaTime;
+                        runMin += Time.deltaTime;
+                    }
                 }
             }
-        } else if(isRunning)
-        {
-            //Hacer que cuando salte vuelva asu velocidad normal???
-        }
-
-        if (((Input.GetButton("Jump")) && !stoppedJumping))
-        {
-            if (jumpTimeCounter > 0)
+            else if (isRunning)
             {
-                jumpTimeCounter -= Time.deltaTime;
-            } else stoppedJumping = true;
-        }
+                //runningPS.SetActive(false);
+            }
 
-        if ((Input.GetButtonUp("Jump")))
-        {
-            jumpTimeCounter = 0;
-            stoppedJumping = true;
-        }
+            if (((Input.GetButton("LB")) && !stoppedJumping))
+            {
+                if (jumpTimeCounter > 0)
+                {
+                    jumpTimeCounter -= Time.deltaTime;
+                }
+                else stoppedJumping = true;
+            }
 
-        if (Input.GetKeyUp(KeyCode.LeftShift))
+            if ((Input.GetButtonUp("LB")))
+            {
+                jumpTimeCounter = 0;
+                stoppedJumping = true;
+            }
+
+            if (Input.GetButtonUp("LT"))
+            {
+                isRunning = false;
+                runningPS.SetActive(false);
+                runTimerCounter = runTime;
+                runMin = runMinAux;
+            }
+        } else
         {
-            isRunning = false;
-            runningPS.SetActive(false);
-            runTimerCounter = runTime;
-            runMin = runMinAux;
+            move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+
+            if (move != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+                anim.SetInteger("Walk", 1);
+            }
+            else
+            {
+                anim.SetInteger("Walk", 0);
+            }
+
+
+            if (ground)
+            {
+                jumpTimeCounter = jumpTime;
+
+                if ((Input.GetButtonDown("L1")))
+                {
+                    stoppedJumping = false;
+                }
+
+                if (Input.GetButton("L2"))
+                {
+
+                    isRunning = true;
+
+                    if (runTimerCounter <= 0)
+                    {
+                        runningPS.SetActive(true);
+                        runMin = runMax;
+                    }
+                    else
+                    {
+                        runTimerCounter -= Time.deltaTime;
+                        runMin += Time.deltaTime;
+                    }
+                }
+            }
+            else if (isRunning)
+            {
+                //Hacer que cuando salte vuelva asu velocidad normal???
+            }
+
+            if (((Input.GetButton("L1")) && !stoppedJumping))
+            {
+                if (jumpTimeCounter > 0)
+                {
+                    jumpTimeCounter -= Time.deltaTime;
+                }
+                else stoppedJumping = true;
+            }
+
+            if ((Input.GetButtonUp("L1")))
+            {
+                jumpTimeCounter = 0;
+                stoppedJumping = true;
+            }
+
+            if ((Input.GetButtonUp("L2")))
+            {
+                isRunning = false;
+                runningPS.SetActive(false);
+                runTimerCounter = runTime;
+                runMin = runMinAux;
+            }
         }
     }
 
