@@ -11,6 +11,7 @@ TagManager:
   - Hitbox4
   - Coin
   - Ground
+  - Flee
   layers:
   - Default
   - TransparentFX
