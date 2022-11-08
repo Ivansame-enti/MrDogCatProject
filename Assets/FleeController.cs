@@ -23,12 +23,15 @@ public class FleeController : MonoBehaviour
 
             if (distance < distanceLenght)
             {
-                Vector3 vec = transform.position - target.transform.position;
+            //Vector3 vec = transform.position - target.transform.position;
+            Vector3 dist = (target.transform.position - this.transform.position).normalized;
 
-
-                Vector3 newPos = this.transform.position + vec;
+            //dist = Quaternion.AngleAxis(45, Vector3.up) * dist;
+            Vector3 newPos = this.transform.position - (dist * movementSpeed);
+            //Vector3 newPos = this.transform.position + vec;
             //newPos = vec.normalized;
+            this.GetComponent<Animator>().SetInteger("Walk",1);
             agent.SetDestination(newPos);
-            }
+            } else this.GetComponent<Animator>().SetInteger("Walk", 0);
     }
 }
