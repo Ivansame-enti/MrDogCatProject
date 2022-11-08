@@ -22,4 +22,15 @@ public class PickUpController : MonoBehaviour
             coinText.text = coinNumber.ToString("000");
         }
     }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Flee")
+        {
+            collision.gameObject.GetComponent<FleeController>().agent.isStopped=true;
+            collision.gameObject.GetComponent<Rigidbody>().isKinematic = true;
+            collision.gameObject.GetComponent<Animator>().SetBool("isDead", true);
+            Destroy(collision.gameObject, 2f);
+        }
+    }
 }

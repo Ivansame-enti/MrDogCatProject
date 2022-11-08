@@ -48,7 +48,8 @@ public class PlayerControllerCat : MonoBehaviour
             if (move != Vector3.zero)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
-                anim.SetInteger("Walk", 1);
+                if(!isRunning) anim.SetInteger("Walk", 1);
+                else anim.SetInteger("Walk", 2);
             }
             else
             {
@@ -111,7 +112,11 @@ public class PlayerControllerCat : MonoBehaviour
             if (move != Vector3.zero)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
-                anim.SetInteger("Walk", 1);
+                if (!isRunning) anim.SetInteger("Walk", 1);
+                else
+                {
+                    anim.SetInteger("Walk", 2);
+                }
             }
             else
             {

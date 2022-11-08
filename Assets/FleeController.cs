@@ -5,24 +5,33 @@ using UnityEngine.AI;
 
 public class FleeController : MonoBehaviour
 {
-    private NavMeshAgent agent;
+    public NavMeshAgent agent;
     public GameObject target;
     public float movementSpeed;
     public bool flagActive;
     public float distanceLenght;
+    private bool firstTime;
+    private Rigidbody rb;
     // Start is called before the first frame update
     void Start()
     {
         agent = this.GetComponent<NavMeshAgent>();
+        rb = this.GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
     void Update()
-    {
-            float distance = Vector3.Distance(this.transform.position, target.transform.position);
+    {   
+        float distance = Vector3.Distance(this.transform.position, target.transform.position);
 
-            if (distance < distanceLenght)
+        if (distance < distanceLenght)
+        {
+            if (firstTime)
             {
+                this.transform.LookAt(target.transform);
+                //rb.velocity = (new Vector3(rb.velocity.x, 10000f, rb.velocity.z));
+                firstTime = false;
+            }
             //Vector3 vec = transform.position - target.transform.position;
             Vector3 dist = (target.transform.position - this.transform.position).normalized;
 
@@ -30,8 +39,14 @@ public class FleeController : MonoBehaviour
             Vector3 newPos = this.transform.position - (dist * movementSpeed);
             //Vector3 newPos = this.transform.position + vec;
             //newPos = vec.normalized;
-            this.GetComponent<Animator>().SetInteger("Walk",1);
+            this.GetComponent<Animator>().SetInteger("Walk", 1);
             agent.SetDestination(newPos);
-            } else this.GetComponent<Animator>().SetInteger("Walk", 0);
+            //Debug.Log(newPos);
+        }
+        else
+        {
+            this.GetComponent<Animator>().SetInteger("Walk", 0);
+            firstTime = true;
+        }
     }
 }
