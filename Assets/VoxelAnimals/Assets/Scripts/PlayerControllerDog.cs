@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerControllerDog : MonoBehaviour
 {
@@ -27,10 +28,50 @@ public class PlayerControllerDog : MonoBehaviour
     public LayerMask isGround;
 
     public bool xboxController;
-
+    //public InputAction dogController;
+    Vector2 moveUniversal;
     //public float gravityScale = 5;
+    Controls dogControls;
+
+    private void Awake()
+    {
+        dogControls = new Controls();
+        dogControls.Dog.Run.performed += ctx => Run();
+        dogControls.Dog.Run.canceled += ctx => dontRun();
+        dogControls.Dog.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
+        dogControls.Dog.Movement.canceled += ctx => moveUniversal = Vector2.zero;
+        dogControls.Dog.Jump.performed += ctx => Jump();
+    }
+
+    void Jump()
+    {
+
+    }
+    void Run()
+    {
+        isRunning = true;
 
 
+    }
+    void dontRun()
+    {
+        isRunning = false;
+        runningPS.SetActive(false);
+        runTimerCounter = runTime;
+        runMin = runMinAux;
+        
+    }
+    private void OnEnable()
+    {
+        dogControls.Enable();
+        //dogController.Enable();
+    }
+
+    private void OnDisable()
+    {
+        dogControls.Disable();
+        //dogController.Disable();
+    }
     void Start()
     {
         runMinAux = runMin;
@@ -42,9 +83,9 @@ public class PlayerControllerDog : MonoBehaviour
     }
     private void Update()
     {
-        if (xboxController)
-        {
-            move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+       
+            //moveUniversal = dogController.ReadValue<Vector2>();
+            move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
 
             if (move != Vector3.zero)
             {
@@ -56,129 +97,77 @@ public class PlayerControllerDog : MonoBehaviour
                 anim.SetInteger("Walk", 0);
             }
 
-
-            if (ground)
+            if(isRunning == true)
             {
-                jumpTimeCounter = jumpTime;
-
-                if ((Input.GetButtonDown("LB")))
+                if (runTimerCounter <= 0)
                 {
-                    stoppedJumping = false;
+                    runningPS.SetActive(true);
+                    runMin = runMax;
+
                 }
-
-                if (Input.GetButton("LT"))
+                else
                 {
-
-                    isRunning = true;
-
-                    if (runTimerCounter <= 0)
-                    {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
-                    }
+                    runTimerCounter -= Time.deltaTime;
+                    runMin += Time.deltaTime;
+                    Debug.Log(runTimerCounter);
                 }
             }
-            else if (isRunning)
-            {
-                //runningPS.SetActive(false);
-            }
 
-            if (((Input.GetButton("LB")) && !stoppedJumping))
-            {
-                if (jumpTimeCounter > 0)
-                {
-                    jumpTimeCounter -= Time.deltaTime;
-                }
-                else stoppedJumping = true;
-            }
-
-            if ((Input.GetButtonUp("LB")))
-            {
-                jumpTimeCounter = 0;
-                stoppedJumping = true;
-            }
-
-            if (Input.GetButtonUp("LT"))
-            {
-                isRunning = false;
-                runningPS.SetActive(false);
-                runTimerCounter = runTime;
-                runMin = runMinAux;
-            }
-        } else
+        /*
+        if (ground)
         {
-            move = new Vector3(Input.GetAxisRaw("Horizontal"), 0, Input.GetAxisRaw("Vertical"));
+            jumpTimeCounter = jumpTime;
 
-            if (move != Vector3.zero)
+            if ((Input.GetButtonDown("L1")))
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
-                anim.SetInteger("Walk", 1);
-            }
-            else
-            {
-                anim.SetInteger("Walk", 0);
+                stoppedJumping = false;
             }
 
-
-            if (ground)
+            if (Input.GetButton("L2"))
             {
-                jumpTimeCounter = jumpTime;
 
-                if ((Input.GetButtonDown("L1")))
+                isRunning = true;
+
+                if (runTimerCounter <= 0)
                 {
-                    stoppedJumping = false;
+                    runningPS.SetActive(true);
+                    runMin = runMax;
                 }
-
-                if (Input.GetButton("L2"))
+                else
                 {
-
-                    isRunning = true;
-
-                    if (runTimerCounter <= 0)
-                    {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
-                    }
+                    runTimerCounter -= Time.deltaTime;
+                    runMin += Time.deltaTime;
                 }
-            }
-            else if (isRunning)
-            {
-                //Hacer que cuando salte vuelva asu velocidad normal???
-            }
-
-            if (((Input.GetButton("L1")) && !stoppedJumping))
-            {
-                if (jumpTimeCounter > 0)
-                {
-                    jumpTimeCounter -= Time.deltaTime;
-                }
-                else stoppedJumping = true;
-            }
-
-            if ((Input.GetButtonUp("L1")))
-            {
-                jumpTimeCounter = 0;
-                stoppedJumping = true;
-            }
-
-            if ((Input.GetButtonUp("L2")))
-            {
-                isRunning = false;
-                runningPS.SetActive(false);
-                runTimerCounter = runTime;
-                runMin = runMinAux;
             }
         }
+        else if (isRunning)
+        {
+            //Hacer que cuando salte vuelva asu velocidad normal???
+        }
+
+        if (((Input.GetButton("L1")) && !stoppedJumping))
+        {
+            if (jumpTimeCounter > 0)
+            {
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else stoppedJumping = true;
+        }
+
+        if ((Input.GetButtonUp("L1")))
+        {
+            jumpTimeCounter = 0;
+            stoppedJumping = true;
+        }
+
+        if ((Input.GetButtonUp("L2")))
+        {
+            isRunning = false;
+            runningPS.SetActive(false);
+            runTimerCounter = runTime;
+            runMin = runMinAux;
+        }
+    */
     }
 
     private void FixedUpdate()
