@@ -25,6 +25,7 @@ public class PlayerControllerDog : MonoBehaviour
     private float jumpTimeCounter;
     private bool ground;
     private bool stoppedJumping;
+    private bool ola;
     public LayerMask isGround;
 
     public bool xboxController;
@@ -41,10 +42,18 @@ public class PlayerControllerDog : MonoBehaviour
         dogControls.Dog.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
         dogControls.Dog.Movement.canceled += ctx => moveUniversal = Vector2.zero;
         dogControls.Dog.Jump.performed += ctx => Jump();
+        dogControls.Dog.Jump.canceled += ctx => StopJump();
     }
 
     void Jump()
     {
+        stoppedJumping = false;
+       
+    }
+    void StopJump()
+    {
+        jumpTimeCounter = 0;
+        stoppedJumping = true;
 
     }
     void Run()
@@ -96,8 +105,10 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 anim.SetInteger("Walk", 0);
             }
-
-            if(isRunning == true)
+        if (ground)
+        {
+            jumpTimeCounter = jumpTime;
+            if (isRunning == true)
             {
                 if (runTimerCounter <= 0)
                 {
@@ -112,7 +123,15 @@ public class PlayerControllerDog : MonoBehaviour
                     Debug.Log(runTimerCounter);
                 }
             }
-
+        }
+        if ((!stoppedJumping))
+        {
+            if (jumpTimeCounter > 0)
+            {
+                jumpTimeCounter -= Time.deltaTime;
+            }
+            else stoppedJumping = true;
+        }
         /*
         if (ground)
         {

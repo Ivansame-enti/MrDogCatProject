@@ -112,17 +112,6 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""23996475-5c6b-41f6-9cd7-ed133677e4c2"",
-                    ""path"": ""<DualShockGamepad>/leftStick"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": """",
-                    ""action"": ""Movement"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""1768d06e-ccd3-40f3-9188-076143d18dc0"",
                     ""path"": ""<Gamepad>/buttonSouth"",
                     ""interactions"": """",
@@ -145,19 +134,19 @@ public class @Controls : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""91170ff5-8eff-4ad0-8bd1-e63e61ff5d64"",
-                    ""path"": ""<DualShockGamepad>/buttonWest"",
+                    ""id"": ""ef1ec39f-2fe9-4ba3-a865-d83383db40d6"",
+                    ""path"": ""<Gamepad>/buttonWest"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
-                    ""action"": ""Jump"",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
                 {
                     ""name"": """",
-                    ""id"": ""ef1ec39f-2fe9-4ba3-a865-d83383db40d6"",
-                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""id"": ""b435f81c-082c-45ce-90b2-2822cb1fb5c6"",
+                    ""path"": ""<Keyboard>/leftShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
