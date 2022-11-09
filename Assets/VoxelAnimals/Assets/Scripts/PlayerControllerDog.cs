@@ -25,10 +25,8 @@ public class PlayerControllerDog : MonoBehaviour
     private float jumpTimeCounter;
     private bool ground;
     private bool stoppedJumping;
-    private bool ola;
     public LayerMask isGround;
 
-    public bool xboxController;
     //public InputAction dogController;
     Vector2 moveUniversal;
     //public float gravityScale = 5;
@@ -92,8 +90,8 @@ public class PlayerControllerDog : MonoBehaviour
     }
     private void Update()
     {
-       
-            //moveUniversal = dogController.ReadValue<Vector2>();
+
+        //moveUniversal = dogController.ReadValue<Vector2>();
             move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
 
             if (move != Vector3.zero)
@@ -120,7 +118,6 @@ public class PlayerControllerDog : MonoBehaviour
                 {
                     runTimerCounter -= Time.deltaTime;
                     runMin += Time.deltaTime;
-                    Debug.Log(runTimerCounter);
                 }
             }
         }

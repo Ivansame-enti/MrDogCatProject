@@ -169,6 +169,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Run"",
+                    ""type"": ""Button"",
+                    ""id"": ""0a008796-eabb-4046-9a55-cbb395b57922"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Jump"",
                     ""type"": ""Button"",
                     ""id"": ""609216d9-62d7-450f-907f-b1200a3825e4"",
@@ -258,11 +266,33 @@ public class @Controls : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""ab4330d7-d3d5-4ce4-89da-dfe3c8a16116"",
-                    ""path"": ""<Keyboard>/m"",
+                    ""path"": ""<Keyboard>/rightShift"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Jump"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""4e718252-519a-4660-9821-063e0d1c0acf"",
+                    ""path"": ""<Gamepad>/buttonWest"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""576ed511-e04e-4335-8c9e-48e6266ab7fe"",
+                    ""path"": ""<Keyboard>/minus"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Run"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -279,6 +309,7 @@ public class @Controls : IInputActionCollection, IDisposable
         // Cat
         m_Cat = asset.FindActionMap("Cat", throwIfNotFound: true);
         m_Cat_Movement = m_Cat.FindAction("Movement", throwIfNotFound: true);
+        m_Cat_Run = m_Cat.FindAction("Run", throwIfNotFound: true);
         m_Cat_Jump = m_Cat.FindAction("Jump", throwIfNotFound: true);
     }
 
@@ -379,12 +410,14 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Cat;
     private ICatActions m_CatActionsCallbackInterface;
     private readonly InputAction m_Cat_Movement;
+    private readonly InputAction m_Cat_Run;
     private readonly InputAction m_Cat_Jump;
     public struct CatActions
     {
         private @Controls m_Wrapper;
         public CatActions(@Controls wrapper) { m_Wrapper = wrapper; }
         public InputAction @Movement => m_Wrapper.m_Cat_Movement;
+        public InputAction @Run => m_Wrapper.m_Cat_Run;
         public InputAction @Jump => m_Wrapper.m_Cat_Jump;
         public InputActionMap Get() { return m_Wrapper.m_Cat; }
         public void Enable() { Get().Enable(); }
@@ -398,6 +431,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Movement.started -= m_Wrapper.m_CatActionsCallbackInterface.OnMovement;
                 @Movement.performed -= m_Wrapper.m_CatActionsCallbackInterface.OnMovement;
                 @Movement.canceled -= m_Wrapper.m_CatActionsCallbackInterface.OnMovement;
+                @Run.started -= m_Wrapper.m_CatActionsCallbackInterface.OnRun;
+                @Run.performed -= m_Wrapper.m_CatActionsCallbackInterface.OnRun;
+                @Run.canceled -= m_Wrapper.m_CatActionsCallbackInterface.OnRun;
                 @Jump.started -= m_Wrapper.m_CatActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_CatActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_CatActionsCallbackInterface.OnJump;
@@ -408,6 +444,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Movement.started += instance.OnMovement;
                 @Movement.performed += instance.OnMovement;
                 @Movement.canceled += instance.OnMovement;
+                @Run.started += instance.OnRun;
+                @Run.performed += instance.OnRun;
+                @Run.canceled += instance.OnRun;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -424,6 +463,7 @@ public class @Controls : IInputActionCollection, IDisposable
     public interface ICatActions
     {
         void OnMovement(InputAction.CallbackContext context);
+        void OnRun(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
     }
 }
