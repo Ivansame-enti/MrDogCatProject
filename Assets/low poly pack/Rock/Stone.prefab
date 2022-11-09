@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4587637820541112}
   - component: {fileID: 33568657863684538}
   - component: {fileID: 23920439814379086}
+  - component: {fileID: 195957909774223120}
   m_Layer: 0
   m_Name: Mesh24
   m_TagString: Untagged
@@ -81,6 +82,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &195957909774223120
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1037366609486796}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.38281107
+  m_Height: 3.724469
+  m_Direction: 1
+  m_Center: {x: 77.25207, y: -2.3061912, z: -4.4955425}
 --- !u!1 &1146793164422210
 GameObject:
   m_ObjectHideFlags: 0
@@ -92,6 +107,8 @@ GameObject:
   - component: {fileID: 4156729404637342}
   - component: {fileID: 33097409462688234}
   - component: {fileID: 23212327361160348}
+  - component: {fileID: 6893672951032754391}
+  - component: {fileID: 1171818613897664302}
   m_Layer: 0
   m_Name: Mesh22
   m_TagString: Untagged
@@ -162,6 +179,36 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!65 &6893672951032754391
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146793164422210}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.9360523, y: 0.7549749, z: 0.71280044}
+  m_Center: {x: 78.85879, y: 0.030937491, z: -4.5178375}
+--- !u!114 &1171818613897664302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1146793164422210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 6893672951032754391}
+  m_DistanceField: {fileID: 0}
 --- !u!1 &1549817896321318
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,6 +249,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4595787384014192}
+  - component: {fileID: 529018024615946126}
   m_Layer: 0
   m_Name: Stone
   m_TagString: Untagged
@@ -226,6 +274,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!136 &529018024615946126
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1622960069724232}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 0
+  m_Radius: 0.5
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1706314356184376
 GameObject:
   m_ObjectHideFlags: 0
@@ -237,6 +299,8 @@ GameObject:
   - component: {fileID: 4664350799496168}
   - component: {fileID: 33568958087633454}
   - component: {fileID: 23132247541014346}
+  - component: {fileID: 5068370450891650745}
+  - component: {fileID: 3725540222561630622}
   m_Layer: 0
   m_Name: Mesh23
   m_TagString: Untagged
@@ -307,6 +371,37 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &5068370450891650745
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706314356184376}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.38281107
+  m_Height: 3.7244685
+  m_Direction: 1
+  m_Center: {x: 80.46607, y: -2.2015085, z: -4.4955425}
+--- !u!114 &3725540222561630622
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1706314356184376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6757b231cedd544c583ef8aeaf773b2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thickness: 0
+  material: {fileID: 0}
+  filter: -65535
+  m_SourceCollider: {fileID: 5068370450891650745}
+  m_DistanceField: {fileID: 0}
 --- !u!1 &1771592742558814
 GameObject:
   m_ObjectHideFlags: 0
