@@ -68,17 +68,21 @@ public class PlayerControllerCat : MonoBehaviour
                 if (Input.GetButton("RT"))
                 {
 
-                    isRunning = true;
+                    if (move != Vector3.zero)
+                    {
+                        isRunning = true;
 
-                    if (runTimerCounter <= 0)
-                    {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
+                        if (runTimerCounter <= 0)
+                        {
+
+                            runningPS.SetActive(true);
+                            runMin = runMax;
+                        }
+                        else
+                        {
+                            runTimerCounter -= Time.deltaTime;
+                            runMin += Time.deltaTime;
+                        }
                     }
                 }
             }
@@ -135,17 +139,21 @@ public class PlayerControllerCat : MonoBehaviour
                 if (Input.GetButton("R2"))
                 {
 
-                    isRunning = true;
+                    if (move != Vector3.zero)
+                    {
+                        isRunning = true;
 
-                    if (runTimerCounter <= 0)
-                    {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
+                        if (runTimerCounter <= 0)
+                        {
+
+                            runningPS.SetActive(true);
+                            runMin = runMax;
+                        }
+                        else
+                        {
+                            runTimerCounter -= Time.deltaTime;
+                            runMin += Time.deltaTime;
+                        }
                     }
                 }
             }

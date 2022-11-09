@@ -72,18 +72,21 @@ public class PlayerControllerDog : MonoBehaviour
 
                 if (Input.GetButton("LT"))
                 {
-
-                    isRunning = true;
-
-                    if (runTimerCounter <= 0)
+                    if (move != Vector3.zero)
                     {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
+                        isRunning = true;
+
+                        if (runTimerCounter <= 0)
+                        {
+
+                            runningPS.SetActive(true);
+                            runMin = runMax;
+                        }
+                        else
+                        {
+                            runTimerCounter -= Time.deltaTime;
+                            runMin += Time.deltaTime;
+                        }
                     }
                 }
             }
@@ -144,18 +147,21 @@ public class PlayerControllerDog : MonoBehaviour
 
                 if (Input.GetButton("L2"))
                 {
-
-                    isRunning = true;
-
-                    if (runTimerCounter <= 0)
+                    if (move != Vector3.zero)
                     {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
+                        isRunning = true;
+
+                        if (runTimerCounter <= 0)
+                        {
+
+                            runningPS.SetActive(true);
+                            runMin = runMax;
+                        }
+                        else
+                        {
+                            runTimerCounter -= Time.deltaTime;
+                            runMin += Time.deltaTime;
+                        }
                     }
                 }
             }
