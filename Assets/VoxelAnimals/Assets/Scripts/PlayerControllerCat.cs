@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerCat : MonoBehaviour
 {
@@ -37,8 +38,8 @@ public class PlayerControllerCat : MonoBehaviour
         catControls = new Controls();
         catControls.Cat.Run.performed += ctx => Run();
         catControls.Cat.Run.canceled += ctx => dontRun();
-        catControls.Cat.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
-        catControls.Cat.Movement.canceled += ctx => moveUniversal = Vector2.zero;
+        //catControls.Cat.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
+        //catControls.Cat.Movement.canceled += ctx => moveUniversal = Vector2.zero;
         catControls.Cat.Jump.performed += ctx => Jump();
         catControls.Cat.Jump.canceled += ctx => StopJump();
     }
@@ -68,6 +69,24 @@ public class PlayerControllerCat : MonoBehaviour
         runMin = runMinAux;
 
     }
+
+    public void OnMove(CallbackContext context)
+    {
+        moveUniversal = context.ReadValue<Vector2>();
+
+        move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
+
+        if (move != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+            anim.SetInteger("Walk", 1);
+        }
+        else
+        {
+            anim.SetInteger("Walk", 0);
+        }
+    }
+
     private void OnEnable()
     {
         catControls.Enable();

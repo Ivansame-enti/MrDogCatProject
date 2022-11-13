@@ -1,13 +1,22 @@
-﻿using System.Collections;
+﻿using EasyPolyMap.Core;
+using System;
+using System.Linq;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerDog : MonoBehaviour
 {
     Animator anim;
+
+    [SerializeField]
     public float speed;
+
+    [SerializeField]
     public float maxSpeed;
+
     private Rigidbody rb;
     Vector3 move;
 
@@ -27,22 +36,30 @@ public class PlayerControllerDog : MonoBehaviour
     private bool stoppedJumping;
     public LayerMask isGround;
 
-    //public InputAction dogController;
+
     Vector2 moveUniversal;
-    //public float gravityScale = 5;
+
     Controls dogControls;
+
+    [SerializeField]
+    private int playerIndex = 0;
 
     private void Awake()
     {
+
         dogControls = new Controls();
-        dogControls.Dog.Run.performed += ctx => Run();
-        dogControls.Dog.Run.canceled += ctx => dontRun();
-        dogControls.Dog.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
-        dogControls.Dog.Movement.canceled += ctx => moveUniversal = Vector2.zero;
-        dogControls.Dog.Jump.performed += ctx => Jump();
-        dogControls.Dog.Jump.canceled += ctx => StopJump();
+        //dogControls.Dog.Run.performed += ctx => Run();
+        //dogControls.Dog.Run.canceled += ctx => dontRun();
+        //dogControls.Dog.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
+        //dogControls.Dog.Movement.canceled += ctx => moveUniversal = Vector2.zero;
+        //dogControls.Dog.Jump.performed += ctx => Jump();
+        //dogControls.Dog.Jump.canceled += ctx => StopJump();
     }
 
+    public int GetPlayerIndex()
+    {
+        return playerIndex;
+    }
     void Jump()
     {
         stoppedJumping = false;
@@ -68,6 +85,7 @@ public class PlayerControllerDog : MonoBehaviour
         runMin = runMinAux;
         
     }
+
     private void OnEnable()
     {
         dogControls.Enable();
@@ -88,13 +106,24 @@ public class PlayerControllerDog : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
     }
+    public void OnMove(CallbackContext context)
+    {
+        moveUniversal = context.ReadValue<Vector2>();
+        move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
+    }
+    public void SetInputVector(Vector2 direction)
+    {
+        moveUniversal = direction;
+    }
+
+    public void SetRunning(bool run = true)
+    {
+        isRunning = run;
+    }
     private void Update()
     {
-
-        //moveUniversal = dogController.ReadValue<Vector2>();
-            move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
-
-            if (move != Vector3.zero)
+        move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
+        if (move != Vector3.zero)
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
                 anim.SetInteger("Walk", 1);
@@ -103,6 +132,7 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 anim.SetInteger("Walk", 0);
             }
+
         if (ground)
         {
             jumpTimeCounter = jumpTime;
@@ -129,61 +159,7 @@ public class PlayerControllerDog : MonoBehaviour
             }
             else stoppedJumping = true;
         }
-        /*
-        if (ground)
-        {
-            jumpTimeCounter = jumpTime;
 
-            if ((Input.GetButtonDown("L1")))
-            {
-                stoppedJumping = false;
-            }
-
-            if (Input.GetButton("L2"))
-            {
-
-                isRunning = true;
-
-                if (runTimerCounter <= 0)
-                {
-                    runningPS.SetActive(true);
-                    runMin = runMax;
-                }
-                else
-                {
-                    runTimerCounter -= Time.deltaTime;
-                    runMin += Time.deltaTime;
-                }
-            }
-        }
-        else if (isRunning)
-        {
-            //Hacer que cuando salte vuelva asu velocidad normal???
-        }
-
-        if (((Input.GetButton("L1")) && !stoppedJumping))
-        {
-            if (jumpTimeCounter > 0)
-            {
-                jumpTimeCounter -= Time.deltaTime;
-            }
-            else stoppedJumping = true;
-        }
-
-        if ((Input.GetButtonUp("L1")))
-        {
-            jumpTimeCounter = 0;
-            stoppedJumping = true;
-        }
-
-        if ((Input.GetButtonUp("L2")))
-        {
-            isRunning = false;
-            runningPS.SetActive(false);
-            runTimerCounter = runTime;
-            runMin = runMinAux;
-        }
-    */
     }
 
     private void FixedUpdate()
@@ -233,4 +209,61 @@ public class PlayerControllerDog : MonoBehaviour
             ground = false;
         }
     }
-}   
+}
+
+
+/*
+if (ground)
+{
+    jumpTimeCounter = jumpTime;
+
+    if ((Input.GetButtonDown("L1")))
+    {
+        stoppedJumping = false;
+    }
+
+    if (Input.GetButton("L2"))
+    {
+
+        isRunning = true;
+
+        if (runTimerCounter <= 0)
+        {
+            runningPS.SetActive(true);
+            runMin = runMax;
+        }
+        else
+        {
+            runTimerCounter -= Time.deltaTime;
+            runMin += Time.deltaTime;
+        }
+    }
+}
+else if (isRunning)
+{
+    //Hacer que cuando salte vuelva asu velocidad normal???
+}
+
+if (((Input.GetButton("L1")) && !stoppedJumping))
+{
+    if (jumpTimeCounter > 0)
+    {
+        jumpTimeCounter -= Time.deltaTime;
+    }
+    else stoppedJumping = true;
+}
+
+if ((Input.GetButtonUp("L1")))
+{
+    jumpTimeCounter = 0;
+    stoppedJumping = true;
+}
+
+if ((Input.GetButtonUp("L2")))
+{
+    isRunning = false;
+    runningPS.SetActive(false);
+    runTimerCounter = runTime;
+    runMin = runMinAux;
+}
+*/
