@@ -12,9 +12,11 @@ public class FleeController : MonoBehaviour
     public float distanceLenght;
     private bool firstTime;
     private Rigidbody rb;
+    public bool isPicked;
     // Start is called before the first frame update
     void Start()
     {
+        isPicked = false;
         agent = this.GetComponent<NavMeshAgent>();
         rb = this.GetComponent<Rigidbody>();
     }
