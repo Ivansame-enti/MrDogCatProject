@@ -5,9 +5,9 @@ using TMPro;
 
 public class PickUpController : MonoBehaviour
 {
-    private int coinNumber, objective1Number, objective2Number;
+    private int objective1Number, objective2Number;
     public TextMeshProUGUI coinText, objective1Text, objective2Text;
-
+    public int coinNumber;
     private void Start()
     {
         coinNumber = 000;
