@@ -11,17 +11,18 @@ public class playerInputHandler : MonoBehaviour
 {
     private PlayerInput playerInput;
     private PlayerControllerDog playerController;
-
+    int index;
     // Start is called before the first frame update
     void Awake()
     {
         playerInput = GetComponent<PlayerInput>();
         
         var movers = FindObjectsOfType<PlayerControllerDog>();
-        
-        var index = playerInput.playerIndex;
+        if(playerInput != null)
+        {
+            index = playerInput.playerIndex;
+        }
         playerController = movers.FirstOrDefault(m => m.GetPlayerIndex() == index);
-        Debug.Log(index);
     }
     public void OnMove(CallbackContext context)
     {
