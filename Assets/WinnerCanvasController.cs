@@ -34,10 +34,10 @@ public class WinnerCanvasController : MonoBehaviour
         //StartCoroutine(DogSliderValueChange(dogSlider));
 
         if (catSlider.value >= StaticClass.CoinsCat) catEnded = true;
-        else catSlider.value += Time.deltaTime *2f;
+        else catSlider.value += Time.deltaTime * 3f;
 
         if (dogSlider.value >= StaticClass.CoinsDog) dogEnded = true;
-        else dogSlider.value += Time.deltaTime* 2f;
+        else dogSlider.value += Time.deltaTime * 3f;
 
         if (catEnded && dogEnded)
         {
