@@ -5,25 +5,103 @@ using UnityEngine.AI;
 
 public class Enemy2Controller : MonoBehaviour
 {
+    public bool ropeCollision;
     private Transform player1, player2;
-    private bool move=true;
+    private bool move;
     public float speed;
     private float timer;
+    private float timer2;
     public float timeBettwenAttacks;
+    public float attackRange;
+    bool playerInRange;
+    public LayerMask playerMask;
+    private bool checkedPlayer;
+    private Vector3 playerPos;
+    public float chargeTime;
     //private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
+        ropeCollision = false;
+        move = false;
+        timer2 = 0;
         timer = timeBettwenAttacks;
         player1 = GameObject.Find("Dog").transform;
         player2 = GameObject.Find("Cat").transform;
         //agent = this.GetComponent<NavMeshAgent>();
+        checkedPlayer = false;
     }
 
     // Update is called once per frame
     void Update()
     {
+        playerInRange = Physics.CheckSphere(transform.position, attackRange, playerMask);
+
+        if (playerInRange) //Mira si el jugador esta  a rango
+        {
+            if (!ropeCollision)
+            {
+                //Debug.Log("entra");
+                if (timer >= timeBettwenAttacks) //Si ha pasado el tiempo de buscar
+                {
+                    if (!checkedPlayer) //Cogemos la posicion actual del jugador mas cercano e inicializamos el timer 2
+                    {
+                        Vector3 distanceToPlayerOne = this.transform.position - player1.position;
+                        Vector3 distanceToPlayerTwo = this.transform.position - player2.position;
+
+                        if (distanceToPlayerOne.magnitude <= distanceToPlayerTwo.magnitude)
+                        {
+                            playerPos = player1.position;
+                            //var lookDir = player1.position - transform.position;
+                            //lookDir.y = 0;
+                            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
+                            //transform.position = Vector3.MoveTowards(transform.position, player1.position, 20 * Time.deltaTime);
+                        }
+                        else
+                        {
+                            playerPos = player2.position;
+                            //var lookDir = player2.position - transform.position;
+                            //lookDir.y = 0;
+                            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
+                            //transform.position = Vector3.MoveTowards(transform.position, player2.position, speed * Time.deltaTime);
+                        }
+                        timer2 = chargeTime;
+                        checkedPlayer = true;
+                    }
+                }
+                else //Si esta en CD, se queda en estado Idle
+                {
+                    this.GetComponent<Animator>().SetInteger("Walk", 0);
+                    timer += Time.deltaTime;
+                }
+
+                if (timer2 <= 0 && checkedPlayer) //Si el tiempo de carga ha terminado y hay un objetivo, hace la carga
+                {
+                    move = true;
+                    var lookDir = playerPos - transform.position;
+                    lookDir.y = 0;
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
+                    transform.position = Vector3.MoveTowards(transform.position, playerPos, 20 * Time.deltaTime);
+                    if (Vector3.Distance(transform.position, playerPos) <= 1) //Si ha llegado al destino se queda en CD
+                    {
+                        checkedPlayer = false;
+                        timer = 0;
+                        move = false;
+                    }
+                }
+                else if (checkedPlayer)
+                {
+                    var lookDir = playerPos - transform.position;
+                    lookDir.y = 0;
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
+                    this.GetComponent<Animator>().SetInteger("Walk", 1);
+                    timer2 -= Time.deltaTime;
+                }
+            }
+            else Destroy(this.gameObject, 2.0f);
+        }
+        /*
         if (timer>=timeBettwenAttacks)
         {
             this.GetComponent<Animator>().SetInteger("Walk", 1);
@@ -46,7 +124,7 @@ public class Enemy2Controller : MonoBehaviour
             }
             timer = 0;
         }
-        else timer += Time.deltaTime;
+        else timer += Time.deltaTime;*/
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -58,9 +136,6 @@ public class Enemy2Controller : MonoBehaviour
 
             direction.y = 0;
             collision.gameObject.GetComponent<Rigidbody>().AddForce(direction * 50, ForceMode.Impulse);
-            //this.GetComponent<Rigidbody>().AddForce(-direction * 100, ForceMode.Impulse);
-            move = false;
-            timer = 0;
         }
     }
 
@@ -68,8 +143,7 @@ public class Enemy2Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            if(move) this.GetComponent<Rigidbody>().mass = 0.1f;
-            //move = true;
+            this.GetComponent<Rigidbody>().mass = 0.3f;
         }
     }
 }

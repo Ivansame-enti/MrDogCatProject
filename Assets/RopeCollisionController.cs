@@ -34,6 +34,12 @@ public class RopeCollisionController : MonoBehaviour
             {
                 ObiColliderBase col = world.colliderHandles[contact.bodyB].owner;
 
+                if (col != null && col.gameObject.CompareTag("Enemy2"))
+                {
+                    //Debug.Log("A");
+                    col.gameObject.GetComponent<Enemy2Controller>().ropeCollision = true;
+                }
+
                 // if this collider is tagged as "zero gravity":
                 if (col != null && col.gameObject.CompareTag("Hitbox"))
                 {
