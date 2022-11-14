@@ -1,11 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
+using static UnityEngine.InputSystem.InputAction;
 
 public class PlayerControllerCat : MonoBehaviour
 {
     Animator anim;
-
     public float speed;
     public float maxSpeed;
     private Rigidbody rb;
@@ -27,8 +28,76 @@ public class PlayerControllerCat : MonoBehaviour
     private bool stoppedJumping;
     public LayerMask isGround;
 
-    public bool xboxController;
+    //public InputAction dogController;
+    Vector2 moveUniversal;
+    //public float gravityScale = 5;
+    Controls catControls;
 
+    private void Awake()
+    {
+        catControls = new Controls();
+        catControls.Cat.Run.performed += ctx => Run();
+        catControls.Cat.Run.canceled += ctx => dontRun();
+        //catControls.Cat.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
+        //catControls.Cat.Movement.canceled += ctx => moveUniversal = Vector2.zero;
+        catControls.Cat.Jump.performed += ctx => Jump();
+        catControls.Cat.Jump.canceled += ctx => StopJump();
+    }
+
+    void Jump()
+    {
+        stoppedJumping = false;
+
+    }
+    void StopJump()
+    {
+        jumpTimeCounter = 0;
+        stoppedJumping = true;
+
+    }
+    void Run()
+    {
+        isRunning = true;
+
+
+    }
+    void dontRun()
+    {
+        isRunning = false;
+        runningPS.SetActive(false);
+        runTimerCounter = runTime;
+        runMin = runMinAux;
+
+    }
+
+    public void OnMove(CallbackContext context)
+    {
+        moveUniversal = context.ReadValue<Vector2>();
+
+        move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
+
+        if (move != Vector3.zero)
+        {
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+            anim.SetInteger("Walk", 1);
+        }
+        else
+        {
+            anim.SetInteger("Walk", 0);
+        }
+    }
+
+    private void OnEnable()
+    {
+        catControls.Enable();
+        //dogController.Enable();
+    }
+
+    private void OnDisable()
+    {
+        catControls.Disable();
+        //dogController.Disable();
+    }
     void Start()
     {
         runMinAux = runMin;
@@ -36,137 +105,48 @@ public class PlayerControllerCat : MonoBehaviour
         stoppedJumping = true;
         jumpTimeCounter = jumpTime;
         anim = GetComponent<Animator>();
-        rb = GetComponent<Rigidbody>();
+        rb = this.GetComponent<Rigidbody>();
     }
-
     private void Update()
     {
-        if (xboxController)
+
+        //moveUniversal = dogController.ReadValue<Vector2>();
+        move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
+
+        if (move != Vector3.zero)
         {
-            move = new Vector3(Input.GetAxisRaw("HorizontalRightXbox"), 0, Input.GetAxisRaw("VerticalRightXbox"));
-
-            if (move != Vector3.zero)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
-                anim.SetInteger("Walk", 1);
-            }
-            else
-            {
-                anim.SetInteger("Walk", 0);
-            }
-
-            if (ground)
-            {
-                jumpTimeCounter = jumpTime;
-
-                if ((Input.GetButtonDown("RB")))
-                {
-                    stoppedJumping = false;
-                }
-
-                if (Input.GetButton("RT"))
-                {
-
-                    isRunning = true;
-
-                    if (runTimerCounter <= 0)
-                    {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
-                    }
-                }
-            }
-
-            if (((Input.GetButton("RB")) && !stoppedJumping))
-            {
-                if (jumpTimeCounter > 0)
-                {
-                    jumpTimeCounter -= Time.deltaTime;
-                }
-                else stoppedJumping = true;
-            }
-
-            if ((Input.GetButtonUp("RB")))
-            {
-                jumpTimeCounter = 0;
-                stoppedJumping = true;
-            }
-
-            if (Input.GetButtonUp("RT"))
-            {
-                isRunning = false;
-                runningPS.SetActive(false);
-                runTimerCounter = runTime;
-                runMin = runMinAux;
-            }
-        } else //Mando ps4
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+            anim.SetInteger("Walk", 1);
+        }
+        else
         {
-            move = new Vector3(Input.GetAxisRaw("HorizontalRightPlay"), 0, Input.GetAxisRaw("VerticalRightPlay"));
-
-            if (move != Vector3.zero)
+            anim.SetInteger("Walk", 0);
+        }
+        if (ground)
+        {
+            jumpTimeCounter = jumpTime;
+            if (isRunning == true)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
-                anim.SetInteger("Walk", 1);
-            }
-            else
-            {
-                anim.SetInteger("Walk", 0);
-            }
-
-            if (ground)
-            {
-                jumpTimeCounter = jumpTime;
-
-                if ((Input.GetButtonDown("R1")))
+                if (runTimerCounter <= 0)
                 {
-                    stoppedJumping = false;
+                    runningPS.SetActive(true);
+                    runMin = runMax;
+
                 }
-
-                if (Input.GetButton("R2"))
+                else
                 {
-
-                    isRunning = true;
-
-                    if (runTimerCounter <= 0)
-                    {
-                        runningPS.SetActive(true);
-                        runMin = runMax;
-                    }
-                    else
-                    {
-                        runTimerCounter -= Time.deltaTime;
-                        runMin += Time.deltaTime;
-                    }
+                    runTimerCounter -= Time.deltaTime;
+                    runMin += Time.deltaTime;
                 }
             }
-
-            if (((Input.GetButton("R1")) && !stoppedJumping))
+        }
+        if ((!stoppedJumping))
+        {
+            if (jumpTimeCounter > 0)
             {
-                if (jumpTimeCounter > 0)
-                {
-                    jumpTimeCounter -= Time.deltaTime;
-                }
-                else stoppedJumping = true;
+                jumpTimeCounter -= Time.deltaTime;
             }
-
-            if ((Input.GetButtonUp("R1")))
-            {
-                jumpTimeCounter = 0;
-                stoppedJumping = true;
-            }
-
-            if (Input.GetButtonUp("R2"))
-            {
-                isRunning = false;
-                runningPS.SetActive(false);
-                runTimerCounter = runTime;
-                runMin = runMinAux;
-            }
+            else stoppedJumping = true;
         }
     }
 
@@ -195,18 +175,19 @@ public class PlayerControllerCat : MonoBehaviour
             }
         }
 
+
         if (!stoppedJumping)
         {
             rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
         }
-    }
 
+
+    }
     private void OnCollisionStay(Collision collision)
     {
         if ((isGround.value & (1 << collision.gameObject.layer)) > 0)
         {
             ground = true;
-            //Debug.Log("ola");
         }
     }
 
@@ -215,7 +196,6 @@ public class PlayerControllerCat : MonoBehaviour
         if ((isGround.value & (1 << collision.gameObject.layer)) > 0)
         {
             ground = false;
-            //Debug.Log("adios");
         }
     }
 }
