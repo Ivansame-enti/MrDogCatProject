@@ -9,9 +9,13 @@ public class atachPlayer : MonoBehaviour
     public GameObject player2;
     public GameObject cube1;
     public GameObject cube2;
- 
 
 
+    private void Start()
+    {
+        //this.GetComponent<Animator>().SetBool("Move", true);
+        //this.GetComponent<Animator>().SetInteger("integer", 5);
+    }
 
     private void OnTriggerEnter(Collider other)
     {
