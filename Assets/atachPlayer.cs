@@ -7,17 +7,10 @@ public class atachPlayer : MonoBehaviour
     // Start is called before the first frame update
     public GameObject player1;
     public GameObject player2;
+    public GameObject cube1;
+    public GameObject cube2;
+ 
 
-    private Animation anim;
-
-
-
-    void Start()
-    {
-        anim = gameObject.GetComponent<Animation>();
-        anim["spin"].layer = 123;
-        anim.Stop("MovePlatform");
-    }
 
 
     private void OnTriggerEnter(Collider other)
@@ -49,10 +42,15 @@ public class atachPlayer : MonoBehaviour
 
     private void Update()
     {
-        if(player1.transform.parent==this && player2.transform.parent == this)
+        if(player1.transform.parent == cube1 && player2.transform.parent == cube2)//CADA UNO EN UNO DISTINTO perro izquierda gato derecha
         {
-
-            anim.Play("MovePlatform");
+            Debug.Log("entra");
+            this.GetComponent<Animator>().SetBool("Move", true);
+          
+        }
+        else
+        {
+            this.GetComponent<Animator>().SetBool("Move", false);
         }
     }
 }
