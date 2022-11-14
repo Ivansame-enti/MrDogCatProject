@@ -11,6 +11,9 @@ TagManager:
   - Hitbox4
   - Coin
   - Ground
+  - Flee
+  - Flee2
+  - Enemy2
   layers:
   - Default
   - TransparentFX
