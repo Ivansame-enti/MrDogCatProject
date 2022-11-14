@@ -10,11 +10,7 @@ using static UnityEngine.InputSystem.InputAction;
 public class PlayerControllerDog : MonoBehaviour
 {
     Animator anim;
-
-    [SerializeField]
     public float speed;
-
-    [SerializeField]
     public float maxSpeed;
 
     private Rigidbody rb;
@@ -25,78 +21,24 @@ public class PlayerControllerDog : MonoBehaviour
     public float runMax;
     public float runTime;
     private float runTimerCounter;
-    private bool isRunning;
-
+    private bool isRunning,pressRun,isJumping, stoppedJumping;
+    private bool ground;
     public GameObject runningPS;
 
     public float jumpForce;
     public float jumpTime;
     private float jumpTimeCounter;
-    private bool ground;
-    private bool stoppedJumping;
-    public LayerMask isGround;
-
-
     Vector2 moveUniversal;
-
-    Controls dogControls;
+    public LayerMask isGround;
 
     [SerializeField]
     private int playerIndex = 0;
-
-    private void Awake()
-    {
-
-        dogControls = new Controls();
-        //dogControls.Dog.Run.performed += ctx => Run();
-        //dogControls.Dog.Run.canceled += ctx => dontRun();
-        //dogControls.Dog.Movement.performed += ctx => moveUniversal = ctx.ReadValue<Vector2>();
-        //dogControls.Dog.Movement.canceled += ctx => moveUniversal = Vector2.zero;
-        //dogControls.Dog.Jump.performed += ctx => Jump();
-        //dogControls.Dog.Jump.canceled += ctx => StopJump();
-    }
-
+    
     public int GetPlayerIndex()
     {
         return playerIndex;
     }
-    void Jump()
-    {
-        stoppedJumping = false;
-       
-    }
-    void StopJump()
-    {
-        jumpTimeCounter = 0;
-        stoppedJumping = true;
 
-    }
-    void Run()
-    {
-        isRunning = true;
-
-
-    }
-    void dontRun()
-    {
-        isRunning = false;
-        runningPS.SetActive(false);
-        runTimerCounter = runTime;
-        runMin = runMinAux;
-        
-    }
-
-    private void OnEnable()
-    {
-        dogControls.Enable();
-        //dogController.Enable();
-    }
-
-    private void OnDisable()
-    {
-        dogControls.Disable();
-        //dogController.Disable();
-    }
     void Start()
     {
         runMinAux = runMin;
@@ -115,10 +57,13 @@ public class PlayerControllerDog : MonoBehaviour
     {
         moveUniversal = direction;
     }
-
-    public void SetRunning(bool run = true)
+    public void SetRunning(bool pressRun)
     {
-        isRunning = run;
+        isRunning = pressRun;
+    }
+    public void SetJump(bool pressJump)
+    {
+        isJumping = pressJump;
     }
     private void Update()
     {
@@ -132,7 +77,21 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 anim.SetInteger("Walk", 0);
             }
-
+        if(isRunning == false)
+        {
+            runningPS.SetActive(false);
+            runTimerCounter = runTime;
+            runMin = runMinAux;
+        }
+        if(isJumping == true)
+        {
+            stoppedJumping = false;
+        }
+        else if(isJumping == false)
+        {
+            jumpTimeCounter = 0;
+            stoppedJumping = true;
+        }
         if (ground)
         {
             jumpTimeCounter = jumpTime;
@@ -161,7 +120,6 @@ public class PlayerControllerDog : MonoBehaviour
         }
 
     }
-
     private void FixedUpdate()
     {
         if (!isRunning)
@@ -185,14 +143,10 @@ public class PlayerControllerDog : MonoBehaviour
                 rb.velocity += new Vector3(0, 0, move.z * runMin);
             }
         }
-
-
         if (!stoppedJumping)
         {
             rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
         }
-
-
     }
     private void OnCollisionStay(Collision collision)
     {
@@ -211,59 +165,3 @@ public class PlayerControllerDog : MonoBehaviour
     }
 }
 
-
-/*
-if (ground)
-{
-    jumpTimeCounter = jumpTime;
-
-    if ((Input.GetButtonDown("L1")))
-    {
-        stoppedJumping = false;
-    }
-
-    if (Input.GetButton("L2"))
-    {
-
-        isRunning = true;
-
-        if (runTimerCounter <= 0)
-        {
-            runningPS.SetActive(true);
-            runMin = runMax;
-        }
-        else
-        {
-            runTimerCounter -= Time.deltaTime;
-            runMin += Time.deltaTime;
-        }
-    }
-}
-else if (isRunning)
-{
-    //Hacer que cuando salte vuelva asu velocidad normal???
-}
-
-if (((Input.GetButton("L1")) && !stoppedJumping))
-{
-    if (jumpTimeCounter > 0)
-    {
-        jumpTimeCounter -= Time.deltaTime;
-    }
-    else stoppedJumping = true;
-}
-
-if ((Input.GetButtonUp("L1")))
-{
-    jumpTimeCounter = 0;
-    stoppedJumping = true;
-}
-
-if ((Input.GetButtonUp("L2")))
-{
-    isRunning = false;
-    runningPS.SetActive(false);
-    runTimerCounter = runTime;
-    runMin = runMinAux;
-}
-*/

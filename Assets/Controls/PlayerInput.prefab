@@ -74,11 +74,35 @@ MonoBehaviour:
     m_ActionId: 757ec656-573b-4cbb-a4d9-8dd2a708f4a0
     m_ActionName: Dog/Movement[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2373930549627611366}
+        m_TargetAssemblyTypeName: playerInputHandler, Assembly-CSharp
+        m_MethodName: OnJump
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 22f0b2f9-153d-49ef-a1fc-8e78a7282310
     m_ActionName: Dog/Jump[/Keyboard/space]
   - m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 2373930549627611366}
+        m_TargetAssemblyTypeName: playerInputHandler, Assembly-CSharp
+        m_MethodName: OnRun
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_ActionId: 62f41ef8-b105-4f95-92e8-c01457d2b58e
     m_ActionName: Dog/Run[/Keyboard/leftShift]
   - m_PersistentCalls:
