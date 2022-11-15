@@ -146,4 +146,6 @@ public class Enemy2Controller : MonoBehaviour
             this.GetComponent<Rigidbody>().mass = 0.3f;
         }
     }
+
+    
 }

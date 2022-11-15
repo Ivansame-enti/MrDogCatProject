@@ -15,6 +15,7 @@ TagManager:
   - Flee2
   - Enemy2
   - Trigger
+  - TriggerEnemy2
   layers:
   - Default
   - TransparentFX
@@ -25,9 +26,9 @@ TagManager:
   - Ground
   - Wall
   - Player
-  - 
-  - 
-  - 
+  - Enemy2Death
+  - Enemy2
+  - Enemy2Head
   - 
   - 
   - 
