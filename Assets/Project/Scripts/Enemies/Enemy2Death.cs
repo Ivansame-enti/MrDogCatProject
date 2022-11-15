@@ -9,7 +9,7 @@ public class Enemy2Death : MonoBehaviour
         if (other.tag == "TriggerEnemy2")
         {
             this.transform.parent.gameObject.GetComponent<Enemy2Controller>().ropeCollision = true;
-            //Debug.Log("MUERE PERROOOO");
+            Debug.Log("MUERE PERROOOO");
         }
     }
 }
