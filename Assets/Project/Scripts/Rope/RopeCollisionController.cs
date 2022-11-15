@@ -37,7 +37,7 @@ public class RopeCollisionController : MonoBehaviour
                 if (col != null && col.gameObject.CompareTag("Enemy2"))
                 {
                     //Debug.Log("A");
-                    col.gameObject.GetComponent<Enemy2Controller>().ropeCollision = true;
+                    //col.gameObject.GetComponent<Enemy2Controller>().ropeCollision = true;
                 }
 
                 // if this collider is tagged as "zero gravity":
