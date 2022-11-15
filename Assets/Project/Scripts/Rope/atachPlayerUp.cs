@@ -26,14 +26,14 @@ public class atachPlayerUp : MonoBehaviour
             player1.transform.parent = transform;
          //   gatofuera = false;
          //   timer = cooldown;
-            player1.transform.localScale = new Vector3(1, 1, 1);
+            //player1.transform.localScale = new Vector3(1, 1, 1);
         }
         if (other.gameObject == player2)
         {
             player2.transform.parent = transform;
         //    perrofuera = false;
         //    timer = cooldown;
-             player2.transform.localScale = new Vector3(1, 1, 1);
+             //player2.transform.localScale = new Vector3(1, 1, 1);
         }
     }
 
@@ -42,14 +42,14 @@ public class atachPlayerUp : MonoBehaviour
     {
         if (other.gameObject == player1)
         {
-            player1.transform.parent = null;
+            //player1.transform.parent = null;
             player1.transform.parent = originalPadre.transform;
             player1.transform.localScale = new Vector3(1, 1, 1);
            // gatofuera = true;
         }
         if (other.gameObject == player2)
         {
-            player2.transform.parent = null;
+            //player2.transform.parent = null;
             player2.transform.parent = originalPadre.transform;
             player2.transform.localScale = new Vector3(1,1,1);
             //perrofuera = true;
