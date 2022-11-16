@@ -18,8 +18,8 @@ public class WinnerCanvasController : MonoBehaviour
     {
         catEnded = false;
         dogEnded = false;
-        StaticClass.CoinsCat = 10;
-        StaticClass.CoinsDog = 7;
+        //StaticClass.CoinsCat = 10;
+        //StaticClass.CoinsDog = 7;
         //Debug.Log(StaticClass.CoinsCat);
         //Debug.Log(StaticClass.CoinsDog);
         
