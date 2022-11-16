@@ -6,8 +6,8 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Project/Scenes/MapaMerge.unity
-    guid: a9525ba713c42a443ac6d86a72bbb294
+    path: Assets/Project/Scenes/MapaMergeIvan.unity
+    guid: 63f6328ec5e019e49b4838ad75d653bc
   - enabled: 1
     path: Assets/Project/Scenes/Win.unity
     guid: 49af43050cfe9744aa2cb67d1e78fdc7

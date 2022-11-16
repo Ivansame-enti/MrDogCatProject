@@ -131,7 +131,7 @@ public class Enemy2Controller : MonoBehaviour
     {
         if (collision.gameObject.tag == "Player")
         {
-            this.GetComponent<Rigidbody>().mass = 50;
+            this.GetComponent<Rigidbody>().mass = 100;
             Vector3 direction = (collision.transform.position - transform.position).normalized;
 
             direction.y = 0;
@@ -146,4 +146,6 @@ public class Enemy2Controller : MonoBehaviour
             this.GetComponent<Rigidbody>().mass = 0.3f;
         }
     }
+
+    
 }

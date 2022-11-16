@@ -4,19 +4,12 @@ using UnityEngine;
 
 public class Enemy2Death : MonoBehaviour
 {
-    //public BoxCollider bc;
-
-    private void Start()
+    private void OnTriggerEnter(Collider other)
     {
-
-    }
-    private void  OnCollisionEnter(Collision collision)
-    {
-
-        if (collision.gameObject.tag == "Ground")
+        if (other.tag == "TriggerEnemy2")
         {
-            Debug.Log("eiii");
-            Destroy(this.transform.parent.gameObject);
+            this.transform.parent.gameObject.GetComponent<Enemy2Controller>().ropeCollision = true;
+            //Debug.Log("MUERE PERROOOO");
         }
     }
 }

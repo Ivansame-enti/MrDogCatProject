@@ -12,6 +12,7 @@ public class WinnerCanvasController : MonoBehaviour
     public GameObject winTextCat, winTextDog;
     private float fillQuantity = 0.01f;
     public GameObject button;
+    public GameObject coinDog, coinCat;
     // Start is called before the first frame update
     void Start()
     {
@@ -38,6 +39,9 @@ public class WinnerCanvasController : MonoBehaviour
 
         if (dogSlider.value >= StaticClass.CoinsDog) dogEnded = true;
         else dogSlider.value += Time.deltaTime * 3f;
+
+        if (catEnded) coinCat.SetActive(false);
+        if (dogEnded) coinDog.SetActive(false);
 
         if (catEnded && dogEnded)
         {
