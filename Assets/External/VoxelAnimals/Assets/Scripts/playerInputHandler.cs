@@ -40,4 +40,9 @@ public class playerInputHandler : MonoBehaviour
         if (playerController != null)
             playerController.SetJump(context.ReadValueAsButton()); 
     }
+    public void OnPoop(InputAction.CallbackContext context)
+    {
+        if (playerController != null)
+            playerController.SetPoop(context.ReadValueAsButton());
+    }
 }

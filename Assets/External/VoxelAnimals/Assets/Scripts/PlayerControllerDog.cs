@@ -21,7 +21,7 @@ public class PlayerControllerDog : MonoBehaviour
     public float runMax;
     public float runTime;
     private float runTimerCounter;
-    private bool isRunning,pressRun,isJumping, stoppedJumping;
+    private bool isRunning,pressRun,isJumping,isPooping, stoppedJumping;
     private bool ground;
     public GameObject runningPS;
 
@@ -65,6 +65,10 @@ public class PlayerControllerDog : MonoBehaviour
     {
         isJumping = pressJump;
     }
+    public void SetPoop(bool pressPoop)
+    {
+        isPooping = pressPoop;
+    }
     private void Update()
     {
         move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
@@ -95,6 +99,10 @@ public class PlayerControllerDog : MonoBehaviour
         {
             jumpTimeCounter = 0;
             stoppedJumping = true;
+        }
+        if(isPooping == true)
+        {
+            Debug.Log("cagando");
         }
         if (ground)
         {
