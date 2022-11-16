@@ -40,6 +40,7 @@ public class Enemy2Controller : MonoBehaviour
 
         if (playerInRange) //Mira si el jugador esta  a rango
         {
+            this.GetComponent<Rigidbody>().isKinematic = false;
             if (!ropeCollision)
             {
                 //Debug.Log("entra");
@@ -101,6 +102,7 @@ public class Enemy2Controller : MonoBehaviour
             }
             else Destroy(this.gameObject, 2.0f);
         }
+        else this.GetComponent<Rigidbody>().isKinematic = true;
         /*
         if (timer>=timeBettwenAttacks)
         {
