@@ -18,6 +18,7 @@ public class Enemy2Controller : MonoBehaviour
     private bool checkedPlayer;
     private Vector3 playerPos;
     public float chargeTime;
+    public GameObject deathPS;
     //private NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -103,7 +104,7 @@ public class Enemy2Controller : MonoBehaviour
             else
             {
                 Destroy(this.gameObject, 2.0f);
-                Instantiate(poopPrefab, transform.position, Quaternion.identity);
+                Instantiate(deathPS, transform.position, Quaternion.identity);
             }
         }
         else this.GetComponent<Rigidbody>().isKinematic = true;
