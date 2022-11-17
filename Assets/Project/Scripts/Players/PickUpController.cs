@@ -8,8 +8,10 @@ public class PickUpController : MonoBehaviour
     private int objective1Number, objective2Number;
     public TextMeshProUGUI coinText, objective1Text, objective2Text;
     public int coinNumber;
+    private AudioManagerController audioSFX;
     private void Start()
     {
+        audioSFX = FindObjectOfType<AudioManagerController>();
         coinNumber = 000;
         objective1Number = 0;
         objective2Number = 0;
@@ -23,6 +25,7 @@ public class PickUpController : MonoBehaviour
             Destroy(other.gameObject);
             coinNumber++;
             coinText.text = coinNumber.ToString("000");
+            audioSFX.AudioPlay("Coin");
         }
     }
 

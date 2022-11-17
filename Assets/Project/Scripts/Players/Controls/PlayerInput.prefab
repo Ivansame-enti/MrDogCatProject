@@ -117,6 +117,22 @@ MonoBehaviour:
       m_Calls: []
     m_ActionId: 609216d9-62d7-450f-907f-b1200a3825e4
     m_ActionName: Cat/Jump[/Keyboard/rightShift]
+  - m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 2373930549627611366}
+        m_TargetAssemblyTypeName: playerInputHandler, Assembly-CSharp
+        m_MethodName: OnBark
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_ActionId: f244a16c-9a28-4bdf-a06f-3a202acc6834
+    m_ActionName: Dog/Sound[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Dog

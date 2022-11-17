@@ -1,4 +1,4 @@
-// GENERATED AUTOMATICALLY FROM 'Assets/Controls/Controls.inputactions'
+// GENERATED AUTOMATICALLY FROM 'Assets/Project/Scripts/Players/Controls/Controls.inputactions'
 
 using System;
 using System.Collections;
@@ -38,6 +38,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""name"": ""Run"",
                     ""type"": ""Button"",
                     ""id"": ""62f41ef8-b105-4f95-92e8-c01457d2b58e"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
+                    ""name"": ""Sound"",
+                    ""type"": ""Button"",
+                    ""id"": ""f244a16c-9a28-4bdf-a06f-3a202acc6834"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -151,6 +159,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Run"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ebbe0ca8-b591-4492-abdc-115a3dba1a75"",
+                    ""path"": ""<Gamepad>/buttonNorth"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sound"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""f390fdd2-da1d-4ea2-96a8-40f030866b1d"",
+                    ""path"": ""<Keyboard>/f"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Sound"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -306,6 +336,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Dog_Movement = m_Dog.FindAction("Movement", throwIfNotFound: true);
         m_Dog_Jump = m_Dog.FindAction("Jump", throwIfNotFound: true);
         m_Dog_Run = m_Dog.FindAction("Run", throwIfNotFound: true);
+        m_Dog_Sound = m_Dog.FindAction("Sound", throwIfNotFound: true);
         // Cat
         m_Cat = asset.FindActionMap("Cat", throwIfNotFound: true);
         m_Cat_Movement = m_Cat.FindAction("Movement", throwIfNotFound: true);
@@ -363,6 +394,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Dog_Movement;
     private readonly InputAction m_Dog_Jump;
     private readonly InputAction m_Dog_Run;
+    private readonly InputAction m_Dog_Sound;
     public struct DogActions
     {
         private @Controls m_Wrapper;
@@ -370,6 +402,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Movement => m_Wrapper.m_Dog_Movement;
         public InputAction @Jump => m_Wrapper.m_Dog_Jump;
         public InputAction @Run => m_Wrapper.m_Dog_Run;
+        public InputAction @Sound => m_Wrapper.m_Dog_Sound;
         public InputActionMap Get() { return m_Wrapper.m_Dog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -388,6 +421,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_DogActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_DogActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_DogActionsCallbackInterface.OnRun;
+                @Sound.started -= m_Wrapper.m_DogActionsCallbackInterface.OnSound;
+                @Sound.performed -= m_Wrapper.m_DogActionsCallbackInterface.OnSound;
+                @Sound.canceled -= m_Wrapper.m_DogActionsCallbackInterface.OnSound;
             }
             m_Wrapper.m_DogActionsCallbackInterface = instance;
             if (instance != null)
@@ -401,6 +437,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
+                @Sound.started += instance.OnSound;
+                @Sound.performed += instance.OnSound;
+                @Sound.canceled += instance.OnSound;
             }
         }
     }
@@ -459,6 +498,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnMovement(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
+        void OnSound(InputAction.CallbackContext context);
     }
     public interface ICatActions
     {
