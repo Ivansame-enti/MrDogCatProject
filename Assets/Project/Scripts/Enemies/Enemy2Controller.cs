@@ -100,7 +100,11 @@ public class Enemy2Controller : MonoBehaviour
                     timer2 -= Time.deltaTime;
                 }
             }
-            else Destroy(this.gameObject, 2.0f);
+            else
+            {
+                Destroy(this.gameObject, 2.0f);
+                Instantiate(poopPrefab, transform.position, Quaternion.identity);
+            }
         }
         else this.GetComponent<Rigidbody>().isKinematic = true;
         /*
