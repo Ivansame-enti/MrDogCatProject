@@ -8,7 +8,6 @@ public class FleeController : MonoBehaviour
     public NavMeshAgent agent;
     public GameObject target;
     public float movementSpeed;
-    public bool flagActive;
     public float distanceLenght;
     private bool firstTime;
     private Rigidbody rb;
