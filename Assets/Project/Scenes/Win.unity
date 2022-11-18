@@ -1090,10 +1090,17 @@ MonoBehaviour:
     audioMixer: {fileID: 0}
     source: {fileID: 0}
   - name: WinningBar
-    clip: {fileID: 8300000, guid: 4aa345613579c5841b75a7d71a67e087, type: 3}
+    clip: {fileID: 8300000, guid: 652aa42b000440945a26f76ab4de9fd0, type: 3}
     volume: 1
     pitch: 1
-    loop: 0
+    loop: 1
+    audioMixer: {fileID: 0}
+    source: {fileID: 0}
+  - name: WinMusic
+    clip: {fileID: 8300000, guid: 427ad087278d6144f8ac71a185af6399, type: 3}
+    volume: 0.05
+    pitch: 1
+    loop: 1
     audioMixer: {fileID: 0}
     source: {fileID: 0}
 --- !u!4 &1145474339
