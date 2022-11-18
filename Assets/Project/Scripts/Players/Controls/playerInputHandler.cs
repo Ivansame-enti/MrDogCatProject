@@ -45,4 +45,9 @@ public class playerInputHandler : MonoBehaviour
         if (playerController != null)
             playerController.SetBark(context.ReadValueAsButton());
     }
+    public void OnPoop(InputAction.CallbackContext context)
+    {
+        if (playerController != null)
+            playerController.SetPoop(context.ReadValueAsButton());
+    }
 }

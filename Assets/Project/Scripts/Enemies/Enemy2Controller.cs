@@ -20,6 +20,7 @@ public class Enemy2Controller : MonoBehaviour
     public float chargeTime;
     private AudioManagerController audioSFX;
     private AudioSource audioSource;
+    public GameObject deathPS;
     //private NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -89,7 +90,7 @@ public class Enemy2Controller : MonoBehaviour
                     lookDir.y = 0;
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
                     transform.position = Vector3.MoveTowards(transform.position, playerPos, 20 * Time.deltaTime);
-                    
+
                     if (Vector3.Distance(transform.position, playerPos) <= 1) //Si ha llegado al destino se queda en CD
                     {
                         checkedPlayer = false;
@@ -110,6 +111,7 @@ public class Enemy2Controller : MonoBehaviour
             }
             else
             {
+                Invoke("InvokeParticles", 1.5f);
                 audioSource.Stop();
                 audioSFX.AudioPlay("ChickenDeath");
                 Destroy(this.gameObject, 2.0f);
@@ -144,7 +146,7 @@ public class Enemy2Controller : MonoBehaviour
 
     private void InvokeParticles()
     {
-        Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity);
+        Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y + 1f, transform.position.z), Quaternion.identity);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -167,5 +169,5 @@ public class Enemy2Controller : MonoBehaviour
         }
     }
 
-    
+
 }
