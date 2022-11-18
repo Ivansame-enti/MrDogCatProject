@@ -18,11 +18,15 @@ public class Enemy2Controller : MonoBehaviour
     private bool checkedPlayer;
     private Vector3 playerPos;
     public float chargeTime;
+    private AudioManagerController audioSFX;
+    private AudioSource audioSource;
     //private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSFX = FindObjectOfType<AudioManagerController>();
+        audioSource = GetComponent<AudioSource>();
         ropeCollision = false;
         move = false;
         timer2 = 0;
@@ -99,7 +103,12 @@ public class Enemy2Controller : MonoBehaviour
                     timer2 -= Time.deltaTime;
                 }
             }
-            else Destroy(this.gameObject, 2.0f);
+            else
+            {
+                audioSource.Stop();
+                audioSFX.AudioPlay("ChickenDeath");
+                Destroy(this.gameObject, 2.0f);
+            }
         }
         /*
         if (timer>=timeBettwenAttacks)

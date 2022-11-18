@@ -73,10 +73,10 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
                 if (!isRunning) anim.SetInteger("Walk", 1);
-                else
+            else
                 {
                     anim.SetInteger("Walk", 2);
-                }
+            }
             }
             else
             {
@@ -99,6 +99,7 @@ public class PlayerControllerDog : MonoBehaviour
         if(isJumping == true)
         {
             stoppedJumping = false;
+
         }
         else if(isJumping == false)
         {
@@ -120,6 +121,11 @@ public class PlayerControllerDog : MonoBehaviour
         }
         if (ground)
         {
+            if (isJumping == true)
+            {
+                if (!audioSFX.GetAudioPlaying("Jump"))
+                    audioSFX.AudioPlay("Jump");
+            }
             jumpTimeCounter = jumpTime;
             if (isRunning == true)
             {
