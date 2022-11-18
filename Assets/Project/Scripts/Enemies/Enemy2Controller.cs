@@ -18,6 +18,7 @@ public class Enemy2Controller : MonoBehaviour
     private bool checkedPlayer;
     private Vector3 playerPos;
     public float chargeTime;
+    public GameObject deathPS;
     //private NavMeshAgent agent;
 
     // Start is called before the first frame update
@@ -40,6 +41,7 @@ public class Enemy2Controller : MonoBehaviour
 
         if (playerInRange) //Mira si el jugador esta  a rango
         {
+            this.GetComponent<Rigidbody>().isKinematic = false;
             if (!ropeCollision)
             {
                 //Debug.Log("entra");
@@ -99,8 +101,13 @@ public class Enemy2Controller : MonoBehaviour
                     timer2 -= Time.deltaTime;
                 }
             }
-            else Destroy(this.gameObject, 2.0f);
+            else
+            {
+                Invoke("InvokeParticles", 1.5f);
+                Destroy(this.gameObject, 2.0f);
+            }
         }
+        else this.GetComponent<Rigidbody>().isKinematic = true;
         /*
         if (timer>=timeBettwenAttacks)
         {
@@ -125,6 +132,11 @@ public class Enemy2Controller : MonoBehaviour
             timer = 0;
         }
         else timer += Time.deltaTime;*/
+    }
+
+    private void InvokeParticles()
+    {
+        Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -17,6 +17,7 @@ public class BasicEnemyController : MonoBehaviour
 
     public float attackRange;
     bool playerInRange;
+    public GameObject deathPS;
     // Start is called before the first frame update
     void Start()
     {
@@ -44,7 +45,11 @@ public class BasicEnemyController : MonoBehaviour
         if (hitbox2) this.gameObject.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>().material = mat;
         if (hitbox3) this.gameObject.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().material = mat;
         if (hitbox4) this.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = mat;
-        if (hitbox1 && hitbox2 && hitbox3 && hitbox4) Destroy(this.gameObject);
+        if (hitbox1 && hitbox2 && hitbox3 && hitbox4)
+        {           
+            Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), Quaternion.identity);
+            Destroy(this.gameObject);
+        }
     }
 
     private void FreeMove()

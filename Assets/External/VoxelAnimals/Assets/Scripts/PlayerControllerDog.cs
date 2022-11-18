@@ -21,7 +21,7 @@ public class PlayerControllerDog : MonoBehaviour
     public float runMax;
     public float runTime;
     private float runTimerCounter;
-    private bool isRunning,pressRun,isJumping, stoppedJumping;
+    private bool isRunning,pressRun,isJumping,isPooping, stoppedJumping;
     private bool ground;
     public GameObject runningPS;
 
@@ -30,6 +30,9 @@ public class PlayerControllerDog : MonoBehaviour
     private float jumpTimeCounter;
     Vector2 moveUniversal;
     public LayerMask isGround;
+    public GameObject poopPrefab;
+    private float timerPoop;
+    public float jetTime;
 
     [SerializeField]
     private int playerIndex = 0;
@@ -41,6 +44,7 @@ public class PlayerControllerDog : MonoBehaviour
 
     void Start()
     {
+        timerPoop = 0;
         runMinAux = runMin;
         runTimerCounter = runTime;
         stoppedJumping = true;
@@ -64,6 +68,10 @@ public class PlayerControllerDog : MonoBehaviour
     public void SetJump(bool pressJump)
     {
         isJumping = pressJump;
+    }
+    public void SetPoop(bool pressPoop)
+    {
+        isPooping = pressPoop;
     }
     private void Update()
     {
@@ -95,6 +103,20 @@ public class PlayerControllerDog : MonoBehaviour
         {
             jumpTimeCounter = 0;
             stoppedJumping = true;
+        }
+        if(isPooping == true)
+        {
+            if (timerPoop <= jetTime)
+            {
+                GameObject poop = Instantiate(poopPrefab, transform.position, Quaternion.identity) as GameObject;
+                Destroy(poop, 2);
+                timerPoop += Time.deltaTime;
+            }
+            //Debug.Log("cagando");
+        }
+        else
+        {
+            if (timerPoop > 0 && ground) timerPoop -= Time.deltaTime;
         }
         if (ground)
         {
