@@ -103,8 +103,8 @@ public class Enemy2Controller : MonoBehaviour
             }
             else
             {
+                Invoke("InvokeParticles", 1.5f);
                 Destroy(this.gameObject, 2.0f);
-                Instantiate(deathPS, transform.position, Quaternion.identity);
             }
         }
         else this.GetComponent<Rigidbody>().isKinematic = true;
@@ -132,6 +132,11 @@ public class Enemy2Controller : MonoBehaviour
             timer = 0;
         }
         else timer += Time.deltaTime;*/
+    }
+
+    private void InvokeParticles()
+    {
+        Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y+1f, transform.position.z), Quaternion.identity);
     }
 
     private void OnCollisionEnter(Collision collision)
