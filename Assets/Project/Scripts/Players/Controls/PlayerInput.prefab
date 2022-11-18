@@ -121,7 +121,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2373930549627611366}
         m_TargetAssemblyTypeName: playerInputHandler, Assembly-CSharp
-        m_MethodName: OnPoop
+        m_MethodName: OnBark
         m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -131,8 +131,8 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-    m_ActionId: 6118db9c-7ddd-4f8d-82f9-77dff89fdf3b
-    m_ActionName: Dog/Poop[/XInputControllerWindows/buttonEast,/Keyboard/leftCtrl]
+    m_ActionId: f244a16c-9a28-4bdf-a06f-3a202acc6834
+    m_ActionName: Dog/Sound[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Dog

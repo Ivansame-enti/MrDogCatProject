@@ -8,8 +8,11 @@ public class PickUpController : MonoBehaviour
     private int objective1Number, objective2Number;
     public TextMeshProUGUI coinText, objective1Text, objective2Text;
     public int coinNumber;
+    private AudioManagerController audioSFX;
+    public AudioSource chickenSound, penguinSound;
     private void Start()
     {
+        audioSFX = FindObjectOfType<AudioManagerController>();
         coinNumber = 000;
         objective1Number = 0;
         objective2Number = 0;
@@ -23,6 +26,7 @@ public class PickUpController : MonoBehaviour
             Destroy(other.gameObject);
             coinNumber++;
             coinText.text = coinNumber.ToString("000");
+            audioSFX.AudioPlay("Coin");
         }
     }
 
@@ -40,6 +44,8 @@ public class PickUpController : MonoBehaviour
                 objective2Text.text = objective2Number.ToString();
                 coinNumber+=7;
                 coinText.text = coinNumber.ToString("000");
+                penguinSound.Stop();
+                audioSFX.AudioPlay("PenguinDeath");
                 Destroy(collision.gameObject, 2f);
             }
         }
@@ -56,6 +62,9 @@ public class PickUpController : MonoBehaviour
                 objective1Text.text = objective1Number.ToString();
                 coinNumber += 7;
                 coinText.text = coinNumber.ToString("000");
+                chickenSound.Stop();
+                audioSFX.AudioPlay("ChickenDeath");
+                Debug.Log("ola");
                 Destroy(collision.gameObject, 2f);
             }
         }

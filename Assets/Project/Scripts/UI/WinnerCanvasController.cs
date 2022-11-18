@@ -8,24 +8,27 @@ public class WinnerCanvasController : MonoBehaviour
 {
     public Slider catSlider, dogSlider;
     private int maxValue;
-    private bool catEnded, dogEnded;
+    private bool catEnded, dogEnded,winnerSound,winnerMusic;
     public GameObject winTextCat, winTextDog;
     private float fillQuantity = 0.01f;
     public GameObject button;
     public GameObject coinDog, coinCat;
+    private AudioManagerController audioSFX;
     // Start is called before the first frame update
     void Start()
     {
+        audioSFX = FindObjectOfType<AudioManagerController>();
         catEnded = false;
         dogEnded = false;
-        //StaticClass.CoinsCat = 10;
-        //StaticClass.CoinsDog = 7;
+        StaticClass.CoinsCat = 10;
+        StaticClass.CoinsDog = 7;
         //Debug.Log(StaticClass.CoinsCat);
         //Debug.Log(StaticClass.CoinsDog);
         
         maxValue = Mathf.Max(StaticClass.CoinsCat, StaticClass.CoinsDog);
         catSlider.maxValue = maxValue;
         dogSlider.maxValue = maxValue;
+        audioSFX.AudioPlay("WinningBar");
     }
 
     // Update is called once per frame
@@ -45,12 +48,21 @@ public class WinnerCanvasController : MonoBehaviour
 
         if (catEnded && dogEnded)
         {
-            if(StaticClass.CoinsCat > StaticClass.CoinsDog)
+            audioSFX.AudioStop("WinningBar");
+            if (!winnerMusic)
+                audioSFX.AudioPlay("WinMusic");
+            winnerMusic = true;
+            if (StaticClass.CoinsCat > StaticClass.CoinsDog)
             {
                 winTextCat.SetActive(true);
+                if(!winnerSound) audioSFX.AudioPlay("Meow");
+                winnerSound = true;
+
             } else if(StaticClass.CoinsCat < StaticClass.CoinsDog)
             {
                 winTextDog.SetActive(true);
+                if (!winnerSound) audioSFX.AudioPlay("Bark");
+                winnerSound = true; 
             }
 
             button.SetActive(true);

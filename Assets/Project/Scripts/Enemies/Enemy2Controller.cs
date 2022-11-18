@@ -18,12 +18,15 @@ public class Enemy2Controller : MonoBehaviour
     private bool checkedPlayer;
     private Vector3 playerPos;
     public float chargeTime;
-    public GameObject deathPS;
+    private AudioManagerController audioSFX;
+    private AudioSource audioSource;
     //private NavMeshAgent agent;
 
     // Start is called before the first frame update
     void Start()
     {
+        audioSFX = FindObjectOfType<AudioManagerController>();
+        audioSource = GetComponent<AudioSource>();
         ropeCollision = false;
         move = false;
         timer2 = 0;
@@ -76,6 +79,7 @@ public class Enemy2Controller : MonoBehaviour
                 {
                     this.GetComponent<Animator>().SetInteger("Walk", 0);
                     timer += Time.deltaTime;
+                    audioSource.Stop();
                 }
 
                 if (timer2 <= 0 && checkedPlayer) //Si el tiempo de carga ha terminado y hay un objetivo, hace la carga
@@ -85,11 +89,13 @@ public class Enemy2Controller : MonoBehaviour
                     lookDir.y = 0;
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
                     transform.position = Vector3.MoveTowards(transform.position, playerPos, 20 * Time.deltaTime);
+                    
                     if (Vector3.Distance(transform.position, playerPos) <= 1) //Si ha llegado al destino se queda en CD
                     {
                         checkedPlayer = false;
                         timer = 0;
                         move = false;
+                        //audioSource.Stop();
                     }
                 }
                 else if (checkedPlayer)
@@ -98,12 +104,14 @@ public class Enemy2Controller : MonoBehaviour
                     lookDir.y = 0;
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
                     this.GetComponent<Animator>().SetInteger("Walk", 1);
+                    audioSource.Play();
                     timer2 -= Time.deltaTime;
                 }
             }
             else
             {
-                Invoke("InvokeParticles", 1.5f);
+                audioSource.Stop();
+                audioSFX.AudioPlay("ChickenDeath");
                 Destroy(this.gameObject, 2.0f);
             }
         }
