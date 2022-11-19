@@ -150,7 +150,10 @@ public class PlayerControllerDog : MonoBehaviour
             if (isJumping == true)
             {
                 if (!audioSFX.GetAudioPlaying("Jump"))
+                {
+                    audioSFX.ChangePitch("Jump", UnityEngine.Random.Range(0.7f, 1.7f));
                     audioSFX.AudioPlay("Jump");
+                }                    
             }
             jumpTimeCounter = jumpTime;
             if (isRunning == true)

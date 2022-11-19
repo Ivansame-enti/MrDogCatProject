@@ -18,9 +18,12 @@ public class BasicEnemyController : MonoBehaviour
     public float attackRange;
     bool playerInRange;
     public GameObject deathPS;
+
+    private AudioManagerController audioSFX;
     // Start is called before the first frame update
     void Start()
     {
+        audioSFX = FindObjectOfType<AudioManagerController>();
         hitbox1 = false;
         hitbox2 = false;
         hitbox3 = false;
@@ -46,7 +49,8 @@ public class BasicEnemyController : MonoBehaviour
         if (hitbox3) this.gameObject.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().material = mat;
         if (hitbox4) this.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = mat;
         if (hitbox1 && hitbox2 && hitbox3 && hitbox4)
-        {           
+        {
+            audioSFX.AudioPlay("BasicEnemyDeath");
             Instantiate(deathPS, new Vector3(transform.position.x, transform.position.y-0.5f, transform.position.z), Quaternion.identity);
             Destroy(this.gameObject);
         }
