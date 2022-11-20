@@ -19,6 +19,7 @@ public class atachPlayer : MonoBehaviour
     {
         timer = cooldown;
     }
+
     private void OnTriggerEnter(Collider other)
     {
         if(other.gameObject == player1)
@@ -36,7 +37,6 @@ public class atachPlayer : MonoBehaviour
             // player2.transform.localScale = new Vector3(1, 1, 1);
         }
     }
-
 
     private void OnTriggerExit(Collider other)
     {
