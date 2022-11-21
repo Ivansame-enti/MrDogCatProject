@@ -106,11 +106,6 @@ public class atachPlayer : MonoBehaviour
         }
 
 
-        if(gatofuera==true && perrofuera==true)
-        {
-           
-             //player1.transform.parent = originalPadre.transform;
-           // player2.transform.parent = originalPadre.transform;
-        }
+      
     }
 }
