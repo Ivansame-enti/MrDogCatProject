@@ -12,12 +12,12 @@ public class atachPlayer : MonoBehaviour
     private bool gatofuera = false;
     private bool perrofuera = false;
     public float timer;
-    public float cooldown = 5.0f;
+    public float cooldown;
 
 
     private void Start()
     {
-        timer = cooldown;
+        timer = 0;
     }
 
     private void OnTriggerEnter(Collider other)
@@ -25,16 +25,14 @@ public class atachPlayer : MonoBehaviour
         if(other.gameObject == player1)
         {
             player1.transform.parent = transform;
-            gatofuera = false;
-            timer = cooldown;
-            //player1.transform.localScale = new Vector3(1, 1, 1);
+            //gatofuera = false;
+            //timer = cooldown;
         }
         if (other.gameObject == player2)
         {
             player2.transform.parent = transform;
-            perrofuera = false;
-            timer = cooldown;
-            // player2.transform.localScale = new Vector3(1, 1, 1);
+            //perrofuera = false;
+            //timer = cooldown;
         }
     }
 
@@ -60,14 +58,12 @@ public class atachPlayer : MonoBehaviour
 
     private void Update()
     {
-        if(player1.transform.parent == cube1.transform && player2.transform.parent == cube2.transform)//CADA UNO EN UNO DISTINTO perro izquierda gato derecha
+        if(player1.transform.parent == cube1.transform && player2.transform.parent == cube2.transform)// CADA UNO EN UNO DISTINTO perro izquierda gato derecha
         {
             startea = true;
             this.GetComponent<Animator>().SetBool("Move", true);
 
-          
-           
-            if (player1.transform.parent == cube1.transform || player1.transform.parent == cube2.transform)
+            /*if (player1.transform.parent == cube1.transform || player1.transform.parent == cube2.transform)
             {
                 this.GetComponent<Animator>().SetBool("Move", true);
             }
@@ -76,34 +72,40 @@ public class atachPlayer : MonoBehaviour
             if (player2.transform.parent == cube1.transform || player2.transform.parent == cube2.transform)
             {
                 this.GetComponent<Animator>().SetBool("Move", true);
-            }
-
-           
-
-
+            }*/
         }
-        if (startea == true) { 
+
+        if (startea)
+        {
+            if (this.transform.childCount <= 0)
+            {
+                if (timer > cooldown)
+                {
+                    this.GetComponent<Animator>().SetBool("Move", false);
+                }
+                else timer += Time.deltaTime;
+            }
+            else timer = 0;
+        }
+        /*if (startea == true) { 
             if (player1.transform.parent == originalPadre.transform && player2.transform.parent == originalPadre.transform)
             {
-
                 startea = false;
             }
-        }
-        else if(startea == false)
+        }*/
+        /*else if(startea == false)
         {
-           
-
             if (timer <= 0.0f) { 
                 this.GetComponent<Animator>().SetBool("Move", false);
                 timer = cooldown;
-            }else timer -= Time.deltaTime;
+            } else timer -= Time.deltaTime;
             // player1.transform.parent = originalPadre.transform;
             // player2.transform.parent = originalPadre.transform;
         }
         else
         {
             timer = cooldown;
-        }
+        }*/
 
 
       
