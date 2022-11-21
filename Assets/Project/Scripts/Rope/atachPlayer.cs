@@ -43,14 +43,14 @@ public class atachPlayer : MonoBehaviour
             player1.transform.parent = null;
             player1.transform.parent = originalPadre.transform;
             player1.transform.localScale = new Vector3(1, 1, 1);
-            gatofuera = true;
+            //gatofuera = true;
         }
         if (other.gameObject == player2)
         {
             player2.transform.parent = null;
             player2.transform.parent = originalPadre.transform;
             player2.transform.localScale = new Vector3(1,1,1);
-            perrofuera = true;
+            //perrofuera = true;
         }
     }
 
