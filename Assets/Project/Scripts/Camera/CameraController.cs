@@ -4,18 +4,20 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    public Transform target;
+    public Transform target1, target2;
     public Vector3 offset;
+    Vector3 midpoint;
     // Start is called before the first frame update
     void Start()
     {
-        //offset = target.position - transform.position;
+        midpoint = (target1.position + target2.position) / 2f;
+        offset = midpoint - transform.position;
     }
 
     // Update is called once per frame
     void Update()
     {
-        transform.position = target.position - offset;
-        //transform.LookAt(target);
+        midpoint = (target1.position + target2.position) / 2f;
+        transform.position = midpoint - offset;
     }
 }
