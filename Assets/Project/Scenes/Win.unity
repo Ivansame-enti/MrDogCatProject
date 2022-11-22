@@ -1110,14 +1110,14 @@ MonoBehaviour:
   audios:
   - name: Bark
     clip: {fileID: 8300000, guid: ec9dcd76dd0e7c84e9c70abc9777a721, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     audioMixer: {fileID: 0}
     source: {fileID: 0}
   - name: Meow
     clip: {fileID: 8300000, guid: 4aa345613579c5841b75a7d71a67e087, type: 3}
-    volume: 1
+    volume: 0.1
     pitch: 1
     loop: 0
     audioMixer: {fileID: 0}
