@@ -24,6 +24,7 @@ public class PlayerControllerDog : MonoBehaviour
     private bool isRunning,pressRun,isJumping,isBarking, stoppedJumping, isPooping;
     private bool ground;
     public GameObject runningPS;
+    public GameObject runningPSLow1, runningPSLow2, runningPSLow3, runningPSLow4;
 
     public float jumpForce;
     public float jumpTime;
@@ -101,6 +102,10 @@ public class PlayerControllerDog : MonoBehaviour
                 audioSFX.AudioStop("RunningCat");
             }
             runningPS.SetActive(false);
+            runningPSLow1.SetActive(false);
+            runningPSLow2.SetActive(false);
+            runningPSLow3.SetActive(false);
+            runningPSLow4.SetActive(false);
             runTimerCounter = runTime;
             runMin = runMinAux;
         }
@@ -170,12 +175,20 @@ public class PlayerControllerDog : MonoBehaviour
                         if (!audioSFX.GetAudioPlaying("RunningCat"))
                             audioSFX.AudioPlay("RunningCat");
                     }
+                    runningPSLow1.SetActive(false);
+                    runningPSLow2.SetActive(false);
+                    runningPSLow3.SetActive(false);
+                    runningPSLow4.SetActive(false);
                     runningPS.SetActive(true);
                     runMin = runMax;
 
                 }
                 else
                 {
+                    runningPSLow1.SetActive(true);
+                    runningPSLow2.SetActive(true);
+                    runningPSLow3.SetActive(true);
+                    runningPSLow4.SetActive(true);
                     runTimerCounter -= Time.deltaTime;
                     runMin += Time.deltaTime;
                 }
