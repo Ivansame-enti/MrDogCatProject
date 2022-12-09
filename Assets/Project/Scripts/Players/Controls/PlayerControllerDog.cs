@@ -11,6 +11,7 @@ public class PlayerControllerDog : MonoBehaviour
 {
     Animator anim;
     public float speed;
+    private float originalSpeed;
     public float maxSpeed;
 
     private Rigidbody rb;
@@ -57,6 +58,7 @@ public class PlayerControllerDog : MonoBehaviour
         jumpTimeCounter = jumpTime;
         anim = GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
+        originalSpeed = speed;
     }
     public void SetInputVector(Vector2 direction)
     {
@@ -156,8 +158,10 @@ public class PlayerControllerDog : MonoBehaviour
         }
         if (ground)
         {
+            speed = originalSpeed;
             if (isJumping == true)
             {
+                speed *= 2;
                 if (!audioSFX.GetAudioPlaying("Jump"))
                 {
                     audioSFX.ChangePitch("Jump", UnityEngine.Random.Range(0.7f, 1.7f));
