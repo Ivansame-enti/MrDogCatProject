@@ -39,6 +39,9 @@ public class PlayerControllerDog : MonoBehaviour
     public GameObject poopPrefab;
     private float timerPoop;
     public float jetTime;
+    public GameObject runningDonutPS;
+
+    private bool particlesOnlyOnce = true;
 
     public int GetPlayerIndex()
     {
@@ -106,6 +109,7 @@ public class PlayerControllerDog : MonoBehaviour
             runningPSLow2.SetActive(false);
             runningPSLow3.SetActive(false);
             runningPSLow4.SetActive(false);
+            particlesOnlyOnce = true;
             runTimerCounter = runTime;
             runMin = runMinAux;
         }
@@ -179,6 +183,11 @@ public class PlayerControllerDog : MonoBehaviour
                     runningPSLow2.SetActive(false);
                     runningPSLow3.SetActive(false);
                     runningPSLow4.SetActive(false);
+                    if (particlesOnlyOnce)
+                    {
+                        Instantiate(runningDonutPS, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z), this.transform.rotation);
+                        particlesOnlyOnce = false;
+                    }
                     runningPS.SetActive(true);
                     runMin = runMax;
 
