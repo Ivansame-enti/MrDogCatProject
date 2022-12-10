@@ -247,6 +247,7 @@ public class PlayerControllerDog : MonoBehaviour
         if (!stoppedJumping)
         {
             rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
+            //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collision)
