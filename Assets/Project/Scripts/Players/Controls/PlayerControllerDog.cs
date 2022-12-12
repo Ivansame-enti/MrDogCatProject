@@ -11,6 +11,7 @@ public class PlayerControllerDog : MonoBehaviour
 {
     Animator anim;
     public float speed;
+    private float originalSpeed;
     public float maxSpeed;
 
     private Rigidbody rb;
@@ -24,6 +25,7 @@ public class PlayerControllerDog : MonoBehaviour
     private bool isRunning,pressRun,isJumping,isBarking, stoppedJumping, isPooping;
     private bool ground;
     public GameObject runningPS;
+    public GameObject runningPSLow1, runningPSLow2, runningPSLow3, runningPSLow4;
 
     public float jumpForce;
     public float jumpTime;
@@ -38,6 +40,9 @@ public class PlayerControllerDog : MonoBehaviour
     public GameObject poopPrefab;
     private float timerPoop;
     public float jetTime;
+    public GameObject runningDonutPS;
+
+    private bool particlesOnlyOnce = true;
 
     public int GetPlayerIndex()
     {
@@ -53,6 +58,7 @@ public class PlayerControllerDog : MonoBehaviour
         jumpTimeCounter = jumpTime;
         anim = GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
+        originalSpeed = speed;
     }
     public void SetInputVector(Vector2 direction)
     {
@@ -101,6 +107,11 @@ public class PlayerControllerDog : MonoBehaviour
                 audioSFX.AudioStop("RunningCat");
             }
             runningPS.SetActive(false);
+            runningPSLow1.SetActive(false);
+            runningPSLow2.SetActive(false);
+            runningPSLow3.SetActive(false);
+            runningPSLow4.SetActive(false);
+            particlesOnlyOnce = true;
             runTimerCounter = runTime;
             runMin = runMinAux;
         }
@@ -147,8 +158,10 @@ public class PlayerControllerDog : MonoBehaviour
         }
         if (ground)
         {
+            speed = originalSpeed;
             if (isJumping == true)
             {
+                speed *= 2;
                 if (!audioSFX.GetAudioPlaying("Jump"))
                 {
                     audioSFX.ChangePitch("Jump", UnityEngine.Random.Range(0.7f, 1.7f));
@@ -170,12 +183,25 @@ public class PlayerControllerDog : MonoBehaviour
                         if (!audioSFX.GetAudioPlaying("RunningCat"))
                             audioSFX.AudioPlay("RunningCat");
                     }
+                    runningPSLow1.SetActive(false);
+                    runningPSLow2.SetActive(false);
+                    runningPSLow3.SetActive(false);
+                    runningPSLow4.SetActive(false);
+                    if (particlesOnlyOnce)
+                    {
+                        Instantiate(runningDonutPS, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z), this.transform.rotation);
+                        particlesOnlyOnce = false;
+                    }
                     runningPS.SetActive(true);
                     runMin = runMax;
 
                 }
                 else
                 {
+                    runningPSLow1.SetActive(true);
+                    runningPSLow2.SetActive(true);
+                    runningPSLow3.SetActive(true);
+                    runningPSLow4.SetActive(true);
                     runTimerCounter -= Time.deltaTime;
                     runMin += Time.deltaTime;
                 }
@@ -221,6 +247,7 @@ public class PlayerControllerDog : MonoBehaviour
         if (!stoppedJumping)
         {
             rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
+            //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collision)
