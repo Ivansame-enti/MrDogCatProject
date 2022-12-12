@@ -158,7 +158,7 @@ MonoBehaviour:
     minSpawnProb: 0
     maxSpawnProb: 0
   - item: {fileID: 134746, guid: d4f06407f06d8cf41b643015132cafca, type: 3}
-    spawRate: 20
+    spawRate: 25
     minSpawnProb: 0
     maxSpawnProb: 0
   - item: {fileID: 159046, guid: b10237067370545479ead9bdac817d9c, type: 3}
@@ -166,11 +166,11 @@ MonoBehaviour:
     minSpawnProb: 0
     maxSpawnProb: 0
   - item: {fileID: 187280, guid: ac1f0ef7b8bec92458549c915b3114b7, type: 3}
-    spawRate: 10
+    spawRate: 7
     minSpawnProb: 0
     maxSpawnProb: 0
   - item: {fileID: 136604, guid: a14aa485a8d4afa46a5e7e72b745ad92, type: 3}
-    spawRate: 5
+    spawRate: 3
     minSpawnProb: 0
     maxSpawnProb: 0
 --- !u!4 &599593566
