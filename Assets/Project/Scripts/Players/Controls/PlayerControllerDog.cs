@@ -71,6 +71,7 @@ public class PlayerControllerDog : MonoBehaviour
     public void SetJump(bool pressJump)
     {
         isJumping = pressJump;
+        anim.SetBool("jump", true);
     }
     public void SetBark(bool pressBarking)
     {
@@ -117,11 +118,14 @@ public class PlayerControllerDog : MonoBehaviour
         }
         if(isJumping == true)
         {
+            anim.SetBool("jump", true);
+          
             stoppedJumping = false;
 
         }
         else if(isJumping == false)
         {
+            anim.SetBool("jump", false);
             jumpTimeCounter = 0;
             stoppedJumping = true;
         }
@@ -161,6 +165,8 @@ public class PlayerControllerDog : MonoBehaviour
             speed = originalSpeed;
             if (isJumping == true)
             {
+                //anim.SetBool("jump", true);
+
                 speed *= 2;
                 if (!audioSFX.GetAudioPlaying("Jump"))
                 {
