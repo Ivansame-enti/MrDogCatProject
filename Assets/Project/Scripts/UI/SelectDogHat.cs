@@ -19,19 +19,19 @@ public class SelectDogHat : MonoBehaviour
 
     public void SelectHat1()
     {
-        StaticClass.hat1Picked = true;
+        StaticClass.hatPicked = 1;
         SceneManager.LoadScene("MapaMergePablo");
     }
 
     public void SelectHat2()
     {
-        StaticClass.hat2Picked = true;
+        StaticClass.hatPicked = 2;
         SceneManager.LoadScene("MapaMergePablo");
     }
 
     public void SelectHat3()
     {
-        StaticClass.hat3Picked = true;
+        StaticClass.hatPicked = 3;
         SceneManager.LoadScene("MapaMergePablo");
     }
 }
