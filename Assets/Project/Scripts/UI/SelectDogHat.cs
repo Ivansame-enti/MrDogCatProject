@@ -5,18 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class SelectDogHat : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
     public void SelectHat1()
     {
         StaticClass.hatPicked = 1;
@@ -32,6 +20,18 @@ public class SelectDogHat : MonoBehaviour
     public void SelectHat3()
     {
         StaticClass.hatPicked = 3;
+        SceneManager.LoadScene("MapaMergePablo");
+    }
+
+    public void SelectHat4()
+    {
+        StaticClass.hatPicked = 4;
+        SceneManager.LoadScene("MapaMergePablo");
+    }
+
+    public void SelectHat5()
+    {
+        StaticClass.hatPicked = 5;
         SceneManager.LoadScene("MapaMergePablo");
     }
 }

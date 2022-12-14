@@ -18,17 +18,8 @@ public class SelectPlayerController : MonoBehaviour
             case 0:
                 dogPos.SetActive(true);
                 break;
-            case 1:
-                SelectCharacter(StaticClass.hatPicked);                
-                break;
-            case 2:
-                SelectCharacter(StaticClass.hatPicked);
-                break;
-            case 3:
-                SelectCharacter(StaticClass.hatPicked);
-                break;
             default:
-                dogPos.SetActive(true);
+                SelectCharacter(StaticClass.hatPicked);
                 break;
         }
     }
