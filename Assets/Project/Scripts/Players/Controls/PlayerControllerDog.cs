@@ -33,7 +33,7 @@ public class PlayerControllerDog : MonoBehaviour
     Vector2 moveUniversal;
     public LayerMask isGround;
     private AudioManagerController audioSFX;
-
+    private bool flagjump = true;
     [SerializeField]
     private int playerIndex = 0;
 
@@ -71,7 +71,7 @@ public class PlayerControllerDog : MonoBehaviour
     public void SetJump(bool pressJump)
     {
         isJumping = pressJump;
-        anim.SetBool("jump", true);
+       // anim.SetBool("jump", true);
     }
     public void SetBark(bool pressBarking)
     {
@@ -118,16 +118,22 @@ public class PlayerControllerDog : MonoBehaviour
         }
         if(isJumping == true)
         {
+            if (flagjump == true) { 
             anim.SetBool("jump", true);
-          
+                flagjump = false;
+            }
+            else{
+                anim.SetBool("jump", false);
+            }
             stoppedJumping = false;
 
         }
         else if(isJumping == false)
         {
-            anim.SetBool("jump", false);
+           // 
             jumpTimeCounter = 0;
             stoppedJumping = true;
+            
         }
         if (isPooping == true)
         {
@@ -162,6 +168,7 @@ public class PlayerControllerDog : MonoBehaviour
         }
         if (ground)
         {
+            flagjump = true;
             speed = originalSpeed;
             if (isJumping == true)
             {
