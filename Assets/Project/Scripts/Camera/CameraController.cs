@@ -18,6 +18,6 @@ public class CameraController : MonoBehaviour
     void Update()
     {
         midpoint = (target1.position + target2.position) / 2f;
-        transform.position = midpoint - offset;
+        transform.position = target2.position - offset;
     }
 }
