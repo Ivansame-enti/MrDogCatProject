@@ -6,12 +6,12 @@ using UnityEngine.SceneManagement;
 public class RespawnController : MonoBehaviour
 {
     public string sceneName;
+    public GameObject dog, cat;
     private void OnTriggerEnter(Collider other)
     {
-        
         if (other.gameObject.tag == "Restart")
         {
-            SceneManager.LoadScene(sceneName);
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         }
     }
 }
