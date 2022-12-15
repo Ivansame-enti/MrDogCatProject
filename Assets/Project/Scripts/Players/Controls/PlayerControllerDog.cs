@@ -15,7 +15,9 @@ public class PlayerControllerDog : MonoBehaviour
     public float maxSpeed;
 
     private Rigidbody rb;
-    Vector3 move;
+
+    private Vector3 moveDirection;
+    private float moveMagnitude;
 
     public float runMin;
     private float runMinAux;
@@ -83,10 +85,27 @@ public class PlayerControllerDog : MonoBehaviour
     }
     private void Update()
     {
-        move = new Vector3(moveUniversal.x, 0, moveUniversal.y);
-        if (move != Vector3.zero)
+        var cam = Camera.main;
+
+        var camRight = cam.transform.right;
+        var camForward = cam.transform.forward;
+
+        camRight.y = 0;
+        camForward.y = 0;
+
+        camRight.Normalize();
+        camForward.Normalize();
+
+        moveDirection = camRight * moveUniversal.x + camForward * moveUniversal.y;
+        moveDirection.Normalize();
+
+        moveMagnitude = moveUniversal.magnitude;
+
+        Debug.Log($"Move Direction: {moveDirection}, Move Magnitude: {moveMagnitude}");
+
+        if (moveMagnitude > Mathf.Epsilon)
             {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(move), 0.15f);
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 0.15f);
                 if (!isRunning) anim.SetInteger("Walk", 1);
             else
                 {
@@ -236,25 +255,27 @@ public class PlayerControllerDog : MonoBehaviour
     }
     private void FixedUpdate()
     {
+
+        var targetMove = moveDirection * moveMagnitude;
         if (!isRunning)
         {
             if (Mathf.Abs(rb.velocity.x) < maxSpeed)
             {
-                rb.velocity += new Vector3(move.x * speed, 0, 0);
+                rb.velocity += new Vector3(targetMove.x * speed, 0, 0);
             }
             if (Mathf.Abs(rb.velocity.z) < maxSpeed)
             {
-                rb.velocity += new Vector3(0, 0, move.z * speed);
+                rb.velocity += new Vector3(0, 0, targetMove.z * speed);
             }
         } else
         {
             if (Mathf.Abs(rb.velocity.x) < runMin)
             {
-                rb.velocity += new Vector3(move.x * runMin, 0, 0);
+                rb.velocity += new Vector3(targetMove.x * runMin, 0, 0);
             }
             if (Mathf.Abs(rb.velocity.z) < runMin)
             {
-                rb.velocity += new Vector3(0, 0, move.z * runMin);
+                rb.velocity += new Vector3(0, 0, targetMove.z * runMin);
             }
         }
         if (!stoppedJumping)
