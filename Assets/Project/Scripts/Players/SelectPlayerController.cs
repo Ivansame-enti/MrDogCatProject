@@ -16,7 +16,7 @@ public class SelectPlayerController : MonoBehaviour
         switch (StaticClass.hatPicked)
         {
             case 0:
-                dogPos.SetActive(true);
+                SelectCharacter(StaticClass.hatPicked);
                 break;
             default:
                 SelectCharacter(StaticClass.hatPicked);
