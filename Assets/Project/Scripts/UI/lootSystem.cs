@@ -68,30 +68,35 @@ public class lootSystem : MonoBehaviour
                     Debug.Log("Comun");
                    randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
                     Debug.Log(randomNum2);
-                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    GameObject hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 }
                 else if (i==1)
                 {
                     Debug.Log("Poco Comun");
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
-                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    GameObject hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 }
                 else if (i == 2)
                 {
                     Debug.Log("Rara");
-                    Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    GameObject hat = Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 }
                 else if (i == 3)
                 {
                     Debug.Log("EPICA DORADA");
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
-                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    GameObject hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
                 }
                 else if (i == 4)
                 {
                     Debug.Log("WOOOOOOW LEGENDARIAAAAAAAAAAAA");
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
-                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    GameObject hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
                 }
 
                 break;
