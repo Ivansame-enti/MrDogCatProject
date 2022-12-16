@@ -24170,11 +24170,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a5b2920c4a4e04b95f734915661e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2
-  maxSpeed: 4
-  runMin: 6
-  runMax: 9
-  runTime: 2
+  speed: 3
+  maxSpeed: 5
+  runMin: 5
+  runMax: 8
+  runTime: 0.7
   runningPS: {fileID: 907657885}
   runningPSLow1: {fileID: 1449888210}
   runningPSLow2: {fileID: 1036643190}
