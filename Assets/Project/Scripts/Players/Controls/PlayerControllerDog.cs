@@ -100,7 +100,7 @@ public class PlayerControllerDog : MonoBehaviour
 
         moveMagnitude = moveUniversal.magnitude;
 
-        Debug.Log($"Move Direction: {moveDirection}, Move Magnitude: {moveMagnitude}");
+        //Debug.Log($"Move Direction: {moveDirection}, Move Magnitude: {moveMagnitude}");
 
         if (moveMagnitude > Mathf.Epsilon)
             {
@@ -187,12 +187,12 @@ public class PlayerControllerDog : MonoBehaviour
         if (ground)
         {
             flagjump = true;
-            speed = originalSpeed;
+            //speed = originalSpeed;
             if (isJumping == true)
             {
                 //anim.SetBool("jump", true);
 
-                speed *= 2;
+                //speed *= 2;
                 if (!audioSFX.GetAudioPlaying("Jump"))
                 {
                     audioSFX.ChangePitch("Jump", UnityEngine.Random.Range(0.7f, 1.7f));
