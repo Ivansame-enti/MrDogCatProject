@@ -260,12 +260,12 @@ public class PlayerControllerDog : MonoBehaviour
         {
             if (Mathf.Abs(rb.velocity.x) < maxSpeed && moveMagnitude > Mathf.Epsilon)
             {
-                Debug.Log("aaa");
+                //Debug.Log("aaa");
                 rb.velocity += new Vector3(targetMove.x * speed, 0, 0);
             }
             if (Mathf.Abs(rb.velocity.z) < maxSpeed && moveMagnitude > Mathf.Epsilon)
             {
-                Debug.Log("aaa");
+                //Debug.Log("aaa");
                 rb.velocity += new Vector3(0, 0, targetMove.z * speed);
             }
         }
