@@ -5,7 +5,8 @@ using UnityEngine;
 [System.Serializable]
 public class ItemToSpawn
 {
-    public GameObject item;
+   // public GameObject[] ComunHat;
+    public GameObject[] item;
     public float spawRate;
     [HideInInspector] public float minSpawnProb, maxSpawnProb;
 
@@ -15,6 +16,7 @@ public class lootSystem : MonoBehaviour
 {
     // Start is called before the first frame update
     public ItemToSpawn[] itemToSpawn;
+ 
     void Start()
     {
 
@@ -53,9 +55,10 @@ public class lootSystem : MonoBehaviour
     void Spawner()
     {
         float randomNum = Random.Range(0, 100);
-
+        int randomNum2 = 0;
         for (int i=0; i<itemToSpawn.Length; i++)
         {
+
             if(randomNum>=itemToSpawn[i].minSpawnProb && randomNum <= itemToSpawn[i].maxSpawnProb)
             {
 
@@ -63,27 +66,32 @@ public class lootSystem : MonoBehaviour
                 if (i == 0)
                 {
                     Debug.Log("Comun");
-                    Instantiate(itemToSpawn[i].item, transform.position, Quaternion.identity);
+                   randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
+                    Debug.Log(randomNum2);
+                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                 }
                 else if (i==1)
                 {
                     Debug.Log("Poco Comun");
-                    Instantiate(itemToSpawn[i].item, transform.position, Quaternion.identity);
+                    randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
+                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                 }
                 else if (i == 2)
                 {
                     Debug.Log("Rara");
-                    Instantiate(itemToSpawn[i].item, transform.position, Quaternion.identity);
+                    Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                 }
                 else if (i == 3)
                 {
                     Debug.Log("EPICA DORADA");
-                    Instantiate(itemToSpawn[i].item, transform.position, Quaternion.identity);
+                    randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
+                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                 }
                 else if (i == 4)
                 {
                     Debug.Log("WOOOOOOW LEGENDARIAAAAAAAAAAAA");
-                    Instantiate(itemToSpawn[i].item, transform.position, Quaternion.identity);
+                    randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
+                    Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                 }
 
                 break;
