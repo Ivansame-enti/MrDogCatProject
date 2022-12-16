@@ -13,15 +13,7 @@ public class SelectPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        switch (StaticClass.hatPicked)
-        {
-            case 0:
-                SelectCharacter(StaticClass.hatPicked);
-                break;
-            default:
-                SelectCharacter(StaticClass.hatPicked);
-                break;
-        }
+        SelectCharacter(StaticClass.hatPicked);
     }
 
     // Update is called once per frame

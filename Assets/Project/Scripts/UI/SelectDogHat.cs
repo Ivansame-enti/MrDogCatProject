@@ -5,6 +5,13 @@ using UnityEngine.SceneManagement;
 
 public class SelectDogHat : MonoBehaviour
 {
+
+    public void SelectHat0()
+    {
+        StaticClass.hatPicked = 0;
+        SceneManager.LoadScene("MapaMergePablo");
+    }
+
     public void SelectHat1()
     {
         StaticClass.hatPicked = 1;
@@ -32,6 +39,12 @@ public class SelectDogHat : MonoBehaviour
     public void SelectHat5()
     {
         StaticClass.hatPicked = 5;
+        SceneManager.LoadScene("MapaMergePablo");
+    }
+
+    public void SelectHat6()
+    {
+        StaticClass.hatPicked = 6;
         SceneManager.LoadScene("MapaMergePablo");
     }
 }
