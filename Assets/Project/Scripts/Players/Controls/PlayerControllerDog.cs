@@ -23,7 +23,7 @@ public class PlayerControllerDog : MonoBehaviour
     public float runMax;
     public float runTime;
     private float runTimerCounter;
-    private bool isRunning,pressRun,isJumping,isBarking, stoppedJumping, isPooping;
+    private bool isRunning, pressRun, isJumping, isBarking, stoppedJumping, isPooping;
     private bool ground;
     public GameObject runningPS;
     public GameObject runningPSLow1, runningPSLow2, runningPSLow3, runningPSLow4;
@@ -72,7 +72,7 @@ public class PlayerControllerDog : MonoBehaviour
     public void SetJump(bool pressJump)
     {
         isJumping = pressJump;
-       // anim.SetBool("jump", true);
+        // anim.SetBool("jump", true);
     }
     public void SetBark(bool pressBarking)
     {
@@ -103,21 +103,22 @@ public class PlayerControllerDog : MonoBehaviour
         //Debug.Log($"Move Direction: {moveDirection}, Move Magnitude: {moveMagnitude}");
 
         if (moveMagnitude > Mathf.Epsilon)
-            {
-                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 0.15f);
-                if (!isRunning) anim.SetInteger("Walk", 1);
-            else
-                {
-                    anim.SetInteger("Walk", 2);
-            }
-            }
-            else
-            {
-                anim.SetInteger("Walk", 0);
-            }
-        if(isRunning == false)
         {
-            if(playerIndex == 0)
+            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(moveDirection), 0.15f);
+            if (!isRunning) anim.SetInteger("Walk", 1);
+            else
+            {
+                anim.SetInteger("Walk", 2);
+            }
+        }
+        else
+        {
+            anim.SetInteger("Walk", 0);
+        }
+
+        if (isRunning == false)
+        {
+            if (playerIndex == 0)
             {
                 audioSFX.AudioStop("RunningDog");
             }
@@ -134,24 +135,26 @@ public class PlayerControllerDog : MonoBehaviour
             runTimerCounter = runTime;
             runMin = runMinAux;
         }
-        if(isJumping == true)
+
+        if (isJumping == true)
         {
-            if (flagjump == true) { 
-            anim.SetBool("jump", true);
+            if (flagjump == true)
+            {
+                anim.SetBool("jump", true);
                 flagjump = false;
             }
-            else{
+            else
+            {
                 anim.SetBool("jump", false);
             }
             stoppedJumping = false;
 
         }
-        else if(isJumping == false)
+        else if (isJumping == false)
         {
-           // 
             jumpTimeCounter = 0;
             stoppedJumping = true;
-            
+
         }
         if (isPooping == true)
         {
@@ -162,27 +165,24 @@ public class PlayerControllerDog : MonoBehaviour
                     GameObject poop = Instantiate(poopPrefab, transform.position, Quaternion.identity) as GameObject;
                     Destroy(poop, 2);
                     timerPoop += Time.deltaTime;
-                }
-                //Debug.Log("cagando");
-
-                else
+                } else
                 {
                     if (timerPoop > 0 && ground) timerPoop -= Time.deltaTime;
                 }
             }
         }
         if (isBarking == true)
-        {  
+        {
             if (playerIndex == 0)
             {
                 if (!audioSFX.GetAudioPlaying("Bark"))
                     audioSFX.AudioPlay("Bark");
             }
             if (playerIndex == 1)
-            {   
+            {
                 if (!audioSFX.GetAudioPlaying("Meow"))
                     audioSFX.AudioPlay("Meow");
-            }  
+            }
         }
         if (ground)
         {
@@ -197,10 +197,10 @@ public class PlayerControllerDog : MonoBehaviour
                 {
                     audioSFX.ChangePitch("Jump", UnityEngine.Random.Range(0.7f, 1.7f));
                     audioSFX.AudioPlay("Jump");
-                }                    
+                }
             }
             jumpTimeCounter = jumpTime;
-            if (isRunning == true)
+            if (isRunning == true && moveMagnitude > Mathf.Epsilon)
             {
                 if (runTimerCounter <= 0)
                 {
@@ -220,7 +220,7 @@ public class PlayerControllerDog : MonoBehaviour
                     runningPSLow4.SetActive(false);
                     if (particlesOnlyOnce)
                     {
-                        Instantiate(runningDonutPS, new Vector3(this.transform.position.x, this.transform.position.y+2.0f, this.transform.position.z), this.transform.rotation);
+                        Instantiate(runningDonutPS, new Vector3(this.transform.position.x, this.transform.position.y + 2.0f, this.transform.position.z), this.transform.rotation);
                         particlesOnlyOnce = false;
                     }
                     runningPS.SetActive(true);
@@ -246,7 +246,7 @@ public class PlayerControllerDog : MonoBehaviour
             }
             else stoppedJumping = true;
         }
-        
+
 
 
 
@@ -258,21 +258,24 @@ public class PlayerControllerDog : MonoBehaviour
         var targetMove = moveDirection * moveMagnitude;
         if (!isRunning)
         {
-            if (Mathf.Abs(rb.velocity.x) < maxSpeed)
+            if (Mathf.Abs(rb.velocity.x) < maxSpeed && moveMagnitude > Mathf.Epsilon)
             {
+                Debug.Log("aaa");
                 rb.velocity += new Vector3(targetMove.x * speed, 0, 0);
             }
-            if (Mathf.Abs(rb.velocity.z) < maxSpeed)
+            if (Mathf.Abs(rb.velocity.z) < maxSpeed && moveMagnitude > Mathf.Epsilon)
             {
+                Debug.Log("aaa");
                 rb.velocity += new Vector3(0, 0, targetMove.z * speed);
             }
-        } else
+        }
+        else
         {
-            if (Mathf.Abs(rb.velocity.x) < runMin)
+            if (Mathf.Abs(rb.velocity.x) < runMin && moveMagnitude > Mathf.Epsilon)
             {
                 rb.velocity += new Vector3(targetMove.x * runMin, 0, 0);
             }
-            if (Mathf.Abs(rb.velocity.z) < runMin)
+            if (Mathf.Abs(rb.velocity.z) < runMin && moveMagnitude > Mathf.Epsilon)
             {
                 rb.velocity += new Vector3(0, 0, targetMove.z * runMin);
             }
@@ -281,6 +284,7 @@ public class PlayerControllerDog : MonoBehaviour
         {
             rb.velocity = (new Vector3(rb.velocity.x, jumpForce, rb.velocity.z));
             //rb.AddForce(new Vector3(0, jumpForce, 0), ForceMode.Impulse);
+            //rb.AddForce(new Vector3(0, 1, 0) * jumpForce, ForceMode.Impulse);
         }
     }
     private void OnCollisionStay(Collision collision)
