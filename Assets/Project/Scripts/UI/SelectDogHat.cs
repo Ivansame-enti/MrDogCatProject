@@ -2,9 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class SelectDogHat : MonoBehaviour
 {
+
+    public GameObject[] prefabsDog;
+    private GameObject preView;
+    private void Update()
+    {
+        //if (EventSystem.current.currentSelectedGameObject == this.transform.GetChild(2).gameObject) preView = Instantiate(prefabsDog[0], new Vector3(0,0,0), Quaternion.identity) as GameObject;
+    }
 
     public void SelectHat0()
     {
