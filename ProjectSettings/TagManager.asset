@@ -19,6 +19,8 @@ TagManager:
   - Restart
   - Dog
   - Cat
+  - DogCoinText
+  - CatCoinText
   layers:
   - Default
   - TransparentFX

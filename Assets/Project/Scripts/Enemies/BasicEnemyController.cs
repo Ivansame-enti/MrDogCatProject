@@ -16,6 +16,7 @@ public class BasicEnemyController : MonoBehaviour
     public float walkingRange;
 
     public float attackRange;
+    public float pushForce;
     bool playerInRange;
     public GameObject deathPS;
 
@@ -28,8 +29,8 @@ public class BasicEnemyController : MonoBehaviour
         hitbox2 = false;
         hitbox3 = false;
         hitbox4 = false;
-        player1 = GameObject.Find("Dog").transform;
-        player2 = GameObject.Find("Cat").transform;
+        player1 = GameObject.FindGameObjectWithTag("Dog").transform;
+        player2 = GameObject.FindGameObjectWithTag("Cat").transform;
         agent = this.GetComponent<NavMeshAgent>();
     }
 
@@ -58,7 +59,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private void FreeMove()
     {
-        agent.speed = 1.0f;
+        agent.speed = 3.0f;
         if (!hasRoute) calculateRandomPoint();
         else
         {
@@ -81,7 +82,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        agent.speed = 3.0f;
+        agent.speed = 7.0f;
         Vector3 distanceToPlayerOne = this.transform.position - player1.position;
         Vector3 distanceToPlayerTwo = this.transform.position - player2.position;
 
@@ -99,14 +100,14 @@ public class BasicEnemyController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.tag == "Dog" || collision.gameObject.tag == "Cat")
         {
             Vector3 direction = (collision.transform.position - transform.position).normalized;
-            //Debug.Log(direction.x);
+            //Debug.Log("asdasd");
             //collision.transform.position = direction;
             
             direction.y = 0;
-            collision.gameObject.GetComponent<Rigidbody>().AddForce(direction * 15, ForceMode.Impulse);
+            collision.gameObject.GetComponent<Rigidbody>().AddForce(direction * pushForce, ForceMode.Impulse);
             //collision.transform.position += direction * 3;
         }
     }
