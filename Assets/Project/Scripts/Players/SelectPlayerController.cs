@@ -11,7 +11,7 @@ public class SelectPlayerController : MonoBehaviour
     public GameObject[] prefabsDog;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         SelectCharacter(StaticClass.hatPicked);
     }

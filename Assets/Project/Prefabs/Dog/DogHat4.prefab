@@ -24089,11 +24089,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f1a5b2920c4a4e04b95f734915661e70, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 4
+  speed: 3
   maxSpeed: 5
-  runMin: 6
-  runMax: 9
-  runTime: 2
+  runMin: 5
+  runMax: 8
+  runTime: 0.7
   runningPS: {fileID: 907657885}
   runningPSLow1: {fileID: 1449888210}
   runningPSLow2: {fileID: 1036643190}
@@ -24121,20 +24121,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityScale: 4
---- !u!114 &1768874666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288170040067332113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184066c501ab7da49a0af82479e160f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fences: {fileID: 0}
-  enemy2: {fileID: 0}
 --- !u!114 &1768874667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24148,11 +24134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 0}
-  objective1Text: {fileID: 0}
-  objective2Text: {fileID: 0}
   coinNumber: 0
-  chickenSound: {fileID: 0}
-  penguinSound: {fileID: 0}
 --- !u!114 &1768874668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24276,6 +24258,10 @@ PrefabInstance:
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Name
       value: DogHat4
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_TagString
+      value: Dog
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

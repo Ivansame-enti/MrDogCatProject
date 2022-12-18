@@ -17,6 +17,8 @@ TagManager:
   - Trigger
   - TriggerEnemy2
   - Restart
+  - Dog
+  - Cat
   layers:
   - Default
   - TransparentFX

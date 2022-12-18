@@ -24229,11 +24229,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   coinText: {fileID: 0}
-  objective1Text: {fileID: 0}
-  objective2Text: {fileID: 0}
   coinNumber: 0
-  chickenSound: {fileID: 0}
-  penguinSound: {fileID: 0}
 --- !u!114 &1768874668
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24260,11 +24256,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Name
-      value: Dog_LOD0
+      value: Dog
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_TagString
+      value: Dog
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
