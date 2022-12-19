@@ -7,7 +7,8 @@ public class RotatePlatformController : MonoBehaviour
 
     float minRotation = 0;
     float maxRotation = 180;
-
+    int vueltas = 0;
+    bool flagVueltas = false;
     // Start is called before the first frame update
     void Start()
     {
@@ -31,8 +32,17 @@ public class RotatePlatformController : MonoBehaviour
         rotateAngle = (rotateAngle > 180) ? rotateAngle - 360 : rotateAngle;
         this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, rotateAngle, this.transform.localEulerAngles.z);*/
 
-        Debug.Log(this.transform.localEulerAngles.y);
+        //Debug.Log(this.transform.localEulerAngles.y);
+        if(this.transform.localEulerAngles.y >= 350f && !flagVueltas)
+        {
+            vueltas++;
+            flagVueltas = true;
+        }
 
+        if (this.transform.localEulerAngles.y <= 100f) flagVueltas = false;
+
+        //Debug.Log(vueltas);
+        Debug.Log(this.transform.localEulerAngles.y + (360f * vueltas));
         //if (this.transform.rotation.y < 0f) transform.Rotate(0, 0, 0);
         //if (this.transform.rotation.y > 360f) transform.Rotate(0, 360, 0);
     }
