@@ -109,7 +109,7 @@ public class lootSystem : MonoBehaviour
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
                     Debug.Log(randomNum2);
                      hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
-                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i==1)
                 {
@@ -121,7 +121,7 @@ public class lootSystem : MonoBehaviour
                     LegendaryParticles.SetActive(false);
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
                      hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
-                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i == 2)
                 {
@@ -132,7 +132,7 @@ public class lootSystem : MonoBehaviour
                     RareParticles.SetActive(true);
                     LegendaryParticles.SetActive(false);
                      hat = Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
-                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i == 3)
                 {
@@ -144,7 +144,7 @@ public class lootSystem : MonoBehaviour
                     LegendaryParticles.SetActive(false);
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
                      hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
-                    hat.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+                    hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i == 4)
                 {
@@ -156,7 +156,7 @@ public class lootSystem : MonoBehaviour
                     Debug.Log("WOOOOOOW LEGENDARIAAAAAAAAAAAA");
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
                      hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
-                    hat.transform.localScale = new Vector3(0.5f,0.5f,0.5f);
+                    hat.transform.localScale = new Vector3(0.9f,0.9f,0.9f);
                 }
 
                 break;
