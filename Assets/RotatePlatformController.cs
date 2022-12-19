@@ -9,10 +9,14 @@ public class RotatePlatformController : MonoBehaviour
     float maxRotation = 180;
     int vueltas = 0;
     bool flagVueltas = false;
+    public GameObject platform;
+    private float valueMapped;
+    private float platformOriginalY, originalY;
     // Start is called before the first frame update
     void Start()
     {
-        
+        originalY = this.transform.position.y;
+        platformOriginalY = platform.transform.position.y;
     }
 
     // Update is called once per frame
@@ -42,8 +46,18 @@ public class RotatePlatformController : MonoBehaviour
         if (this.transform.localEulerAngles.y <= 100f) flagVueltas = false;
 
         //Debug.Log(vueltas);
-        Debug.Log(this.transform.localEulerAngles.y + (360f * vueltas));
+        //Debug.Log(this.transform.localEulerAngles.y + (360f * vueltas));
+        valueMapped = Map(this.transform.localEulerAngles.y + (360f * vueltas), 0, 5000, 0, 22);
+        Debug.Log(valueMapped);
+        platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + valueMapped, platform.transform.position.z);
+        this.transform.position = new Vector3(this.transform.position.x, originalY + valueMapped, this.transform.position.z);
         //if (this.transform.rotation.y < 0f) transform.Rotate(0, 0, 0);
         //if (this.transform.rotation.y > 360f) transform.Rotate(0, 360, 0);
     }
+    
+    float Map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
+
 }
