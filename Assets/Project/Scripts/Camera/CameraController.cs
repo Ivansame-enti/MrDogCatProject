@@ -19,9 +19,7 @@ public class CameraController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log(target1);
-        //Debug.Log(target2);
         midpoint = (target1.position + target2.position) / 2f;
-        transform.position = target2.position - offset;
+        transform.position = midpoint - offset;
     }
 }
