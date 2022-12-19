@@ -43,12 +43,12 @@ public class RotatePlatformController : MonoBehaviour
             flagVueltas = true;
         }
 
-        if (this.transform.localEulerAngles.y <= 100f) flagVueltas = false;
+        if (this.transform.localEulerAngles.y <= 10f) flagVueltas = false;
 
         //Debug.Log(vueltas);
         //Debug.Log(this.transform.localEulerAngles.y + (360f * vueltas));
         valueMapped = Map(this.transform.localEulerAngles.y + (360f * vueltas), 0, 5000, 0, 22);
-        Debug.Log(valueMapped);
+        Debug.Log(vueltas);
         platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + valueMapped, platform.transform.position.z);
         this.transform.position = new Vector3(this.transform.position.x, originalY + valueMapped, this.transform.position.z);
         //if (this.transform.rotation.y < 0f) transform.Rotate(0, 0, 0);
