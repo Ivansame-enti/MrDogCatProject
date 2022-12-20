@@ -4,14 +4,12 @@ using UnityEngine;
 
 public class RotatePlatformController : MonoBehaviour
 {
-
-    float minRotation = 0;
-    float maxRotation = 180;
+    public bool hasToMove;
     int vueltas = 0;
     bool flagVueltas = false;
     public GameObject platform;
     private float valueMapped;
-    private float valueMappedAnt, lastRotationValue;
+    private float lastRotationValue;
     private float platformOriginalY, originalY;
     bool goodDirection=true;
     // Start is called before the first frame update
@@ -58,7 +56,7 @@ public class RotatePlatformController : MonoBehaviour
 
             valueMapped = Map(this.transform.localEulerAngles.y + (355f * vueltas), 0, 3000, 0, 1);
             platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, 22, valueMapped), platform.transform.position.z);
-            this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
+            if(hasToMove) this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
         }
         lastRotationValue = this.transform.localEulerAngles.y;
     }
