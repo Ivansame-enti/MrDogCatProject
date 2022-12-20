@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 [System.Serializable]
 public class ItemToSpawn
@@ -22,8 +23,21 @@ public class lootSystem : MonoBehaviour
     GameObject hat;
     //private float monedas;
     public TextMeshProUGUI CoinText;
+    public GameObject Explosion;
+    public GameObject ExplisionParticles;
+    public GameObject panelBlanco;
+    private bool AnimacionFinalizada = false;
+    private bool unico = true;
+    float timer = 0;
+    private bool unicoPanel = true;
     void Start()
     {
+
+        panelBlanco.SetActive(false);
+
+
+
+
 
         StaticClass.CoinsDog = 100000;
         CoinText.text = StaticClass.CoinsDog.ToString("000");
@@ -43,9 +57,13 @@ public class lootSystem : MonoBehaviour
 
         }
 
-        if( StaticClass.CoinsDog >= 10) {
+        if( StaticClass.CoinsDog >= 10 && AnimacionFinalizada == true) {
+            ExplisionParticles.SetActive(false);
+            panelBlanco.SetActive(false);
+            AnimacionFinalizada = false;
             StaticClass.CoinsDog -= 10;
             CoinText.text = StaticClass.CoinsDog.ToString("000");
+            AnimacionFinalizada = false;
             Spawner();
         }
 
@@ -53,9 +71,14 @@ public class lootSystem : MonoBehaviour
     public void Reroll()
     {
         Debug.Log("HELICOPTERO");
-
-        if (StaticClass.CoinsDog >= 10)
+        panelBlanco.SetActive(false);
+        Explosion.SetActive(true);
+        unico = true;
+        if (StaticClass.CoinsDog >= 10 && AnimacionFinalizada ==true)
         {
+            ExplisionParticles.SetActive(false);
+            panelBlanco.SetActive(false);
+            AnimacionFinalizada = false;
             comunParticles.SetActive(false);
             LittlecomunParticles.SetActive(false);
             EpicParticles.SetActive(false);
@@ -72,16 +95,53 @@ public class lootSystem : MonoBehaviour
 
     void Update()
     {
-      
 
+        if (Explosion.transform.position.z > 500)
+        {
+            Explosion.SetActive(false);
+            AnimacionFinalizada = true;
+            
+        }
 
+        if (AnimacionFinalizada == false)
+        {
+            panelBlanco.SetActive(false);
+        }
+        else
+        {
+            if (unicoPanel==true) { 
+            panelBlanco.SetActive(true);
+                unicoPanel = false;
+            }
+            if (timer >= 1)
+            {
+                //panelBlanco.GetComponent<Image>().color = new Color(panelBlanco.GetComponent<Image>().color.r, panelBlanco.GetComponent<Image>().color.g, panelBlanco.GetComponent<Image>().color.b, 0);
+                panelBlanco.SetActive(false);
+                if (unico == true)
+                {
+                    ExplisionParticles.SetActive(false);
+                    Spawner();
+                    unico = false;
+                }
+                
+                timer = 0f;
+            }
+            else
+            {
+                timer += Time.deltaTime;
+            }
+            
+        }
 
+  
 
     }
 
+
     void Spawner()
     {
-
+        panelBlanco.SetActive(false);
+        AnimacionFinalizada = false;
         if (hat!=null){
 
             Destroy(hat);
