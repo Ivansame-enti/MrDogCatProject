@@ -11,7 +11,9 @@ public class RotatePlatformController : MonoBehaviour
     bool flagVueltas = false;
     public GameObject platform;
     private float valueMapped;
+    private float valueMappedAnt, lastRotationValue;
     private float platformOriginalY, originalY;
+    bool goodDirection=true;
     // Start is called before the first frame update
     void Start()
     {
@@ -37,26 +39,28 @@ public class RotatePlatformController : MonoBehaviour
         this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, rotateAngle, this.transform.localEulerAngles.z);*/
 
         //Debug.Log(this.transform.localEulerAngles.y);
-        if(this.transform.localEulerAngles.y >= 355f && !flagVueltas)
-        {
-            flagVueltas = true;
-            //middlePoint = false;
-        }
+        if (lastRotationValue >= 0 && this.transform.localEulerAngles.y <= 5) goodDirection = true;
+        if(lastRotationValue <= 5 && this.transform.localEulerAngles.y >= 300) goodDirection = false;
 
-        if (this.transform.localEulerAngles.y <= 5f && flagVueltas)
+        if (goodDirection)
         {
-            vueltas++;
-            flagVueltas = false;
-        }
+            if (this.transform.localEulerAngles.y >= 355f && !flagVueltas)
+            {
+                flagVueltas = true;
+                //middlePoint = false;
+            }
 
-        //if (this.transform.localEulerAngles.y >= 5f && this.transform.localEulerAngles.y <= 300f) middlePoint = true;
-        //Debug.Log(vueltas);
-        //Debug.Log(this.transform.localEulerAngles.y + (360f * vueltas));
-        valueMapped = Map(this.transform.localEulerAngles.y + (355f * vueltas), 0, 3000, 0, 1);
-        platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, 22, valueMapped) , platform.transform.position.z);
-        this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
-        //if (this.transform.rotation.y < 0f) transform.Rotate(0, 0, 0);
-        //if (this.transform.rotation.y > 360f) transform.Rotate(0, 360, 0);
+            if (this.transform.localEulerAngles.y <= 5f && flagVueltas)
+            {
+                vueltas++;
+                flagVueltas = false;
+            }
+
+            valueMapped = Map(this.transform.localEulerAngles.y + (355f * vueltas), 0, 3000, 0, 1);
+            platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, 22, valueMapped), platform.transform.position.z);
+            this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
+        }
+        lastRotationValue = this.transform.localEulerAngles.y;
     }
     
     float Map(float s, float a1, float a2, float b1, float b2)
