@@ -37,20 +37,24 @@ public class RotatePlatformController : MonoBehaviour
         this.transform.localEulerAngles = new Vector3(this.transform.localEulerAngles.x, rotateAngle, this.transform.localEulerAngles.z);*/
 
         //Debug.Log(this.transform.localEulerAngles.y);
-        if(this.transform.localEulerAngles.y >= 350f && !flagVueltas)
+        if(this.transform.localEulerAngles.y >= 355f && !flagVueltas)
         {
-            vueltas++;
             flagVueltas = true;
+            //middlePoint = false;
         }
 
-        if (this.transform.localEulerAngles.y <= 10f) flagVueltas = false;
+        if (this.transform.localEulerAngles.y <= 5f && flagVueltas)
+        {
+            vueltas++;
+            flagVueltas = false;
+        }
 
+        //if (this.transform.localEulerAngles.y >= 5f && this.transform.localEulerAngles.y <= 300f) middlePoint = true;
         //Debug.Log(vueltas);
         //Debug.Log(this.transform.localEulerAngles.y + (360f * vueltas));
-        valueMapped = Map(this.transform.localEulerAngles.y + (360f * vueltas), 0, 5000, 0, 22);
-        Debug.Log(vueltas);
-        platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + valueMapped, platform.transform.position.z);
-        this.transform.position = new Vector3(this.transform.position.x, originalY + valueMapped, this.transform.position.z);
+        valueMapped = Map(this.transform.localEulerAngles.y + (355f * vueltas), 0, 3000, 0, 1);
+        platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, 22, valueMapped) , platform.transform.position.z);
+        this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
         //if (this.transform.rotation.y < 0f) transform.Rotate(0, 0, 0);
         //if (this.transform.rotation.y > 360f) transform.Rotate(0, 360, 0);
     }
