@@ -24031,7 +24031,7 @@ GameObject:
   - component: {fileID: 6360247086076909423}
   - component: {fileID: 2645250375124175206}
   - component: {fileID: 1052585110533365383}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24145,6 +24145,19 @@ CapsuleCollider:
   m_Height: 2.3510742
   m_Direction: 1
   m_Center: {x: 0, y: 1.3007227, z: -0.089925125}
+--- !u!114 &-6694355570982543259
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288170040067332113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc366aaa38ddf64a81f28b117aafea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneName: TutorialIvan
 --- !u!114 &1768874662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24228,7 +24241,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a37d0547690d8448ee6a1e9ed61dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinText: {fileID: 0}
   coinNumber: 0
 --- !u!114 &1768874668
 MonoBehaviour:
@@ -24254,9 +24266,17 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100000, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Name
       value: Dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_IsActive
@@ -24265,6 +24285,58 @@ PrefabInstance:
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_TagString
       value: Dog
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100026, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100028, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

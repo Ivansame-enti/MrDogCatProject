@@ -24076,7 +24076,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a9a37d0547690d8448ee6a1e9ed61dbd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  coinText: {fileID: 0}
   coinNumber: 0
 --- !u!114 &1101122610
 MonoBehaviour:
@@ -24163,7 +24162,7 @@ GameObject:
   - component: {fileID: 5317112741471467594}
   - component: {fileID: 4590459970515418295}
   - component: {fileID: 145468584242542730}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Collar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -24304,6 +24303,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: m_BaseballHat01
       objectReference: {fileID: 0}
+    - target: {fileID: 7201373823139585846, guid: a4ecc63ea9b4ed04bba1e8a65799ed0d, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6203855176067303849, guid: a4ecc63ea9b4ed04bba1e8a65799ed0d, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: a4ecc63ea9b4ed04bba1e8a65799ed0d, type: 3}
@@ -24314,13 +24317,65 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 100000, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
       propertyPath: m_Name
       value: Cat 1
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
       propertyPath: m_TagString
       value: Cat
+      objectReference: {fileID: 0}
+    - target: {fileID: 100004, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100006, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100008, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100010, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100012, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100014, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100016, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100018, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100020, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100022, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100024, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
+      propertyPath: m_Layer
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 76c2b062b8f58f049aff4c677644000e, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x

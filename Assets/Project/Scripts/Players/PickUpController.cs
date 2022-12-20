@@ -5,12 +5,13 @@ using TMPro;
 
 public class PickUpController : MonoBehaviour
 {
-    private int objective1Number, objective2Number;
-    public TextMeshProUGUI coinText;
+    private TextMeshProUGUI coinText;
     public int coinNumber;
     private AudioManagerController audioSFX;
     private void Start()
     {
+        if(this.tag=="Dog") coinText = GameObject.FindGameObjectWithTag("DogCoinText").GetComponent<TextMeshProUGUI>();
+        if (this.tag == "Cat") coinText = GameObject.FindGameObjectWithTag("CatCoinText").GetComponent<TextMeshProUGUI>();
         audioSFX = FindObjectOfType<AudioManagerController>();
         coinNumber = 000;
     }
