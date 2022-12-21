@@ -10,6 +10,8 @@ public class SelectPlayerController : MonoBehaviour
 
     public GameObject[] prefabsDog;
 
+    public Cinemachine.CinemachineVirtualCamera virtualCamera;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,5 +28,9 @@ public class SelectPlayerController : MonoBehaviour
     {
         GameObject dog = Instantiate(prefabsDog[StaticClass.hatPicked], dogPos.transform.position, dogPos.transform.rotation) as GameObject;
         rope.target = dog.transform;
+
+        if (virtualCamera != null) virtualCamera.Follow = dog.transform;
+        if (virtualCamera != null) virtualCamera.LookAt = dog.transform;
+
     }
 }
