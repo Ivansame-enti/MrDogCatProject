@@ -70,11 +70,9 @@ public class lootSystem : MonoBehaviour
     }
     public void Reroll()
     {
-        Debug.Log("HELICOPTERO");
-        panelBlanco.SetActive(false);
-        Explosion.SetActive(true);
-        unico = true;
-        if (StaticClass.CoinsDog >= 10 && AnimacionFinalizada ==true)
+
+
+        if (StaticClass.CoinsDog >= 10 && AnimacionFinalizada == true)
         {
             ExplisionParticles.SetActive(false);
             panelBlanco.SetActive(false);
@@ -87,8 +85,17 @@ public class lootSystem : MonoBehaviour
 
             StaticClass.CoinsDog -= 10;
             CoinText.text = StaticClass.CoinsDog.ToString("000");
-            Spawner();
+            //Spawner();
         }
+        // Debug.Log("HELICOPTERO");
+        ExplisionParticles.SetActive(true);
+        panelBlanco.SetActive(false);
+        AnimacionFinalizada = false;
+        unicoPanel = true;
+        unico = true;
+        //Explosion.SetActive(true);
+        //unico = true;
+       
 
 
     }
@@ -109,8 +116,9 @@ public class lootSystem : MonoBehaviour
         }
         else
         {
-            if (unicoPanel==true) { 
-            panelBlanco.SetActive(true);
+            if (unicoPanel==true) {
+                ExplisionParticles.SetActive(false);
+                panelBlanco.SetActive(true);
                 unicoPanel = false;
             }
             if (timer >= 1)
@@ -120,8 +128,10 @@ public class lootSystem : MonoBehaviour
                 if (unico == true)
                 {
                     ExplisionParticles.SetActive(false);
+                   // StaticClass.CoinsDog -= 10;
                     Spawner();
                     unico = false;
+                    AnimacionFinalizada = true;
                 }
                 
                 timer = 0f;
@@ -140,12 +150,14 @@ public class lootSystem : MonoBehaviour
 
     void Spawner()
     {
-        panelBlanco.SetActive(false);
-        AnimacionFinalizada = false;
-        if (hat!=null){
+        if (hat != null)
+        {
 
             Destroy(hat);
         }
+        panelBlanco.SetActive(false);
+        AnimacionFinalizada = false;
+      
      
 
 

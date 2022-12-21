@@ -1793,7 +1793,7 @@ VisualEffect:
   m_PropertySheet:
     m_Float:
       m_Array:
-      - m_Value: 5
+      - m_Value: 6
         m_Name: RadioParticulas
         m_Overridden: 1
       - m_Value: 3
@@ -1811,10 +1811,10 @@ VisualEffect:
       m_Array: []
     m_Vector4f:
       m_Array:
-      - m_Value: {x: 3.6395264, y: 3.6395264, z: 3.6395264, w: 0}
+      - m_Value: {x: 4.9516726, y: 3.8959384, z: 3.8959384, w: 0}
         m_Name: ParticleColor
         m_Overridden: 1
-      - m_Value: {x: 1.883514, y: 1.5544816, z: 0, w: 0}
+      - m_Value: {x: 4.4821806, y: 3.618871, z: 0, w: 0}
         m_Name: Color2
         m_Overridden: 1
     m_Uint:
