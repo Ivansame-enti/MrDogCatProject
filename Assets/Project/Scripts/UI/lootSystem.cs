@@ -29,6 +29,7 @@ public class lootSystem : MonoBehaviour
     private bool AnimacionFinalizada = false;
     private bool unico = true;
     float timer = 0;
+    float timer2 = 2;
     private bool unicoPanel = true;
     void Start()
     {
@@ -59,11 +60,10 @@ public class lootSystem : MonoBehaviour
 
         if( StaticClass.CoinsDog >= 10 && AnimacionFinalizada == true) {
             ExplisionParticles.SetActive(false);
-            panelBlanco.SetActive(false);
-            AnimacionFinalizada = false;
+            //panelBlanco.SetActive(false);
+            //AnimacionFinalizada = false;
             StaticClass.CoinsDog -= 10;
             CoinText.text = StaticClass.CoinsDog.ToString("000");
-            AnimacionFinalizada = false;
             Spawner();
         }
 
@@ -76,7 +76,7 @@ public class lootSystem : MonoBehaviour
         {
             ExplisionParticles.SetActive(false);
             panelBlanco.SetActive(false);
-            AnimacionFinalizada = false;
+            //AnimacionFinalizada = false;
             comunParticles.SetActive(false);
             LittlecomunParticles.SetActive(false);
             EpicParticles.SetActive(false);
@@ -89,8 +89,8 @@ public class lootSystem : MonoBehaviour
         }
         // Debug.Log("HELICOPTERO");
         ExplisionParticles.SetActive(true);
-        panelBlanco.SetActive(false);
-        AnimacionFinalizada = false;
+        //panelBlanco.SetActive(false);
+        //AnimacionFinalizada = false;
         unicoPanel = true;
         unico = true;
         //Explosion.SetActive(true);
@@ -112,7 +112,7 @@ public class lootSystem : MonoBehaviour
 
         if (AnimacionFinalizada == false)
         {
-            panelBlanco.SetActive(false);
+            //panelBlanco.SetActive(false);
         }
         else
         {
@@ -121,20 +121,32 @@ public class lootSystem : MonoBehaviour
                 panelBlanco.SetActive(true);
                 unicoPanel = false;
             }
-            if (timer >= 1)
+
+
+            if (timer >= 2) //Un segundo donde el panel se queda full visible
             {
                 //panelBlanco.GetComponent<Image>().color = new Color(panelBlanco.GetComponent<Image>().color.r, panelBlanco.GetComponent<Image>().color.g, panelBlanco.GetComponent<Image>().color.b, 0);
-                panelBlanco.SetActive(false);
+
                 if (unico == true)
                 {
                     ExplisionParticles.SetActive(false);
-                   // StaticClass.CoinsDog -= 10;
+                    // StaticClass.CoinsDog -= 10;
                     Spawner();
                     unico = false;
                     AnimacionFinalizada = true;
                 }
-                
-                timer = 0f;
+
+                if (timer2 <= 0)
+                {
+                    //timer = 0f;
+                    //timer2 = 0f;
+                } else
+                {
+                    Debug.Log(map(timer2, 0, 1, 0, 255));
+                    panelBlanco.GetComponent<Image>().color = new Color(panelBlanco.GetComponent<Image>().color.r, panelBlanco.GetComponent<Image>().color.g, panelBlanco.GetComponent<Image>().color.b, map(timer2, 0, 2, 0, 1));
+                    timer2 -= Time.deltaTime;
+                }
+                //panelBlanco.SetActive(false);
             }
             else
             {
@@ -147,6 +159,11 @@ public class lootSystem : MonoBehaviour
 
     }
 
+    float map(float s, float a1, float a2, float b1, float b2)
+    {
+        return b1 + (s - a1) * (b2 - b1) / (a2 - a1);
+    }
+
 
     void Spawner()
     {
@@ -155,8 +172,8 @@ public class lootSystem : MonoBehaviour
 
             Destroy(hat);
         }
-        panelBlanco.SetActive(false);
-        AnimacionFinalizada = false;
+        //panelBlanco.SetActive(false);
+        //AnimacionFinalizada = false;
       
      
 
