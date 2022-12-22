@@ -121,14 +121,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat5
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -353,14 +353,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat1
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -486,14 +486,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat2
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 6966526962453010815}
   - component: {fileID: 1089299075657749192}
   - component: {fileID: 5909228429090093753}
+  - component: {fileID: 300263623472473350}
   m_Layer: 5
   m_Name: CanvasP1
   m_TagString: Untagged
@@ -592,6 +593,18 @@ MonoBehaviour:
   readyPanel: {fileID: 6052588738673357065}
   hatPanel: {fileID: 8798072350434811053}
   readyButton: {fileID: 0}
+--- !u!114 &300263623472473350
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318899918570912428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4222f69a2edadd64494d953d1cdd6611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3714608683603526510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,14 +802,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat6
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -997,10 +1010,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat0
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1166,14 +1179,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat4
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1530,14 +1543,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat3
-        m_Mode: 1
+      - m_Target: {fileID: 300263623472473350}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: DogHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1864,14 +1877,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c51f8d4806562984aa534fa6f684330e, type: 3}
---- !u!4 &3196637509119670276 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5492938524691517984, guid: c51f8d4806562984aa534fa6f684330e, type: 3}
-  m_PrefabInstance: {fileID: 6946356695787350564}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &2816839167167963838 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 5147903343174846618, guid: c51f8d4806562984aa534fa6f684330e, type: 3}
+  m_PrefabInstance: {fileID: 6946356695787350564}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &3196637509119670276 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5492938524691517984, guid: c51f8d4806562984aa534fa6f684330e, type: 3}
   m_PrefabInstance: {fileID: 6946356695787350564}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &7964024197802193526
@@ -2030,13 +2043,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ad87d4cf9dfacd0498753f4600f2bf20, type: 3}
---- !u!1 &4657712781420862303 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4511484348173531799, guid: ad87d4cf9dfacd0498753f4600f2bf20, type: 3}
-  m_PrefabInstance: {fileID: 9097137125207122376}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5469715980111528421 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3879802356940824621, guid: ad87d4cf9dfacd0498753f4600f2bf20, type: 3}
+  m_PrefabInstance: {fileID: 9097137125207122376}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &4657712781420862303 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4511484348173531799, guid: ad87d4cf9dfacd0498753f4600f2bf20, type: 3}
   m_PrefabInstance: {fileID: 9097137125207122376}
   m_PrefabAsset: {fileID: 0}

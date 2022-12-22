@@ -121,14 +121,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat5
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 5
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -353,14 +353,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat1
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 1
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -486,14 +486,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat2
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 2
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -510,6 +510,7 @@ GameObject:
   - component: {fileID: 6966526962453010815}
   - component: {fileID: 1089299075657749192}
   - component: {fileID: 5909228429090093753}
+  - component: {fileID: 5782589867910902796}
   m_Layer: 5
   m_Name: CanvasP2
   m_TagString: Untagged
@@ -592,6 +593,18 @@ MonoBehaviour:
   readyPanel: {fileID: 6052588738673357065}
   hatPanel: {fileID: 8798072350434811053}
   readyButton: {fileID: 5411929926083696981}
+--- !u!114 &5782589867910902796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2318899918570912428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4222f69a2edadd64494d953d1cdd6611, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &3714608683603526510
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -789,14 +802,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat6
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 6
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -921,10 +934,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat0
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -1090,14 +1103,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat4
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 4
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0
@@ -1484,14 +1497,14 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: SelectDogHat, Assembly-CSharp
-        m_MethodName: SelectHat3
-        m_Mode: 1
+      - m_Target: {fileID: 5782589867910902796}
+        m_TargetAssemblyTypeName: HatController, Assembly-CSharp
+        m_MethodName: CatHatSelected
+        m_Mode: 3
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
+          m_IntArgument: 3
           m_FloatArgument: 0
           m_StringArgument: 
           m_BoolArgument: 0

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class SelectPlayerController : MonoBehaviour
 {
-    public GameObject dogPos;
+    public GameObject animalPos;
     public ObiParticleAttachment rope;
 
     public GameObject[] prefabsDog;
@@ -13,18 +13,14 @@ public class SelectPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SelectCharacter(StaticClass.dogHat);
+        if(animalPos.tag == "Dog") SelectCharacter(StaticClass.dogHat);
+        if(animalPos.tag == "Cat") SelectCharacter(StaticClass.catHat);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 
     private void SelectCharacter(int num)
     {
-        GameObject dog = Instantiate(prefabsDog[StaticClass.dogHat], dogPos.transform.position, dogPos.transform.rotation) as GameObject;
+        GameObject dog = Instantiate(prefabsDog[StaticClass.dogHat], animalPos.transform.position, animalPos.transform.rotation) as GameObject;
         rope.target = dog.transform;
     }
 }
