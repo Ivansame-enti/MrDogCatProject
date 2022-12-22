@@ -13,7 +13,7 @@ public class SelectPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SelectCharacter(StaticClass.hatPicked);
+        SelectCharacter(StaticClass.dogHat);
     }
 
     // Update is called once per frame
@@ -24,7 +24,7 @@ public class SelectPlayerController : MonoBehaviour
 
     private void SelectCharacter(int num)
     {
-        GameObject dog = Instantiate(prefabsDog[StaticClass.hatPicked], dogPos.transform.position, dogPos.transform.rotation) as GameObject;
+        GameObject dog = Instantiate(prefabsDog[StaticClass.dogHat], dogPos.transform.position, dogPos.transform.rotation) as GameObject;
         rope.target = dog.transform;
     }
 }

@@ -39,7 +39,6 @@ public class PlayerSetupMenuController : MonoBehaviour
     public void SetPrefab(int hat)
     {
         if (!inputEnabled) { return; }
-        StaticClass.hatPicked = hat;
         readyPanel.SetActive(true);
         readyButton.Select();
         hatPanel.SetActive(false);

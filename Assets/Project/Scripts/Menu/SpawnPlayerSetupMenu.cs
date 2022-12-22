@@ -5,7 +5,7 @@ using UnityEngine.InputSystem.UI;
 
 public class SpawnPlayerSetupMenu : MonoBehaviour
 {
-    public GameObject playerSetupMenuPrefab;
+    public GameObject playerSetupMenuPrefab,playerSetupMenuPrefab2;
     public PlayerInput input;
     private GameObject canvas;
 
@@ -14,9 +14,19 @@ public class SpawnPlayerSetupMenu : MonoBehaviour
         var rootMenu = GameObject.Find("PlayerCanvas3");
         if(rootMenu != null)
         {
-            var menu = Instantiate(playerSetupMenuPrefab, rootMenu.transform);
-            input.uiInputModule = menu.GetComponentInChildren<InputSystemUIInputModule>();
-            menu.GetComponent<PlayerSetupMenuController>().SetPlayerIndex(input.playerIndex);
+            if (input.playerIndex == 0)
+            {
+                var menu = Instantiate(playerSetupMenuPrefab, rootMenu.transform);
+                input.uiInputModule = menu.GetComponentInChildren<InputSystemUIInputModule>();
+                menu.GetComponent<PlayerSetupMenuController>().SetPlayerIndex(input.playerIndex);
+            }
+            if (input.playerIndex == 1)
+            {
+                var menu = Instantiate(playerSetupMenuPrefab2, rootMenu.transform);
+                input.uiInputModule = menu.GetComponentInChildren<InputSystemUIInputModule>();
+                menu.GetComponent<PlayerSetupMenuController>().SetPlayerIndex(input.playerIndex);
+            }
+
         }
     }
 }
