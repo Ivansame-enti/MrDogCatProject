@@ -1,24 +1,23 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
-using UnityEngine.SceneManagement;
+using System.Linq;
 
-public class PlayerConfigureManager : MonoBehaviour
+public class PlayerConfigurationManager : MonoBehaviour
 {
-
     private List<PlayerConfiguration> playerConfigs;
 
     [SerializeField]
     private int MaxPlayers = 2;
-    public static PlayerConfigureManager Instance { get; private set; }
 
-    private void Awake()
+    public static PlayerConfigurationManager Instance { get; private set; }
+
+    public void Awake()
     {
-        if(Instance != null)
+        if (Instance != null)
         {
-            Debug.Log("xd");
+            Debug.Log("olis");
         }
         else
         {
@@ -27,20 +26,34 @@ public class PlayerConfigureManager : MonoBehaviour
             playerConfigs = new List<PlayerConfiguration>();
         }
     }
-    public void SetPlayerColor(int index, Material color)
+
+    public void setPlayerColor(int index, Material color)
     {
         playerConfigs[index].PlayerMaterial = color;
     }
+
     public void ReadyPlayer(int index)
     {
         playerConfigs[index].IsReady = true;
-        if(playerConfigs.Count == MaxPlayers && playerConfigs.All(p => p.IsReady == true))
+        if (playerConfigs.Count == MaxPlayers && playerConfigs.All(p => p.IsReady == true))
         {
-            SceneManager.LoadScene("MAP3JOSEP");
+            Debug.Log("Funsiona");
         }
     }
+
+    public void HandlePlayerJoin(PlayerInput pi)
+    {
+        Debug.Log("Player Joined" + pi.playerIndex);
+        if (!playerConfigs.Any(p => p.PlayerIndex == pi.playerIndex))
+        {
+            pi.transform.SetParent(transform);
+            playerConfigs.Add(new PlayerConfiguration(pi));
+        }
+
+    }
 }
-/*
+
+
 public class PlayerConfiguration
 {
     public PlayerConfiguration(PlayerInput pi)
@@ -49,11 +62,9 @@ public class PlayerConfiguration
         Input = pi;
     }
     public PlayerInput Input { get; set; }
-
     public int PlayerIndex { get; set; }
     public bool IsReady { get; set; }
     public Material PlayerMaterial { get; set; }
 }
 
 
-*/
