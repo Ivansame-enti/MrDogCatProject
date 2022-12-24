@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class HatController : MonoBehaviour
 {
+
     public void DogHatSelected(int hat)
     {
         StaticClass.dogHat = hat;
