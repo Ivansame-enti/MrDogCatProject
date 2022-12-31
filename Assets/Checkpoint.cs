@@ -8,8 +8,19 @@ public class Checkpoint : MonoBehaviour
     {
         if(collision.gameObject.tag=="Dog" || collision.gameObject.tag == "Cat")
         {
-            GameObject.FindGameObjectWithTag("Dog").GetComponent<RespawnController>().checkpoint = this.transform.position;
-            GameObject.FindGameObjectWithTag("Cat").GetComponent<RespawnController>().checkpoint = this.transform.position;
+            collision.gameObject.GetComponent<Animator>().SetBool("Sit", true);
+            //GameObject.FindGameObjectWithTag("Dog").GetComponent<RespawnController>().checkpoint = this.transform.position;
+            //GameObject.FindGameObjectWithTag("Cat").GetComponent<RespawnController>().checkpoint = this.transform.position;
+        }
+    }
+
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Dog" || collision.gameObject.tag == "Cat")
+        {
+            collision.gameObject.GetComponent<Animator>().SetBool("Sit", false);
+            //GameObject.FindGameObjectWithTag("Dog").GetComponent<RespawnController>().checkpoint = this.transform.position;
+            //GameObject.FindGameObjectWithTag("Cat").GetComponent<RespawnController>().checkpoint = this.transform.position;
         }
     }
 }
