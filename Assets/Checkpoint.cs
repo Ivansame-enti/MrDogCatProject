@@ -4,13 +4,19 @@ using UnityEngine;
 
 public class Checkpoint : MonoBehaviour
 {
+    public bool checkpoint;
+
+    private void Start()
+    {
+        checkpoint = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag=="Dog" || collision.gameObject.tag == "Cat")
         {
             collision.gameObject.GetComponent<Animator>().SetBool("Sit", true);
-            //GameObject.FindGameObjectWithTag("Dog").GetComponent<RespawnController>().checkpoint = this.transform.position;
-            //GameObject.FindGameObjectWithTag("Cat").GetComponent<RespawnController>().checkpoint = this.transform.position;
+            checkpoint = true;
         }
     }
 
@@ -19,8 +25,7 @@ public class Checkpoint : MonoBehaviour
         if (collision.gameObject.tag == "Dog" || collision.gameObject.tag == "Cat")
         {
             collision.gameObject.GetComponent<Animator>().SetBool("Sit", false);
-            //GameObject.FindGameObjectWithTag("Dog").GetComponent<RespawnController>().checkpoint = this.transform.position;
-            //GameObject.FindGameObjectWithTag("Cat").GetComponent<RespawnController>().checkpoint = this.transform.position;
+            checkpoint = false;
         }
     }
 }
