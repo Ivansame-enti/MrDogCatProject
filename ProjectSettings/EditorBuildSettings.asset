@@ -6,6 +6,9 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
+    path: Assets/Project/Scenes/HatSelector.unity
+    guid: 2ee02899129e7a849b7fc12e175e847e
+  - enabled: 1
     path: Assets/Project/Scenes/Tutorial 1.unity
     guid: eb0aa9d1e12c9e64187c14798b3eef6e
   - enabled: 0
@@ -14,9 +17,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Win.unity
     guid: 49af43050cfe9744aa2cb67d1e78fdc7
-  - enabled: 1
-    path: Assets/Project/Scenes/HatSelector.unity
-    guid: 2ee02899129e7a849b7fc12e175e847e
   - enabled: 0
     path: Assets/Project/Scenes/Tutorial.unity
     guid: 7d733ce3a99d8414d9d51efa9830592e

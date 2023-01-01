@@ -10,7 +10,6 @@ public class WinnerCanvasController : MonoBehaviour
     private int maxValue;
     private bool catEnded, dogEnded,winnerSound,winnerMusic;
     public GameObject winTextCat, winTextDog;
-    private float fillQuantity = 0.01f;
     public GameObject button;
     public GameObject coinDog, coinCat;
     private AudioManagerController audioSFX;
