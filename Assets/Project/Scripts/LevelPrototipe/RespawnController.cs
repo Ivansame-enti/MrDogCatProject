@@ -15,7 +15,7 @@ public class RespawnController : MonoBehaviour
     {
         if (other.gameObject.tag == "Restart")
         {
-
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
         }
     }
 }

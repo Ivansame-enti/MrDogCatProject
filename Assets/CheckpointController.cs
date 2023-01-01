@@ -8,6 +8,8 @@ public class CheckpointController : MonoBehaviour
     private Checkpoint ch1, ch2;
     private bool onlyOnce;
     public GameObject checkPointPS;
+    public Vector3 checkpointPoint;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,6 +25,7 @@ public class CheckpointController : MonoBehaviour
         {
             Invoke("InstantiateParticles", 2.0f);    
             onlyOnce = false;
+            SelectPlayerController.lastCheckpoint = checkpointPoint;
         }    
     }
 
