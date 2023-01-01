@@ -23,6 +23,8 @@ TagManager:
   - CatCoinText
   - Bone
   - CollectImage
+  - ChangeCamera
+  - LateralCamera
   layers:
   - Default
   - TransparentFX
