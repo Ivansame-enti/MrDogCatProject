@@ -21,6 +21,8 @@ TagManager:
   - Cat
   - DogCoinText
   - CatCoinText
+  - Bone
+  - CollectImage
   layers:
   - Default
   - TransparentFX
