@@ -17,13 +17,14 @@ public class SelectPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
+        StaticClass.hatPicked = 1;
         SelectCharacter(StaticClass.hatPicked);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //Debug.Log("Cat" + catLastCheckpoint);
+        Debug.Log(StaticClass.hatPicked);
         //Debug.Log("Dog" + dogLastCheckpoint);
     }
 
