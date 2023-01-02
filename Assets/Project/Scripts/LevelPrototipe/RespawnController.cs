@@ -5,17 +5,37 @@ using UnityEngine.SceneManagement;
 
 public class RespawnController : MonoBehaviour
 {
-    public string sceneName;
+    [SerializeField]
+    private Material transitionMaterial;
 
-    private void Start()
-    {
+    [SerializeField]
+    private float transitionTime = 3f;
 
-    }
+    [SerializeField]
+    private string propertyName = "_Progress";
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Restart")
         {
-            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+            StartCoroutine(DeathTranition());
         }
+    }
+
+    private IEnumerator DeathTranition()
+    {
+        float currentTime = transitionTime;
+        while (currentTime > 0)
+        {
+            currentTime -= Time.deltaTime;
+            transitionMaterial.SetFloat(propertyName, Mathf.Clamp01(currentTime / transitionTime));
+            yield return null;
+        }
+        PlayerDeath();
+    }
+
+    private void PlayerDeath()
+    {
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 }

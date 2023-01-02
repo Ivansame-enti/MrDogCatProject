@@ -24160,6 +24160,21 @@ CapsuleCollider:
   m_Height: 1.270345
   m_Direction: 1
   m_Center: {x: 0, y: 0.5686569, z: -0.20467122}
+--- !u!114 &-4452657225292152847
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288170040067332113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1cc366aaa38ddf64a81f28b117aafea4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  transitionMaterial: {fileID: 2100000, guid: 5069195b951f970489a52142e1cf71b4, type: 2}
+  transitionTime: 3
+  propertyName: _Progress
 --- !u!114 &1768874662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24247,18 +24262,6 @@ MonoBehaviour:
   filter: -65534
   m_SourceCollider: {fileID: 5273074451227309016}
   m_DistanceField: {fileID: 0}
---- !u!114 &-4452657225292152847
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288170040067332113}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1cc366aaa38ddf64a81f28b117aafea4, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1001 &5288170040067235507
 PrefabInstance:
   m_ObjectHideFlags: 0

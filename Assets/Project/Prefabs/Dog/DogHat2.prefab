@@ -24259,6 +24259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc366aaa38ddf64a81f28b117aafea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  transitionMaterial: {fileID: 2100000, guid: 5069195b951f970489a52142e1cf71b4, type: 2}
+  transitionTime: 3
+  propertyName: _Progress
 --- !u!1001 &1586704250369150773
 PrefabInstance:
   m_ObjectHideFlags: 0
