@@ -31,14 +31,14 @@ public class LightFloor : MonoBehaviour
     {
         if (lightFloorCollision.detectPlayer)
         {
-            Debug.Log("buenas");
+            //Debug.Log("buenas");
             Destroy(clone, plataformDownTime);
             lightFloorCollision.detectPlayer = false;
             returnFloor = true;
         }
         if(returnFloor)
         {
-            Debug.Log("ola");
+            //Debug.Log("ola");
             timer += Time.deltaTime;
             if(timer >= respawnTime)
             {
