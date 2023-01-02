@@ -24260,7 +24260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Name
-      value: Dog_LOD0
+      value: Dog
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Layer
@@ -24268,7 +24268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_TagString
