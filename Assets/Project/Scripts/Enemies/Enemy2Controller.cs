@@ -7,7 +7,6 @@ public class Enemy2Controller : MonoBehaviour
 {
     public bool ropeCollision;
     private Transform player1, player2;
-    private bool move;
     public float speed;
     private float timer;
     private float timer2;
@@ -29,7 +28,6 @@ public class Enemy2Controller : MonoBehaviour
         audioSFX = FindObjectOfType<AudioManagerController>();
         audioSource = GetComponent<AudioSource>();
         ropeCollision = false;
-        move = false;
         timer2 = 0;
         timer = timeBettwenAttacks;
         player1 = GameObject.Find("Dog").transform;
@@ -59,18 +57,10 @@ public class Enemy2Controller : MonoBehaviour
                         if (distanceToPlayerOne.magnitude <= distanceToPlayerTwo.magnitude)
                         {
                             playerPos = player1.position;
-                            //var lookDir = player1.position - transform.position;
-                            //lookDir.y = 0;
-                            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
-                            //transform.position = Vector3.MoveTowards(transform.position, player1.position, 20 * Time.deltaTime);
                         }
                         else
                         {
                             playerPos = player2.position;
-                            //var lookDir = player2.position - transform.position;
-                            //lookDir.y = 0;
-                            //transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
-                            //transform.position = Vector3.MoveTowards(transform.position, player2.position, speed * Time.deltaTime);
                         }
                         timer2 = chargeTime;
                         checkedPlayer = true;
@@ -85,7 +75,6 @@ public class Enemy2Controller : MonoBehaviour
 
                 if (timer2 <= 0 && checkedPlayer) //Si el tiempo de carga ha terminado y hay un objetivo, hace la carga
                 {
-                    move = true;
                     var lookDir = playerPos - transform.position;
                     lookDir.y = 0;
                     transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(lookDir), 100 * Time.deltaTime);
@@ -95,7 +84,6 @@ public class Enemy2Controller : MonoBehaviour
                     {
                         checkedPlayer = false;
                         timer = 0;
-                        move = false;
                         //audioSource.Stop();
                     }
                 }

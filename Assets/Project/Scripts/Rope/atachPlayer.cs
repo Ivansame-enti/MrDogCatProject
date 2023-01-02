@@ -9,8 +9,6 @@ public class atachPlayer : MonoBehaviour
     public GameObject cube2;
     public GameObject originalPadre;
     private bool startea = false;
-    private bool gatofuera = false;
-    private bool perrofuera = false;
     public float timer;
     public float cooldown;
 
@@ -25,14 +23,10 @@ public class atachPlayer : MonoBehaviour
         if(other.gameObject == player1)
         {
             player1.transform.parent = transform;
-            //gatofuera = false;
-            //timer = cooldown;
         }
         if (other.gameObject == player2)
         {
             player2.transform.parent = transform;
-            //perrofuera = false;
-            //timer = cooldown;
         }
     }
 
@@ -43,14 +37,12 @@ public class atachPlayer : MonoBehaviour
             player1.transform.parent = null;
             player1.transform.parent = originalPadre.transform;
             player1.transform.localScale = new Vector3(1, 1, 1);
-            //gatofuera = true;
         }
         if (other.gameObject == player2)
         {
             player2.transform.parent = null;
             player2.transform.parent = originalPadre.transform;
             player2.transform.localScale = new Vector3(1,1,1);
-            //perrofuera = true;
         }
     }
 
