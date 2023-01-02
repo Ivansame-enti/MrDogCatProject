@@ -24157,7 +24157,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1cc366aaa38ddf64a81f28b117aafea4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: TutorialIvan
+  transitionMaterial: {fileID: 2100000, guid: 5069195b951f970489a52142e1cf71b4, type: 2}
+  transitionTime: 3
+  propertyName: _Progress
 --- !u!114 &1768874662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24215,20 +24217,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gravityScale: 4
---- !u!114 &1768874666
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5288170040067332113}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 184066c501ab7da49a0af82479e160f5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  fences: {fileID: 0}
-  enemy2: {fileID: 0}
 --- !u!114 &1768874667
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -24272,7 +24260,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Name
-      value: Dog
+      value: Dog_LOD0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_Layer
@@ -24280,7 +24268,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
       propertyPath: m_TagString
