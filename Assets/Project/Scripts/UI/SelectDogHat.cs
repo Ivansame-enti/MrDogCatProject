@@ -23,36 +23,36 @@ public class SelectDogHat : MonoBehaviour
     public void SelectHat1()
     {
         StaticClass.hatPicked = 1;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SelectHat2()
     {
         StaticClass.hatPicked = 2;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SelectHat3()
     {
         StaticClass.hatPicked = 3;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SelectHat4()
     {
         StaticClass.hatPicked = 4;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SelectHat5()
     {
         StaticClass.hatPicked = 5;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SelectHat6()
     {
         StaticClass.hatPicked = 6;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 }

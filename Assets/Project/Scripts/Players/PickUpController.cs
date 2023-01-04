@@ -37,7 +37,10 @@ public class PickUpController : MonoBehaviour
             Destroy(other.gameObject);
             collectImage.color = new Color(255, 255, 255, 255);
         }
+    }
 
+    private void OnTriggerStay(Collider other)
+    {
         if (other.gameObject.tag == "ChangeCamera")
         {
             camera.Priority = 3;
