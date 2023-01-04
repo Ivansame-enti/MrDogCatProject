@@ -14,6 +14,8 @@ public class RespawnController : MonoBehaviour
     [SerializeField]
     private string propertyName = "_Progress";
 
+    private bool onlyOnce = true;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.gameObject.tag == "Restart")
@@ -36,6 +38,10 @@ public class RespawnController : MonoBehaviour
 
     private void PlayerDeath()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        if (onlyOnce)
+        {
+            onlyOnce = false;
+            SceneManager.LoadScene(SceneManager.GetActiveScene().name, LoadSceneMode.Single);
+        }
     }
 }

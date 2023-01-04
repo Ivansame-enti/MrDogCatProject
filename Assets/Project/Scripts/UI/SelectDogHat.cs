@@ -17,7 +17,7 @@ public class SelectDogHat : MonoBehaviour
     public void SelectHat0()
     {
         StaticClass.hatPicked = 0;
-        SceneManager.LoadScene("Tutorial 1");
+        SceneManager.LoadScene("Tutorial");
     }
 
     public void SelectHat1()
