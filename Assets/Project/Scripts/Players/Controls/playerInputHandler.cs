@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.UIElements;
@@ -9,21 +10,37 @@ using static UnityEngine.InputSystem.InputAction;
 
 public class playerInputHandler : MonoBehaviour
 {
-    private PlayerInput playerInput;
+    private PlayerConfiguration playerConfig;
     private PlayerControllerDog playerController;
-    int index;
+    private Controls controls;
     // Start is called before the first frame update
     void Awake()
     {
-        playerInput = GetComponent<PlayerInput>();
-        
-        var movers = FindObjectsOfType<PlayerControllerDog>();
-        if(playerInput != null)
-        {
-            index = playerInput.playerIndex;
-        }
-        playerController = movers.FirstOrDefault(m => m.GetPlayerIndex() == index);
+        playerController = GetComponent<PlayerControllerDog>();
+        controls = new Controls();
     }
+    public void InitializePlayer(PlayerConfiguration pc)
+    {
+        playerConfig = pc;
+        playerConfig.Input.onActionTriggered += Input_onActionTriggered;
+    }
+
+    private void Input_onActionTriggered(CallbackContext obj)
+    {
+        if(obj.action.name == controls.Dog.Movement.name)
+        {
+            OnMove(obj);
+        }
+        if (obj.action.name == controls.Dog.Run.name)
+        {
+            OnRun(obj);
+        }
+        if (obj.action.name == controls.Dog.Jump.name)
+        {
+            OnJump(obj);
+        }
+    }
+
     public void OnMove(CallbackContext context)
     {
         if(playerController != null)

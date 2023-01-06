@@ -24119,7 +24119,6 @@ MonoBehaviour:
   isGround:
     serializedVersion: 2
     m_Bits: 64
-  playerIndex: 0
   poopPrefab: {fileID: 7157323343887787588, guid: 3e13b1662c3e35f40ace16b065a78405, type: 3}
   jetTime: 0
   runningDonutPS: {fileID: 437014527179066971, guid: 1e00b8b5e0d72754db9d7777a41e5e60, type: 3}
@@ -24166,6 +24165,18 @@ MonoBehaviour:
   filter: -65534
   m_SourceCollider: {fileID: 8304468521794278066}
   m_DistanceField: {fileID: 0}
+--- !u!114 &4107671994695446559
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5288170040067332113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e0a68b1f39a10454e874149926c4adde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &8457054485308961605
 GameObject:
   m_ObjectHideFlags: 0
@@ -24531,14 +24542,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
---- !u!1 &5288170040067332113 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
-  m_PrefabInstance: {fileID: 5288170040067235507}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &5288170040067359793 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
+  m_PrefabInstance: {fileID: 5288170040067235507}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &5288170040067332113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 100002, guid: d88b77676f62dc94f8ac5b873cee90ee, type: 3}
   m_PrefabInstance: {fileID: 5288170040067235507}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &8357001920113784392

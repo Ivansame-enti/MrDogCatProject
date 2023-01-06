@@ -35,20 +35,12 @@ public class PlayerControllerDog : MonoBehaviour
     public LayerMask isGround;
     private AudioManagerController audioSFX;
     private bool flagjump = true;
-    [SerializeField]
-    private int playerIndex = 0;
-
     public GameObject poopPrefab;
     private float timerPoop;
     public float jetTime;
     public GameObject runningDonutPS;
-
     private bool particlesOnlyOnce = true;
 
-    public int GetPlayerIndex()
-    {
-        return playerIndex;
-    }
 
     void Start()
     {
@@ -118,14 +110,7 @@ public class PlayerControllerDog : MonoBehaviour
 
         if (isRunning == false)
         {
-            if (playerIndex == 0)
-            {
-                audioSFX.AudioStop("RunningDog");
-            }
-            if (playerIndex == 1)
-            {
-                audioSFX.AudioStop("RunningCat");
-            }
+            audioSFX.AudioStop("RunningDog");
             runningPS.SetActive(false);
             runningPSLow1.SetActive(false);
             runningPSLow2.SetActive(false);
@@ -156,21 +141,7 @@ public class PlayerControllerDog : MonoBehaviour
             stoppedJumping = true;
 
         }
-        if (isPooping == true)
-        {
-            if (playerIndex == 0)
-            {
-                if (timerPoop <= jetTime)
-                {
-                    GameObject poop = Instantiate(poopPrefab, transform.position, Quaternion.identity) as GameObject;
-                    Destroy(poop, 2);
-                    timerPoop += Time.deltaTime;
-                } else
-                {
-                    if (timerPoop > 0 && ground) timerPoop -= Time.deltaTime;
-                }
-            }
-        }
+        /*
         if (isBarking == true)
         {
             if (playerIndex == 0)
@@ -184,6 +155,7 @@ public class PlayerControllerDog : MonoBehaviour
                     audioSFX.AudioPlay("Meow");
             }
         }
+        */
         if (ground)
         {
             flagjump = true;
@@ -204,6 +176,9 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 if (runTimerCounter <= 0)
                 {
+                    if (!audioSFX.GetAudioPlaying("RunningCat"))
+                        audioSFX.AudioPlay("RunningCat");
+                    /*
                     if (playerIndex == 0)
                     {
                         if (!audioSFX.GetAudioPlaying("RunningDog"))
@@ -214,6 +189,7 @@ public class PlayerControllerDog : MonoBehaviour
                         if (!audioSFX.GetAudioPlaying("RunningCat"))
                             audioSFX.AudioPlay("RunningCat");
                     }
+                    */
                     runningPSLow1.SetActive(false);
                     runningPSLow2.SetActive(false);
                     runningPSLow3.SetActive(false);

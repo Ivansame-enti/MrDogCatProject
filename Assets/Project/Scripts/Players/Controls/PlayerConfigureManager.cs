@@ -40,7 +40,7 @@ public class PlayerConfigureManager : MonoBehaviour
         }
     }
 }
-
+/*
 public class PlayerConfiguration
 {
     public PlayerConfiguration(PlayerInput pi)
@@ -56,3 +56,4 @@ public class PlayerConfiguration
 }
 
 
+*/

@@ -2,14 +2,19 @@ using Obi;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.UIElements;
 
 public class SelectPlayerController : MonoBehaviour
 {
     public GameObject character;
     public GameObject dogPos;
-    public ObiParticleAttachment rope;
+    public GameObject catPos;
+    public ObiParticleAttachment dogRope;
+    public ObiParticleAttachment catRope;
 
     public GameObject[] prefabsDog;
+    public GameObject[] prefabsCat;
 
     public static Vector3 lastCheckpoint;
     //public static Vector3 dogLastCheckpoint;
@@ -17,20 +22,43 @@ public class SelectPlayerController : MonoBehaviour
     // Start is called before the first frame update
     void Awake()
     {
-        SelectCharacter(StaticClass.hatPicked);
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        //Debug.Log("Dog" + dogLastCheckpoint);
-    }
-
-    private void SelectCharacter(int num)
-    {
         if (lastCheckpoint != Vector3.zero) character.transform.position = lastCheckpoint;
+        var playerConfigs = PlayerConfigurationManager.Instance.GetPlayerConfigs().ToArray();
+        for (int i = 0; i<playerConfigs.Length; i++)
+        {
+            if(i == 0)
+            {
+                dogPos.SetActive(false);
+                GameObject dog = Instantiate(prefabsDog[StaticClass.dogHat], dogPos.transform.position, dogPos.transform.rotation) as GameObject;
+                dog.transform.parent = character.transform;
+                dogRope.target = dog.transform;
+                dog.GetComponent<playerInputHandler>().InitializePlayer(playerConfigs[i]);
+            }
+            if(i == 1)
+            {
+                catPos.SetActive(false);
+                GameObject cat = Instantiate(prefabsCat[StaticClass.catHat], catPos.transform.position, catPos.transform.rotation) as GameObject;
+                cat.transform.parent = character.transform;
+                catRope.target = cat.transform;
+                cat.GetComponent<playerInputHandler>().InitializePlayer(playerConfigs[i]); 
+            }
+        }
+        //if(animalPos.tag == "Dog") SelectCharacterDog(StaticClass.dogHat);
+        //if(animalPos.tag == "Cat") SelectCharacterCat(StaticClass.catHat);
+        //Debug.Log(StaticClass.dogHat);
+        //Debug.Log(StaticClass.catHat);
+    }
 
-        GameObject dog = Instantiate(prefabsDog[StaticClass.hatPicked], dogPos.transform.position, dogPos.transform.rotation) as GameObject;
+    /*
+    private void SelectCharacterDog(int num)
+    {
+        GameObject dog = Instantiate(prefabsDog[StaticClass.dogHat], animalPos.transform.position, animalPos.transform.rotation) as GameObject;
         rope.target = dog.transform;
     }
+    private void SelectCharacterCat(int num)
+    {
+        GameObject cat = Instantiate(prefabsDog[StaticClass.catHat], animalPos.transform.position, animalPos.transform.rotation) as GameObject;
+        rope.target = cat.transform;
+    }
+    */
 }
