@@ -42,7 +42,7 @@ public class RotatePlatformController : MonoBehaviour
 
         if (goodDirection)
         {
-            if (this.transform.localEulerAngles.y >= 350f && !flagVueltas)
+            if (this.transform.localEulerAngles.y >= 320f && !flagVueltas)
             {
                 flagVueltas = true;
                 //middlePoint = false;
@@ -54,7 +54,7 @@ public class RotatePlatformController : MonoBehaviour
                 flagVueltas = false;
             }
 
-            valueMapped = Map(this.transform.localEulerAngles.y + (350f * vueltas), 0, 1000, 0, 1);
+            valueMapped = Map(this.transform.localEulerAngles.y + (320f * vueltas), 0, 600, 0, 1);
             platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, 22, valueMapped), platform.transform.position.z);
             if(hasToMove) this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
         }

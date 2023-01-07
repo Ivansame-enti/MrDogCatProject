@@ -3,8 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using TMPro;
-using static System.TimeZoneInfo;
-using UnityEditor.SearchService;
 
 public class Level1Final : MonoBehaviour
 {

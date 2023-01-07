@@ -110,7 +110,9 @@ public class PlayerControllerDog : MonoBehaviour
 
         if (isRunning == false)
         {
-            audioSFX.AudioStop("RunningDog");
+            //Debug.Log("dasds");
+            if(this.gameObject.tag=="Dog") audioSFX.AudioStop("RunningDog");
+            if(this.gameObject.tag=="Cat") audioSFX.AudioStop("RunningCat");
             runningPS.SetActive(false);
             runningPSLow1.SetActive(false);
             runningPSLow2.SetActive(false);
@@ -176,8 +178,11 @@ public class PlayerControllerDog : MonoBehaviour
             {
                 if (runTimerCounter <= 0)
                 {
-                    if (!audioSFX.GetAudioPlaying("RunningCat"))
+                    if (!audioSFX.GetAudioPlaying("RunningCat") && this.gameObject.tag=="Cat")
                         audioSFX.AudioPlay("RunningCat");
+
+                    if (!audioSFX.GetAudioPlaying("RunningDog") && this.gameObject.tag == "Dog")
+                        audioSFX.AudioPlay("RunningDog");
                     /*
                     if (playerIndex == 0)
                     {
