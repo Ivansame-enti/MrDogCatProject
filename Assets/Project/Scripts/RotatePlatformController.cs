@@ -12,6 +12,7 @@ public class RotatePlatformController : MonoBehaviour
     private float lastRotationValue;
     private float platformOriginalY, originalY;
     bool goodDirection=true;
+    public float maxHeight;
     // Start is called before the first frame update
     void Start()
     {
@@ -55,8 +56,8 @@ public class RotatePlatformController : MonoBehaviour
             }
 
             valueMapped = Map(this.transform.localEulerAngles.y + (320f * vueltas), 0, 600, 0, 1);
-            platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, 22, valueMapped), platform.transform.position.z);
-            if(hasToMove) this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, 22, valueMapped), this.transform.position.z);
+            platform.transform.position = new Vector3(platform.transform.position.x, platformOriginalY + Mathf.Lerp(0, maxHeight, valueMapped), platform.transform.position.z);
+            if(hasToMove) this.transform.position = new Vector3(this.transform.position.x, originalY + Mathf.Lerp(0, maxHeight, valueMapped), this.transform.position.z);
         }
         lastRotationValue = this.transform.localEulerAngles.y;
     }
