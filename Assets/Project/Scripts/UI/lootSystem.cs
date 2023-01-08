@@ -7,21 +7,16 @@ using UnityEngine.UI;
 [System.Serializable]
 public class ItemToSpawn
 {
-   // public GameObject[] ComunHat;
     public GameObject[] item;
     public float spawRate;
     [HideInInspector] public float minSpawnProb, maxSpawnProb;
-  
-
 }
 
 public class lootSystem : MonoBehaviour
 {
-    // Start is called before the first frame update
     public ItemToSpawn[] itemToSpawn;
     public GameObject comunParticles, LittlecomunParticles, RareParticles, EpicParticles, LegendaryParticles;
     GameObject hat;
-    //private float monedas;
     public TextMeshProUGUI CoinText;
     public GameObject Explosion;
     public GameObject ExplisionParticles;
@@ -31,23 +26,19 @@ public class lootSystem : MonoBehaviour
     float timer = 0;
     float timer2 = 2;
     private bool unicoPanel = true;
+    
     void Start()
     {
-
         panelBlanco.SetActive(false);
-
-
-
-
-
-        StaticClass.CoinsDog = 100000;
+        StaticClass.CoinsDog = 20;
         CoinText.text = StaticClass.CoinsDog.ToString("000");
-        for (int i=0; i<itemToSpawn.Length;i++)
+
+        for (int i = 0; i < itemToSpawn.Length; i++)
         {
             if (i == 0)
             {
                 itemToSpawn[i].minSpawnProb = 0;
-                itemToSpawn[i].maxSpawnProb = itemToSpawn[i].spawRate - 1;  
+                itemToSpawn[i].maxSpawnProb = itemToSpawn[i].spawRate - 1;
 
             }
             else
@@ -55,13 +46,11 @@ public class lootSystem : MonoBehaviour
                 itemToSpawn[i].minSpawnProb = itemToSpawn[i - 1].maxSpawnProb + 1;
                 itemToSpawn[i].maxSpawnProb = itemToSpawn[i].minSpawnProb + itemToSpawn[i].spawRate - 1;
             }
-
         }
 
-        if( StaticClass.CoinsDog >= 10 && AnimacionFinalizada == true) {
+        if (StaticClass.CoinsDog >= 10 && AnimacionFinalizada == true)
+        {
             ExplisionParticles.SetActive(false);
-            //panelBlanco.SetActive(false);
-            //AnimacionFinalizada = false;
             StaticClass.CoinsDog -= 10;
             CoinText.text = StaticClass.CoinsDog.ToString("000");
             Spawner();
@@ -70,13 +59,10 @@ public class lootSystem : MonoBehaviour
     }
     public void Reroll()
     {
-
-
         if (StaticClass.CoinsDog >= 10 && AnimacionFinalizada == true)
         {
             ExplisionParticles.SetActive(false);
             panelBlanco.SetActive(false);
-            //AnimacionFinalizada = false;
             comunParticles.SetActive(false);
             LittlecomunParticles.SetActive(false);
             EpicParticles.SetActive(false);
@@ -85,19 +71,11 @@ public class lootSystem : MonoBehaviour
 
             StaticClass.CoinsDog -= 10;
             CoinText.text = StaticClass.CoinsDog.ToString("000");
-            //Spawner();
         }
-        // Debug.Log("HELICOPTERO");
+
         ExplisionParticles.SetActive(true);
-        //panelBlanco.SetActive(false);
-        //AnimacionFinalizada = false;
         unicoPanel = true;
         unico = true;
-        //Explosion.SetActive(true);
-        //unico = true;
-       
-
-
     }
 
     void Update()
@@ -107,16 +85,13 @@ public class lootSystem : MonoBehaviour
         {
             Explosion.SetActive(false);
             AnimacionFinalizada = true;
-            
+
         }
 
-        if (AnimacionFinalizada == false)
+        if (AnimacionFinalizada)
         {
-            //panelBlanco.SetActive(false);
-        }
-        else
-        {
-            if (unicoPanel==true) {
+            if (unicoPanel == true)
+            {
                 ExplisionParticles.SetActive(false);
                 panelBlanco.SetActive(true);
                 unicoPanel = false;
@@ -140,7 +115,8 @@ public class lootSystem : MonoBehaviour
                 {
                     //timer = 0f;
                     //timer2 = 0f;
-                } else
+                }
+                else
                 {
                     Debug.Log(map(timer2, 0, 1, 0, 255));
                     panelBlanco.GetComponent<Image>().color = new Color(panelBlanco.GetComponent<Image>().color.r, panelBlanco.GetComponent<Image>().color.g, panelBlanco.GetComponent<Image>().color.b, map(timer2, 0, 2, 0, 1));
@@ -152,10 +128,10 @@ public class lootSystem : MonoBehaviour
             {
                 timer += Time.deltaTime;
             }
-            
+
         }
 
-  
+
 
     }
 
@@ -169,24 +145,15 @@ public class lootSystem : MonoBehaviour
     {
         if (hat != null)
         {
-
             Destroy(hat);
         }
-        //panelBlanco.SetActive(false);
-        //AnimacionFinalizada = false;
-      
-     
-
 
         float randomNum = Random.Range(0, 100);
         int randomNum2 = 0;
-        for (int i=0; i<itemToSpawn.Length; i++)
+        for (int i = 0; i < itemToSpawn.Length; i++)
         {
-
-            if(randomNum>=itemToSpawn[i].minSpawnProb && randomNum <= itemToSpawn[i].maxSpawnProb)
+            if (randomNum >= itemToSpawn[i].minSpawnProb && randomNum <= itemToSpawn[i].maxSpawnProb)
             {
-
-               
                 if (i == 0)
                 {
                     Debug.Log("Comun");
@@ -197,10 +164,10 @@ public class lootSystem : MonoBehaviour
                     LegendaryParticles.SetActive(false);
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
                     Debug.Log(randomNum2);
-                     hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                     hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
-                else if (i==1)
+                else if (i == 1)
                 {
                     Debug.Log("Poco Comun");
                     comunParticles.SetActive(false);
@@ -209,7 +176,7 @@ public class lootSystem : MonoBehaviour
                     RareParticles.SetActive(false);
                     LegendaryParticles.SetActive(false);
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
-                     hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                     hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i == 2)
@@ -220,7 +187,7 @@ public class lootSystem : MonoBehaviour
                     EpicParticles.SetActive(false);
                     RareParticles.SetActive(true);
                     LegendaryParticles.SetActive(false);
-                     hat = Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat = Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                     hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i == 3)
@@ -232,7 +199,7 @@ public class lootSystem : MonoBehaviour
                     RareParticles.SetActive(false);
                     LegendaryParticles.SetActive(false);
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
-                     hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                     hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
                 else if (i == 4)
@@ -244,15 +211,11 @@ public class lootSystem : MonoBehaviour
                     LegendaryParticles.SetActive(true);
                     Debug.Log("WOOOOOOW LEGENDARIAAAAAAAAAAAA");
                     randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
-                     hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
-                    hat.transform.localScale = new Vector3(0.9f,0.9f,0.9f);
+                    hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                 }
-
                 break;
             }
-
         }
-
     }
-
 }
