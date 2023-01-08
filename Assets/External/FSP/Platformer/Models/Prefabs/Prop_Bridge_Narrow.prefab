@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 5913367540069763365}
   - component: {fileID: 8139895217237639881}
   - component: {fileID: 7105790847173958775}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wood_Dark
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,7 +108,7 @@ GameObject:
   - component: {fileID: 6533693512479308695}
   - component: {fileID: 3426625805930112995}
   - component: {fileID: 5516900240326159180}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Hidden
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -204,7 +204,7 @@ GameObject:
   - component: {fileID: 3237144664554458312}
   - component: {fileID: 6700909194306825858}
   - component: {fileID: 1100154076905349857}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wood_Medium
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -300,7 +300,7 @@ GameObject:
   - component: {fileID: 8774247531941336428}
   - component: {fileID: 5692329855878035677}
   - component: {fileID: 7022912014375387507}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Rope
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -396,7 +396,7 @@ GameObject:
   - component: {fileID: 1972547063182919533}
   - component: {fileID: 1171811937117715256}
   - component: {fileID: 7774876488412132231}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Wood_Light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +491,7 @@ GameObject:
   - component: {fileID: 3229814694962835013}
   - component: {fileID: 6823816908877186802}
   - component: {fileID: 4965963437212217774}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Prop_Bridge_Narrow
   m_TagString: Ground
   m_Icon: {fileID: 0}
