@@ -17,5 +17,8 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project/Scenes/Win.unity
     guid: 49af43050cfe9744aa2cb67d1e78fdc7
+  - enabled: 1
+    path: Assets/Project/Scenes/LootBox.unity
+    guid: 70a1273d5e37e944a9cd45d37bf1673e
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: 45661a3c864f3d54baa259870d8c1bd6, type: 2}
