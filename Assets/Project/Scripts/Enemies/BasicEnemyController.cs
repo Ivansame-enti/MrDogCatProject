@@ -82,7 +82,7 @@ public class BasicEnemyController : MonoBehaviour
 
     private void AttackPlayer()
     {
-        agent.speed = 7.0f;
+        agent.speed = 6.0f;
         Vector3 distanceToPlayerOne = this.transform.position - player1.position;
         Vector3 distanceToPlayerTwo = this.transform.position - player2.position;
 
