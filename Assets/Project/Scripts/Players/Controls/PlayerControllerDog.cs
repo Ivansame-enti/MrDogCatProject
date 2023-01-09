@@ -23,7 +23,7 @@ public class PlayerControllerDog : MonoBehaviour
     public float runMax;
     public float runTime;
     private float runTimerCounter;
-    private bool isRunning, pressRun, isJumping, isBarking, stoppedJumping, isPooping;
+    private bool isRunning, pressRun, isJumping, isBarking, stoppedJumping, isPooping,isPause;
     private bool ground;
     public GameObject runningPS;
     public GameObject runningPSLow1, runningPSLow2, runningPSLow3, runningPSLow4;
@@ -40,7 +40,6 @@ public class PlayerControllerDog : MonoBehaviour
     public float jetTime;
     public GameObject runningDonutPS;
     private bool particlesOnlyOnce = true;
-
 
     void Start()
     {
@@ -74,8 +73,24 @@ public class PlayerControllerDog : MonoBehaviour
     {
         isPooping = pressPoop;
     }
+    public void SetPause(bool pressPause)
+    {
+        isPause = pressPause;
+    }
     private void Update()
     {
+        
+        if (isPause)
+        {
+            if (PauseScript.isGamePaused)
+            {
+                PauseScript.isGamePaused = false;
+            }
+            else if (!PauseScript.isGamePaused)
+            {
+                PauseScript.isGamePaused = true;
+            }
+        } 
         var cam = Camera.main;
 
         var camRight = cam.transform.right;

@@ -57,6 +57,14 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Pause"",
+                    ""type"": ""Button"",
+                    ""id"": ""92e3cdd3-e6ce-4236-98a2-dbc73710ecf5"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -211,6 +219,28 @@ public class @Controls : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": """",
                     ""action"": ""Poop"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""c53db3c6-1d20-4869-984f-ddf716c4488b"",
+                    ""path"": ""<Gamepad>/start"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""1afd7d56-bba4-46a9-a30c-46dab115314a"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""Pause"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -368,6 +398,7 @@ public class @Controls : IInputActionCollection, IDisposable
         m_Dog_Run = m_Dog.FindAction("Run", throwIfNotFound: true);
         m_Dog_Sound = m_Dog.FindAction("Sound", throwIfNotFound: true);
         m_Dog_Poop = m_Dog.FindAction("Poop", throwIfNotFound: true);
+        m_Dog_Pause = m_Dog.FindAction("Pause", throwIfNotFound: true);
         // Cat
         m_Cat = asset.FindActionMap("Cat", throwIfNotFound: true);
         m_Cat_Movement = m_Cat.FindAction("Movement", throwIfNotFound: true);
@@ -427,6 +458,7 @@ public class @Controls : IInputActionCollection, IDisposable
     private readonly InputAction m_Dog_Run;
     private readonly InputAction m_Dog_Sound;
     private readonly InputAction m_Dog_Poop;
+    private readonly InputAction m_Dog_Pause;
     public struct DogActions
     {
         private @Controls m_Wrapper;
@@ -436,6 +468,7 @@ public class @Controls : IInputActionCollection, IDisposable
         public InputAction @Run => m_Wrapper.m_Dog_Run;
         public InputAction @Sound => m_Wrapper.m_Dog_Sound;
         public InputAction @Poop => m_Wrapper.m_Dog_Poop;
+        public InputAction @Pause => m_Wrapper.m_Dog_Pause;
         public InputActionMap Get() { return m_Wrapper.m_Dog; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -460,6 +493,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Poop.started -= m_Wrapper.m_DogActionsCallbackInterface.OnPoop;
                 @Poop.performed -= m_Wrapper.m_DogActionsCallbackInterface.OnPoop;
                 @Poop.canceled -= m_Wrapper.m_DogActionsCallbackInterface.OnPoop;
+                @Pause.started -= m_Wrapper.m_DogActionsCallbackInterface.OnPause;
+                @Pause.performed -= m_Wrapper.m_DogActionsCallbackInterface.OnPause;
+                @Pause.canceled -= m_Wrapper.m_DogActionsCallbackInterface.OnPause;
             }
             m_Wrapper.m_DogActionsCallbackInterface = instance;
             if (instance != null)
@@ -479,6 +515,9 @@ public class @Controls : IInputActionCollection, IDisposable
                 @Poop.started += instance.OnPoop;
                 @Poop.performed += instance.OnPoop;
                 @Poop.canceled += instance.OnPoop;
+                @Pause.started += instance.OnPause;
+                @Pause.performed += instance.OnPause;
+                @Pause.canceled += instance.OnPause;
             }
         }
     }
@@ -539,6 +578,7 @@ public class @Controls : IInputActionCollection, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnSound(InputAction.CallbackContext context);
         void OnPoop(InputAction.CallbackContext context);
+        void OnPause(InputAction.CallbackContext context);
     }
     public interface ICatActions
     {

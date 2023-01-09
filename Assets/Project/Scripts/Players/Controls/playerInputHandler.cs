@@ -39,6 +39,10 @@ public class playerInputHandler : MonoBehaviour
         {
             OnJump(obj);
         }
+        if(obj.action.name == controls.Dog.Pause.name)
+        {
+            OnPause(obj);
+        }
     }
 
     public void OnMove(CallbackContext context)
@@ -66,5 +70,10 @@ public class playerInputHandler : MonoBehaviour
     {
         if (playerController != null)
             playerController.SetPoop(context.ReadValueAsButton());
+    }
+    public void OnPause(InputAction.CallbackContext context)
+    {
+        if (playerController != null)
+            playerController.SetPause(context.ReadValueAsButton());
     }
 }
