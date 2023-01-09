@@ -41,6 +41,8 @@ public class PlayerControllerDog : MonoBehaviour
     public GameObject runningDonutPS;
     private bool particlesOnlyOnce = true;
 
+    private float timerPause;
+
     void Start()
     {
         audioSFX = FindObjectOfType<AudioManagerController>();
@@ -51,6 +53,7 @@ public class PlayerControllerDog : MonoBehaviour
         anim = GetComponent<Animator>();
         rb = this.GetComponent<Rigidbody>();
         originalSpeed = speed;
+        timerPause = 1;
     }
     public void SetInputVector(Vector2 direction)
     {
@@ -79,18 +82,24 @@ public class PlayerControllerDog : MonoBehaviour
     }
     private void Update()
     {
-        
+        if (timerPause <= 1) timerPause += Time.unscaledDeltaTime;
+
         if (isPause)
         {
-            if (PauseScript.isGamePaused)
+            if (timerPause >= 0.5f)
             {
-                PauseScript.isGamePaused = false;
+                if (PauseScript.isGamePaused)
+                {
+                    PauseScript.isGamePaused = false;
+                }
+                else if (!PauseScript.isGamePaused)
+                {
+                    PauseScript.isGamePaused = true;
+                }
+                timerPause = 0;
             }
-            else if (!PauseScript.isGamePaused)
-            {
-                PauseScript.isGamePaused = true;
-            }
-        } 
+        }
+        
         var cam = Camera.main;
 
         var camRight = cam.transform.right;
