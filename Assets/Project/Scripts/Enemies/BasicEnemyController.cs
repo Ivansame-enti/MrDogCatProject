@@ -45,10 +45,10 @@ public class BasicEnemyController : MonoBehaviour
             //Debug.Log("In Range");
             AttackPlayer();
         }
-        if (hitbox1) this.gameObject.transform.GetChild(0).gameObject.GetComponent<MeshRenderer>().material = mat;
-        if (hitbox2) this.gameObject.transform.GetChild(1).gameObject.GetComponent<MeshRenderer>().material = mat;
-        if (hitbox3) this.gameObject.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().material = mat;
-        if (hitbox4) this.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox1) this.gameObject.transform.GetChild(2).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox2) this.gameObject.transform.GetChild(3).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox3) this.gameObject.transform.GetChild(4).gameObject.GetComponent<MeshRenderer>().material = mat;
+        if (hitbox4) this.gameObject.transform.GetChild(5).gameObject.GetComponent<MeshRenderer>().material = mat;
         if (hitbox1 && hitbox2 && hitbox3 && hitbox4)
         {
             audioSFX.AudioPlay("BasicEnemyDeath");
