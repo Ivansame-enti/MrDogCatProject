@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4901155340339187106}
   - component: {fileID: 7077934239775537328}
   - component: {fileID: 5869308328011423800}
+  - component: {fileID: 278843255249629853}
   m_Layer: 0
   m_Name: PP_Tree_10
   m_TagString: Untagged
@@ -114,3 +115,22 @@ MonoBehaviour:
   filter: -65535
   m_SourceCollider: {fileID: 7077934239775537328}
   m_DistanceField: {fileID: 0}
+--- !u!95 &278843255249629853
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6846767348704259191}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 3990e48a5ca675441b98daf3e2cfb7fb, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
