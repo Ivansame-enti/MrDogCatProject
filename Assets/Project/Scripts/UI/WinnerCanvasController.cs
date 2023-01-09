@@ -19,10 +19,10 @@ public class WinnerCanvasController : MonoBehaviour
         audioSFX = FindObjectOfType<AudioManagerController>();
         catEnded = false;
         dogEnded = false;
-        //StaticClass.CoinsCat = 10;
-        //StaticClass.CoinsDog = 7;
-        //Debug.Log(StaticClass.CoinsCat);
-        //Debug.Log(StaticClass.CoinsDog);
+        StaticClass.CoinsCat = 10;
+        StaticClass.CoinsDog = 7;
+        Debug.Log(StaticClass.CoinsCat);
+        Debug.Log(StaticClass.CoinsDog);
         
         maxValue = Mathf.Max(StaticClass.CoinsCat, StaticClass.CoinsDog);
         catSlider.maxValue = maxValue;
