@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class PauseScript : MonoBehaviour
 {
@@ -10,10 +11,11 @@ public class PauseScript : MonoBehaviour
     public static bool isGamePaused;
     [SerializeField] GameObject PauseMenu;
     [SerializeField] GameObject resumeButton;
-
+    private bool isPaused;
     // Start is called before the first frame update
     void Start()
     {
+        isPaused = false;
         isGamePaused = false;
     }
 
@@ -22,12 +24,22 @@ public class PauseScript : MonoBehaviour
     {
         if (isGamePaused)
         {
+            if (!isPaused)
+            {
+                isPaused = true;
+            }
+
             PauseGame();
+            //if(isPaused) this.resumeButton.GetComponent<Button>().Select();
             //EventSystem.current.SetSelectedGameObject(null);
             //EventSystem.current.SetSelectedGameObject(resumeButton);
         }
         else if (!isGamePaused)
         {
+            if (isPaused)
+            {
+                isPaused = false;
+            }
             ResumeGame();
         }
     }

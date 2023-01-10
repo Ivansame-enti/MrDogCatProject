@@ -23,7 +23,7 @@ public class CheckpointController : MonoBehaviour
     {
         if(ch1.checkpoint && ch2.checkpoint && onlyOnce)
         {
-            Invoke("InstantiateParticles", 2.0f);    
+            Invoke("InstantiateParticles", 1.0f);    
             onlyOnce = false;
             SelectPlayerController.lastCheckpoint = checkpointPoint;
         }    

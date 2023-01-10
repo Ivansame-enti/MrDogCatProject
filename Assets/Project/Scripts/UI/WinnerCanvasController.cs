@@ -14,14 +14,15 @@ public class WinnerCanvasController : MonoBehaviour
     public GameObject button;
     public GameObject coinDog, coinCat;
     private AudioManagerController audioSFX;
+    public GameObject dogModel, catModel;
     // Start is called before the first frame update
     void Start()
     {
         audioSFX = FindObjectOfType<AudioManagerController>();
         catEnded = false;
         dogEnded = false;
-        StaticClass.CoinsCat = 10;
-        StaticClass.CoinsDog = 7;
+        //StaticClass.CoinsCat = 10;
+        //StaticClass.CoinsDog = 12;
        // Debug.Log(StaticClass.CoinsCat);
        // Debug.Log(StaticClass.CoinsDog);
         
@@ -38,10 +39,10 @@ public class WinnerCanvasController : MonoBehaviour
         //StartCoroutine(DogSliderValueChange(dogSlider));
 
         if (catSlider.value >= StaticClass.CoinsCat) catEnded = true;
-        else catSlider.value += Time.deltaTime * 3f;
+        else catSlider.value += Time.deltaTime * 5f;
 
         if (dogSlider.value >= StaticClass.CoinsDog) dogEnded = true;
-        else dogSlider.value += Time.deltaTime * 3f;
+        else dogSlider.value += Time.deltaTime * 5f;
 
         if (catEnded) coinCat.SetActive(false);
         if (dogEnded) coinDog.SetActive(false);
@@ -57,12 +58,18 @@ public class WinnerCanvasController : MonoBehaviour
                 winTextCat.SetActive(true);
                 if(!winnerSound) audioSFX.AudioPlay("Meow");
                 winnerSound = true;
+                catModel.GetComponent<Animator>().SetBool("WinAnim", false);
+                catModel.GetComponent<Animator>().SetBool("Win", true);
+                dogModel.GetComponent<Animator>().SetBool("Lose", true);
 
             } else if(StaticClass.CoinsCat < StaticClass.CoinsDog)
             {
                 winTextDog.SetActive(true);
                 if (!winnerSound) audioSFX.AudioPlay("Bark");
-                winnerSound = true; 
+                winnerSound = true;
+                catModel.GetComponent<Animator>().SetBool("Lose", true);
+                dogModel.GetComponent<Animator>().SetBool("WinAnim", false);
+                dogModel.GetComponent<Animator>().SetBool("Win", true);
             }
 
             button.SetActive(true);
