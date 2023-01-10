@@ -208,7 +208,8 @@ public class lootSystem : MonoBehaviour
                     EpicParticles.SetActive(false);
                     RareParticles.SetActive(true);
                     LegendaryParticles.SetActive(false);
-                    hat = Instantiate(itemToSpawn[i].item[0], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
+                    randomNum2 = Random.Range(0, itemToSpawn[i].item.Length);
+                    hat = Instantiate(itemToSpawn[i].item[randomNum2], transform.position, itemToSpawn[i].item[randomNum2].transform.rotation);
                     hat.transform.localScale = new Vector3(0.9f, 0.9f, 0.9f);
                     hat.AddComponent<Rotate>();
                     hat.GetComponent<Rotate>().speed = 50;

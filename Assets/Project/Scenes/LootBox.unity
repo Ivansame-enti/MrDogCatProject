@@ -952,27 +952,50 @@ MonoBehaviour:
   - item:
     - {fileID: 5147903343174846618, guid: c51f8d4806562984aa534fa6f684330e, type: 3}
     - {fileID: 7201373823139585846, guid: a4ecc63ea9b4ed04bba1e8a65799ed0d, type: 3}
-    spawRate: 55
+    - {fileID: 6427412174012747889, guid: 40986a5ec695bec4f9b54f2048ef8121, type: 3}
+    - {fileID: 1124282415159465701, guid: a7b5fd2234866de4ab468f2e2445cdd6, type: 3}
+    - {fileID: 6152368980078384061, guid: 6ddfc4b7588766d42b863ec1491ec7af, type: 3}
+    - {fileID: 3575775956337909067, guid: dd5c85017c358b342ad949eb0b9edac2, type: 3}
+    - {fileID: 580397885358846279, guid: 0cbed8a753634d345bfccb4bb37e5270, type: 3}
+    spawRate: 40
     minSpawnProb: 0
     maxSpawnProb: 0
   - item:
     - {fileID: 404535256170413259, guid: 416f34a2f0df14c4c84995881bcf01f1, type: 3}
-    spawRate: 29
+    - {fileID: 7885003046060197423, guid: 79a89ee6ebe00d04a91cc3ffb6b4c18a, type: 3}
+    - {fileID: 312865574969031150, guid: b2729ce12915c784c85ebbac8d134295, type: 3}
+    - {fileID: 3112017034137390403, guid: 42bd6f6d0400bd64b8d36043b0cd0ea9, type: 3}
+    - {fileID: 8180926414409797992, guid: 5ab78ff12c9c24645ab0ed766ceffff6, type: 3}
+    - {fileID: 2903669137093187216, guid: 637c28dd9fb60d24b90c8c619e1cfe7f, type: 3}
+    - {fileID: 8344388717907222832, guid: 3dd3ca915063c6642828fd2295fb273d, type: 3}
+    spawRate: 25
     minSpawnProb: 0
     maxSpawnProb: 0
   - item:
     - {fileID: 4525554362790791688, guid: 14d3a5b1107e88541a935138e40300a5, type: 3}
-    spawRate: 10
+    - {fileID: 8848507303879957552, guid: c1bcad63a58dad04a9ec9403ddbf8aa8, type: 3}
+    - {fileID: 1046007737318186546, guid: d131cf5556dd3c94590177285d80f9e7, type: 3}
+    - {fileID: 2573348047556891326, guid: 35a96c966d656964cb417fd1af7f7b48, type: 3}
+    - {fileID: 2738675332827685904, guid: ca208d8fbf75eeb49bb767d73065aae9, type: 3}
+    - {fileID: 2569447834330422030, guid: 60384fd105d43674f9aa201ea1e10e45, type: 3}
+    spawRate: 20
     minSpawnProb: 0
     maxSpawnProb: 0
   - item:
     - {fileID: 4511484348173531799, guid: ad87d4cf9dfacd0498753f4600f2bf20, type: 3}
-    spawRate: 5
+    - {fileID: 8628932228240381488, guid: 7a7ef40e2e9f178488f8e4d2092c6e04, type: 3}
+    - {fileID: 2527693760037002767, guid: 09dda51c5f7447348a672913e69fdd17, type: 3}
+    - {fileID: 2691279979361811196, guid: 23e18b092c6844546a7d9dcb9848ee29, type: 3}
+    - {fileID: 5697767704901991110, guid: fc0a0648be4c39e45a32196ab7106cd9, type: 3}
+    spawRate: 10
     minSpawnProb: 0
     maxSpawnProb: 0
   - item:
     - {fileID: 239454058793074086, guid: 90b19f0a7c1289046bbe0d9be004f76f, type: 3}
-    spawRate: 1
+    - {fileID: 8973520473474143592, guid: 147f56e9be7025c49a734a61a13ed923, type: 3}
+    - {fileID: 2246799252364196107, guid: ebe34e441607dc64186eb09e546aa985, type: 3}
+    - {fileID: 694137517933511092, guid: c1d0f01785ace4b44a01dbf050e44912, type: 3}
+    spawRate: 5
     minSpawnProb: 0
     maxSpawnProb: 0
   comunParticles: {fileID: 2003381942}
